@@ -27,6 +27,15 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <p style={{ color: "white" }}>
+        This site is partially translated!{" "}
+        <Link to="/" style={{ color: "inherit" }}>
+          Srpksi
+        </Link>{" "}
+        <Link to="/en" style={{ color: "inherit" }}>
+          Engleski
+        </Link>
+      </p>
     </div>
   </header>
 )
