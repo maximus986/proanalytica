@@ -28,11 +28,17 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-i18n",
+      resolve: 'gatsby-plugin-i18n',
       options: {
-        langKeyDefault: "sr",
+        langKeyDefault: 'sr',
         useLangKeyLayout: false,
       },
     },
+    {
+      resolve: `gatsby-source-wordpress-experimental`,
+      options: {
+        url: `http://proanalytica.local/graphql`,
+      },
+    },
   ],
-}
+};
