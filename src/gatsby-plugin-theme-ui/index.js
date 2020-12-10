@@ -97,11 +97,11 @@ export default {
       },
     },
   },
-  // fonts: {
-  //   body: 'Lato,Roboto, "Helvetica Neue", sans-serif',
-  //   heading: 'Montserrat',
-  //   author: 'Nothing You Could Do',
-  // },
+  fonts: {
+    body: 'Ubuntu, sans-serif',
+    heading: 'Ubuntu',
+    author: 'Ubuntu',
+  },
   breakpoints: ['576px', '768px', '1030px', '1280px', '1600px'],
   space: [
     0,

@@ -57,5 +57,14 @@ module.exports = {
       },
     },
     `gatsby-plugin-theme-ui`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: `site-url`, // !add site url
+        sitemap: `site-url/sitemap.xml`, // !add site url
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
+    `gatsby-plugin-sitemap`,
   ],
 };
