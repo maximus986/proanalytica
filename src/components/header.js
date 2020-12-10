@@ -1,24 +1,32 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
+import LanguageMenu from './languageMenu';
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
 
 const Header = ({ siteTitle }) => (
   <header
     sx={{
-      bg: `primary`,
+      bg: 'primary',
       marginBottom: `1.45rem`,
+      display: `flex`,
+      justifyContent: `center`,
+      alignItems: `center`,
     }}
   >
     <div
       style={{
-        margin: `0 auto`,
+        padding: `10px`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        textAlign: `center`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
+      <h1
+        style={{
+          margin: `20px 100px`,
+        }}
+      >
         <Link
           to="/"
           style={{
@@ -29,16 +37,8 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
-      <p style={{ color: 'white' }}>
-        This site is partially translated!{' '}
-        <Link to="/" style={{ color: 'inherit' }}>
-          Srpksi
-        </Link>{' '}
-        <Link to="/en" style={{ color: 'inherit' }}>
-          Engleski
-        </Link>
-      </p>
     </div>
+    <LanguageMenu></LanguageMenu>
   </header>
 );
 

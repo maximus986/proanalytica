@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   siteMetadata: {
     title: `Proanalytica`,
@@ -35,9 +37,23 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        src: path.join(__dirname, 'src'),
+        i18n: path.join(__dirname, 'src/i18n'),
+        images: path.join(__dirname, 'src/images'),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: `${__dirname}/src/components/layout.js`,
+      },
+    },
+    {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
-        url: `http://proanalytica.local/graphql`,
+        url: `http://proanalyticawp.local/graphql`,
       },
     },
     `gatsby-plugin-theme-ui`,
