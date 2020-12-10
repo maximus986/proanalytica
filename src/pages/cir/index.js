@@ -1,12 +1,12 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import SEO from '../components/seo';
+import SEO from '../../components/seo';
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
     {
-      allWpPost(filter: { language: { code: { eq: HR } } }) {
+      allWpPost(filter: { language: { code: { eq: SR } } }) {
         nodes {
           title
         }

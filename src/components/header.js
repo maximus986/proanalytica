@@ -1,6 +1,5 @@
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import React from 'react';
 import LanguageMenu from './languageMenu';
 /** @jsx jsx */
 import { jsx } from 'theme-ui';

@@ -1,21 +1,26 @@
+import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
-
-import Layout from '../../components/layout';
-import Image from '../../components/image';
+import { useTranslation } from 'react-i18next';
 import SEO from '../../components/seo';
-import { Link } from 'gatsby';
 
-const IndexPage = () => (
-  <>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="page-2/">Go to page 2</Link> <br />
-  </>
-);
+const IndexPage = () => {
+  const data = useStaticQuery(graphql`
+    {
+      allWpPost(filter: { language: { code: { eq: EN } } }) {
+        nodes {
+          title
+        }
+      }
+    }
+  `);
+  const [t] = useTranslation();
+  return (
+    <>
+      <SEO title="Home" />
+      <h1>{t('home')}</h1>
+      <h1>{data.allWpPost.nodes[0].title}</h1>
+    </>
+  );
+};
 
 export default IndexPage;
