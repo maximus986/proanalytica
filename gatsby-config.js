@@ -53,7 +53,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
-        url: `http://proanalyticawp.local/graphql`,
+        url: `https://api.proanalytica.com/graphql`,
       },
     },
     `gatsby-plugin-theme-ui`,
