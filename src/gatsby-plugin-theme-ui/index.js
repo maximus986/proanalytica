@@ -155,7 +155,6 @@ export default {
   styles: {
     root: {
       fontFamily: 'body',
-      lineHeight: 'body',
       fontWeight: 'normal',
       fontSize: 2,
       color: 'textPassive',

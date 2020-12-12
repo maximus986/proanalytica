@@ -1,30 +1,42 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { graphql, useStaticQuery } from 'gatsby';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import SEO from '../components/seo';
+import { jsx } from 'theme-ui';
 import { Button } from '../components/button';
-import { styled } from 'theme-ui';
 import { Field } from '../components/form/field';
+import SEO from '../components/seo';
+
+const languageMap = {
+  sr: 'HR',
+  en: 'EN',
+  cir: 'SR',
+};
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
     {
-      allWpPost(filter: { language: { code: { eq: HR } } }) {
+      allWpPost {
         nodes {
           title
+          language {
+            code
+          }
         }
       }
     }
   `);
-  const [t] = useTranslation();
+  const { t } = useTranslation();
+  const { lang } = usePageContext();
+  const filteredData = data.allWpPost.nodes.filter(
+    (item) => item.language.code === languageMap[lang],
+  )[0];
+
   return (
     <div sx={{ bg: 'white', padding: 4 }}>
       <SEO title="Home" />
       <h1>{t('home')}</h1>
-      <h1>{data.allWpPost.nodes[0].title}</h1>
-      <h2>
+      <h1>{filteredData.title}</h1>
+      {/* <h2>
         We Provide You With Access To The Best Pharmacy And Home Medical Car
       </h2>
       <div sx={{ mb: 1 }}>
@@ -69,7 +81,7 @@ const IndexPage = () => {
         name="name"
         onChange={() => {}}
         value=""
-      />
+      /> */}
     </div>
   );
 };

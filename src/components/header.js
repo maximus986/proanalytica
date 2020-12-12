@@ -1,8 +1,9 @@
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import LanguageMenu from './languageMenu';
+import { Link as TransLink } from '@3nvi/gatsby-theme-intl';
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+import LanguagePicker from './languagePicker';
 
 const Header = ({ siteTitle }) => (
   <header
@@ -36,8 +37,8 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <LanguagePicker />
     </div>
-    <LanguageMenu></LanguageMenu>
   </header>
 );
 

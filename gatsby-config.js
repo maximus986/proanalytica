@@ -1,10 +1,12 @@
 const path = require('path');
+const translations = require('./translations.json');
 
 module.exports = {
   siteMetadata: {
     title: `Proanalytica`,
     description: `Proanalytica`,
     author: `@AleksandarM986`,
+    supportedLanguages: ['en', 'sr', 'cir'],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,17 +32,10 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-i18n',
-      options: {
-        langKeyDefault: 'sr',
-        useLangKeyLayout: false,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-root-import',
       options: {
         src: path.join(__dirname, 'src'),
-        i18n: path.join(__dirname, 'src/i18n'),
+        // i18n: path.join(__dirname, 'src/i18n'),
         images: path.join(__dirname, 'src/images'),
       },
     },
@@ -68,5 +63,16 @@ module.exports = {
     // `gatsby-plugin-sitemap`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-emotion`,
+    {
+      resolve: `@3nvi/gatsby-theme-intl`,
+      options: {
+        supportedLanguages: ['en', 'sr', 'cir'],
+        defaultLanguage: 'sr',
+        i18nextConfig: {
+          resources: translations,
+        },
+      },
+    },
+    `gatsby-plugin-netlify`,
   ],
 };
