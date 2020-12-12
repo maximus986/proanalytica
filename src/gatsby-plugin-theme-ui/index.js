@@ -2,24 +2,15 @@ export default {
   initialColorModeName: 'light',
   useBodyStyles: true,
   colors: {
-    text: '#656565',
+    textPassive: '#666',
     primary: '#006877',
-    primaryDarker: '#e06908',
-    secondary: '#212121',
-    background: '#fff',
-    mainDark: '#323232',
-    white: '#fff',
-    grey: '#d2d2d2',
-    grey50: '#d9d9d9',
-    grey100: '#eaeaea',
-    grey150: '#efefef',
-    grey200: '#b6b6b6',
-    grey300: '#ccc',
-    grey400: '#686868',
-    grey500: '#808080',
-    grey600: '#898989',
-    grey700: '#999',
-    rgbaWhite: 'rgba(255, 255, 255, 0.9)',
+    secondary: '#D1EBE3',
+    tertiary: '#004452',
+    textPrimary: '#0c0d24',
+    primaryBackground: '#fff',
+    secondaryBackground: '##f9f7ff',
+    muted: '#e9e9e9',
+    primaryOpacity2: 'rgba(0, 103, 119, 0.2)',
     modes: {
       dark: {
         text: '#fff',
@@ -29,106 +20,96 @@ export default {
     },
   },
   buttons: {
-    common: {
-      fontFamily: 'heading',
-      fontWeight: 'normal',
-      px: [7, null, 5, 7],
-      py: 4,
-      textTransform: 'uppercase',
-      letterSpacing: '1px',
-      appearance: 'none',
-      display: 'inline-block',
-      textAlign: 'center',
-      lineHeight: 'inherit',
-      textDecoration: 'none',
-      border: 0,
-      cursor: 'pointer',
-      transition: 'link',
-      borderWidth: '1px',
-      borderStyle: 'solid',
-      mx: 'auto',
-      '&:focus': {
-        outline: 'none',
-      },
-      a: {
-        border: 'none',
-        lineHeight: '30px',
-        transition: 'none',
-        display: 'flex',
-        placeItems: 'center',
-      },
-      'a:hover': {
-        border: 'none',
-        bg: 'transparent',
-      },
-    },
     primary: {
-      variant: 'buttons.common',
-      color: 'white',
+      color: 'primaryBackground',
+      fontWeight: 'bold',
       bg: 'primary',
-      borderColor: 'primary',
+      width: '220px',
+      height: '55px',
+      boxShadow: `0 15px 15px rgba(0, 103, 119, 0.2)`,
+      position: 'relative',
+      transition: 'link',
       '&:hover': {
-        bg: 'primaryDarker',
+        transform: 'translateY(-5px)',
       },
     },
     secondary: {
-      variant: 'buttons.common',
-      bg: 'secondary',
+      bg: 'primary',
       color: 'white',
-    },
-    internal: {
-      variant: 'buttons.common',
-      borderColor: 'grey100',
-      bg: 'grey100',
-      color: 'grey400',
+      fontWeight: 'bold',
+      width: '170px',
+      height: '55px',
+      transition: 'link',
       '&:hover': {
-        color: 'grey400',
-        bg: 'grey',
+        bg: 'tertiary',
       },
     },
-    outline: {
-      variant: 'buttons.common',
-      bg: 'transparent',
-      color: 'primary',
-      borderColor: 'primary',
+    link: {
+      display: 'inline-block',
+      color: 'muted',
+      transition: 'link',
       '&:hover': {
-        color: 'white',
+        color: 'primary',
+      },
+    },
+    outlineLarge: {
+      bg: 'transparent',
+      width: '260px',
+      height: '60px',
+      color: 'primaryBackground',
+      fontWeight: 'bold',
+      borderWidth: '2px',
+      borderStyle: 'solid',
+      borderColor: 'primaryBackground',
+      textTransform: 'uppercase',
+      transition: 'link',
+      '&:hover': {
+        borderColor: 'primary',
         bg: 'primary',
+      },
+    },
+    outlineRegular: {
+      bg: 'transparent',
+      width: '190px',
+      height: '55px',
+      color: 'primary',
+      fontWeight: 'normal',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'muted',
+      textTransform: 'capitalize',
+      transition: 'link',
+      '&:hover': {
+        borderColor: 'primary',
+        bg: 'primary',
+        color: 'primaryBackground',
+      },
+    },
+    outlineSmall: {
+      bg: 'transparent',
+      width: '127px',
+      height: '40px',
+      color: 'textPrimary',
+      fontWeight: 'normal',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'muted',
+      textTransform: 'capitalize',
+      transition: 'link',
+      '&:hover': {
+        borderColor: 'primary',
+        bg: 'primary',
+        color: 'primaryBackground',
       },
     },
   },
   fonts: {
     body: 'Ubuntu, sans-serif',
-    heading: 'Ubuntu',
-    author: 'Ubuntu',
+    heading: 'Ubuntu, sans-serif',
   },
-  breakpoints: ['576px', '768px', '1030px', '1280px', '1600px'],
-  space: [
-    0,
-    3,
-    5,
-    8,
-    10,
-    16,
-    18,
-    20,
-    23,
-    25,
-    30,
-    40,
-    45,
-    47,
-    48,
-    60,
-    90,
-    128,
-    135,
-    256,
-    301,
-    512,
-    616,
-  ],
-  fontSizes: [13, 15, 16, 18, 20, 24, 28, 32, 36, 40, 48, 60, 96],
+  breakpoints: ['576px', '768px', '992px', '1280px'],
+  space: [0, 8, 16, 24, 32, 40, 48, 56, 64],
+  fontSizes: [12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 60],
   fontWeights: {
     body: 300,
     normal: 400,
@@ -138,83 +119,48 @@ export default {
   },
   lineHeights: {
     reset: 1,
-    body: 1.75,
-    heading: 1.125,
+    body: 1.6,
+    heading: 1.3,
   },
   text: {
     heading: {
       fontFamily: 'heading',
-      color: 'mainDark',
-      fontWeight: 'normal',
+      color: 'textPrimary',
+      fontWeight: 'bold',
+      lineHeight: 'heading',
     },
     heading1: {
       variant: 'text.heading',
-      fontSize: [9, 10], // 40, 48
-      fontFamily: 'body',
-      fontWeight: 'body',
-      m: 0, // 0
+      fontSize: [10, 11], // 36, 40
+      mb: 3, // 8
     },
     heading2: {
       variant: 'text.heading',
-      fontSize: [8, null, 10], // 36, 48
-      fontFamily: 'body',
-      fontWeight: 'body',
-      m: 0, // 0
-      lineHeight: 'reset',
+      fontSize: [7, 8], // 36, 40
+      mb: 1, // 8
     },
     heading3: {
       variant: 'text.heading',
-      fontSize: [3], // 36, 48
-      fontFamily: 'body',
-      fontWeight: 'body',
-      m: 0, // 0
-      lineHeight: 'reset',
-    },
-    heading4: {
-      variant: 'text.heading',
-      fontSize: 3, //18
-      mt: 0, // 0
-      mb: 7, // 20
-    },
-    heading5: {
-      variant: 'text.heading',
-      fontSize: 1, // 15
-      mt: 0, // 0
-      mb: 7, // 20
+      fontSize: 5, // 24
+      mb: 1, // 8
     },
     paragraph: {
       mt: 0, // 0
       mb: 7, // 20
     },
-    list: {
-      pl: 7, // 20
-      mt: 0, // 0
-      mb: 9, // 25
-    },
-    listItem: {
-      mb: 2, // 5
-      listStyleType: 'circle',
-    },
     link: {
-      bg: 'transparent',
-      borderWidth: '1px',
-      borderBottomStyle: 'solid',
-      borderColor: 'primary',
-      transition: 'link',
       textDecoration: 'none',
-      color: 'inherit',
-      '&:hover': {
-        bg: 'rgba(0, 0, 0, 0.05)',
-        borderColor: 'mainDark',
-      },
     },
   },
   styles: {
     root: {
       fontFamily: 'body',
       lineHeight: 'body',
-      fontWeight: 'body',
-      fontSize: 3,
+      fontWeight: 'normal',
+      fontSize: 2,
+      color: 'textPassive',
+      bg: 'primaryBackground',
+      lineHeight: 'body',
       h1: {
         variant: 'text.heading1',
       },
@@ -223,12 +169,6 @@ export default {
       },
       h3: {
         variant: 'text.heading3',
-      },
-      h4: {
-        variant: 'text.heading4',
-      },
-      h5: {
-        variant: 'text.heading5',
       },
       p: {
         variant: 'text.paragraph',
@@ -242,38 +182,13 @@ export default {
       a: {
         variant: 'text.link',
       },
-      table: {
-        fontSize: [1, 3],
-        width: '100%',
-        borderCollapse: 'separate',
-        borderSpacing: 0,
-        mx: 0,
-        my: 15,
-      },
-      th: {
-        textAlign: 'left',
-        borderWidth: '1px',
-        borderBottomStyle: 'solid',
-        borderColor: 'grey700',
-        py: 4,
-        px: [null, 5],
-      },
-      td: {
-        textAlign: 'left',
-        borderWidth: '1px',
-        borderBottomStyle: 'solid',
-        borderColor: 'grey700',
-        py: 4,
-        px: [null, 5],
-      },
     },
   },
   radii: {
     reset: 0,
   },
   transition: {
-    link: '0.2s linear',
-    header: '0.3s linear',
-    imageLink: '0.4s linear',
+    link: '0.5s ease',
+    imageLink: '0.4s ease',
   },
 };

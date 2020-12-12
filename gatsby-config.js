@@ -66,5 +66,7 @@ module.exports = {
     //   },
     // },
     // `gatsby-plugin-sitemap`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-emotion`,
   ],
 };
