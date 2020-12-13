@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+import { useState } from 'react';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import styled from '@emotion/styled';
 import { FiAlignJustify, FiX } from 'react-icons/fi';
@@ -9,52 +10,60 @@ import { LanguagePicker } from '../../languagePicker';
 import { Link } from '../../link';
 import { MobileMenuLogo } from './MobileMenuLogo';
 
-export const MobileMenu = ({ isMenuOpen, onNavToggle }) => {
+export const MobileMenu = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleNavToggle = () => {
+    setIsMenuOpen((isMenuOpen) => !isMenuOpen);
+  };
   const {
     theme: { colors },
   } = useThemeUI();
   const { t } = useTranslation();
   return (
-    <NavContainer sx={{ bg: 'white' }}>
-      <MobileMenuLogo />
-      <Nav isMenuOpen={isMenuOpen} sx={{ bg: 'white' }}>
-        <MainNavBarHeader>
-          <MobileMenuLogo />
-          <CloseNav
-            onClick={onNavToggle}
-            sx={{ fontSize: 6, color: 'primary' }}
-          />
-        </MainNavBarHeader>
-        <MainNav>
-          {navLinks.map((link, index) => {
-            return (
-              <NavItem key={index} onClick={onNavToggle}>
-                <NavLink
-                  to={link.path}
-                  activeClassName="active"
-                  sx={{ fontSize: 5 }}
-                  {...{ colors }}
-                >
-                  {`${t(`${link.text}`)}`}
-                </NavLink>
-              </NavItem>
-            );
-          })}
-        </MainNav>
-        <LanguageSwitchContainer>
-          <LanguagePicker />
-        </LanguageSwitchContainer>
-      </Nav>
-      <NavToggler onClick={onNavToggle} sx={{ fontSize: 6, color: 'primary' }}>
-        <FiAlignJustify />
-      </NavToggler>
-    </NavContainer>
+    <header>
+      <NavContainer sx={{ bg: 'white', display: ['flex', 'flex', 'none'] }}>
+        <MobileMenuLogo />
+        <Nav isMenuOpen={isMenuOpen} sx={{ bg: 'white' }}>
+          <MainNavBarHeader>
+            <MobileMenuLogo />
+            <CloseNav
+              onClick={handleNavToggle}
+              sx={{ fontSize: 6, color: 'primary' }}
+            />
+          </MainNavBarHeader>
+          <MainNav>
+            {navLinks.map((link, index) => {
+              return (
+                <NavItem key={index} onClick={handleNavToggle}>
+                  <NavLink
+                    to={link.path}
+                    activeClassName="active"
+                    sx={{ fontSize: 5 }}
+                    {...{ colors }}
+                  >
+                    {`${t(`${link.text}`)}`}
+                  </NavLink>
+                </NavItem>
+              );
+            })}
+          </MainNav>
+          <LanguageSwitchContainer>
+            <LanguagePicker />
+          </LanguageSwitchContainer>
+        </Nav>
+        <NavToggler
+          onClick={handleNavToggle}
+          sx={{ fontSize: 6, color: 'primary' }}
+        >
+          <FiAlignJustify />
+        </NavToggler>
+      </NavContainer>
+    </header>
   );
 };
 
 const NavContainer = styled.div`
   padding: 16px 15px;
-  display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
