@@ -118,7 +118,7 @@ export default {
     bold: 700,
   },
   lineHeights: {
-    reset: 1,
+    reset: 0,
     body: 1.6,
     heading: 1.3,
   },

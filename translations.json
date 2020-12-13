@@ -1,17 +1,32 @@
 {
   "sr": {
     "translation": {
-      "home": "DOLAZIM IZ PREVODA"
+      "home": "Početna",
+      "aboutUs": "O nama",
+      "products": "Proizvodi i usluge",
+      "events": "Događaji",
+      "links": "Korisni linkovi",
+      "contact": "Kontakt"
     }
   },
   "cir": {
     "translation": {
-      "home": "ДОЛАЗИМ ИЗ ПРЕВОДА"
+      "home": "Почетна",
+      "aboutUs": "О нама",
+      "products": "Производи и услуге",
+      "events": "Догађаји",
+      "links": "Корисни линкови",
+      "contact": "Контакт"
     }
   },
   "en": {
     "translation": {
-      "home": "I'M COMING FROM TRANSLATIONS"
+      "home": "Home",
+      "aboutUs": "About Us",
+      "products": "Products and Services",
+      "events": "Events",
+      "links": "Links",
+      "contact": "Contact"
     }
   }
 }
