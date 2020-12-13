@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as GatsbyLink } from 'gatsby';
+import { Link as GatsbyLink } from '@3nvi/gatsby-theme-intl';
 
 export const Link = ({
   children,

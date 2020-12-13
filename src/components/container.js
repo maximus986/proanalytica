@@ -5,9 +5,7 @@ export const Container = ({ children }) => {
   return (
     <div
       sx={{
-        // !Use bootstrap values for width, maxWidth and padding
-        width: ['90%', null, null, '90%', 'null', '100%'],
-        maxWidth: [null, null, null, '1120px', 'null', '1280px'],
+        maxWidth: ['100%', '540px', '720px', '960px', '1140px'],
         mx: 'auto',
       }}
     >
