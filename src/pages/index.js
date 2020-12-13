@@ -36,7 +36,7 @@ const IndexPage = () => {
       <SEO title="Home" />
       <h1>{t('home')}</h1>
       <h1>{filteredData.title}</h1>
-      {/* <h2>
+      <h2>
         We Provide You With Access To The Best Pharmacy And Home Medical Car
       </h2>
       <div sx={{ mb: 1 }}>
@@ -81,7 +81,7 @@ const IndexPage = () => {
         name="name"
         onChange={() => {}}
         value=""
-      /> */}
+      />
     </div>
   );
 };

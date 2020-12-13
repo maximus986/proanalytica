@@ -74,5 +74,12 @@ module.exports = {
       },
     },
     `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`ubuntu\:300,400,400i,700`],
+        display: 'swap',
+      },
+    },
   ],
 };
