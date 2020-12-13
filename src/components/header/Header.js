@@ -6,9 +6,11 @@ const MOBILE_SCREEN_SIZE = 768;
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(
-    window.innerWidth <= MOBILE_SCREEN_SIZE,
-  );
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== `undefined`) {
+      return window.innerWidth <= MOBILE_SCREEN_SIZE;
+    }
+  });
   const { t } = useTranslation();
   const handleNavToggle = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
