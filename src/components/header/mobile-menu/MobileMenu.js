@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import styled from '@emotion/styled';
 import { FiAlignJustify, FiX } from 'react-icons/fi';
@@ -12,6 +12,7 @@ import { MobileMenuLogo } from './MobileMenuLogo';
 import { useLocation } from '@reach/router';
 import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
+import { config } from '../../../config.js';
 
 export const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,19 +25,27 @@ export const MobileMenu = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const path = `/${location.pathname.split('/')[2]}`;
+  useEffect(() => {
+    const html = document.querySelector('html');
+    isMenuOpen
+      ? (html.style.overflow = 'hidden')
+      : (html.style.overflow = 'visible');
+  }, [isMenuOpen]);
   return (
     <header>
-      <NavContainer sx={{ bg: 'white', display: ['flex', 'flex', 'none'] }}>
+      <NavContainer
+        sx={{ bg: 'white', display: ['flex', 'flex', 'none'], p: 2 }}
+      >
         <MobileMenuLogo />
         <Nav isMenuOpen={isMenuOpen} sx={{ bg: 'white' }}>
-          <MainNavBarHeader>
+          <MainNavBarHeader sx={{ p: 2 }}>
             <MobileMenuLogo />
             <CloseNav
               onClick={handleNavToggle}
               sx={{ fontSize: 6, color: 'primary' }}
             />
           </MainNavBarHeader>
-          <MainNav>
+          <MainNav sx={{ mt: 1 }}>
             {navLinks.map((link, index) => {
               const Icon = link.icon;
               const isActive = path === link.path;
@@ -46,6 +55,8 @@ export const MobileMenu = () => {
                     to={link.path}
                     sx={{
                       fontSize: 4,
+                      px: 2,
+                      py: 1,
                       bg: isActive ? colors.primary : colors.primaryBackground,
                       color: isActive
                         ? colors.primaryBackground
@@ -70,50 +81,41 @@ export const MobileMenu = () => {
               );
             })}
           </MainNav>
-          {/* Refactor this. Use config file */}
-          <div sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-            <div
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                flex: 1,
-                pl: '15px',
-                justifyContent: 'space-evenly',
-              }}
-            >
-              <div sx={{ display: 'flex', alignItems: 'center' }}>
-                <InfoIconContainer sx={{ mr: 1 }}>
-                  <IoLocationOutline sx={{ fontSize: '22px' }} />
-                </InfoIconContainer>
+          <SecondaryContentContainer>
+            <InfoContainer sx={{ pl: 2 }}>
+              <InfoIconContainer sx={{ mb: 2 }}>
+                <Icon sx={{ mr: 1 }}>
+                  <IoLocationOutline sx={{ fontSize: 5 }} />
+                </Icon>
                 <p>{t('address')}</p>
-              </div>
-              <div sx={{ display: 'flex', alignItems: 'center' }}>
-                <InfoIconContainer sx={{ mr: 1 }}>
-                  <AiOutlinePhone sx={{ fontSize: '22px' }} />
-                </InfoIconContainer>
+              </InfoIconContainer>
+              <InfoIconContainer sx={{ mb: 2 }}>
+                <Icon sx={{ mr: 1 }}>
+                  <AiOutlinePhone sx={{ fontSize: 5 }} />
+                </Icon>
                 <a
-                  href="tel:+381113130542"
+                  href={`tel: ${config.tel.replace(/\s/g, '')}`}
                   sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
                 >
-                  +381 11 313 42
+                  {config.tel}
                 </a>
-              </div>
-              <div sx={{ display: 'flex', alignItems: 'center' }}>
-                <InfoIconContainer sx={{ mr: 1 }}>
-                  <AiOutlineMail sx={{ fontSize: '22px' }} />
-                </InfoIconContainer>
+              </InfoIconContainer>
+              <InfoIconContainer sx={{ mb: 2 }}>
+                <Icon sx={{ mr: 1 }}>
+                  <AiOutlineMail sx={{ fontSize: 5 }} />
+                </Icon>
                 <a
-                  href="mailto:prodaja&#64;proanalytica.com"
+                  href={`mailto:${config.primaryEmail}`}
                   sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
                 >
-                  prodaja@proanalytica.com
+                  {config.primaryEmail}
                 </a>
-              </div>
-            </div>
-            <LanguageSwitchContainer>
+              </InfoIconContainer>
+            </InfoContainer>
+            <LanguageSwitchContainer sx={{ px: 2 }}>
               <LanguagePicker />
             </LanguageSwitchContainer>
-          </div>
+          </SecondaryContentContainer>
         </Nav>
         <NavToggler
           onClick={handleNavToggle}
@@ -127,7 +129,6 @@ export const MobileMenu = () => {
 };
 
 const NavContainer = styled.div`
-  padding: 16px 15px;
   align-items: center;
   justify-content: space-between;
   position: relative;
@@ -153,7 +154,6 @@ const MainNavBarHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 15px;
 `;
 
 const CloseNav = styled(FiX)`
@@ -166,11 +166,9 @@ const MainNav = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-items: center;
+  justify-items: flex-start;
   align-items: center;
-  justify-content: center;
-  flex: 2;
+  flex: 3;
 `;
 
 const NavItem = styled.li`
@@ -183,7 +181,6 @@ const NavLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px 15px;
 `;
 
 const NavToggler = styled.button`
@@ -198,7 +195,6 @@ const LanguageSwitchContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-self: flex-end;
-  padding: 0 15px;
 `;
 
 const LinkIconContainer = styled.div`
@@ -209,9 +205,27 @@ const LinkIconContainer = styled.div`
 `;
 
 const InfoIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled.div`
   width: 30px;
   height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const SecondaryContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-end;
 `;

@@ -109,7 +109,7 @@ export default {
   },
   breakpoints: ['576px', '768px', '992px', '1280px'],
   space: [0, 8, 16, 24, 32, 40, 48, 56, 64],
-  fontSizes: [12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 60],
+  fontSizes: [12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 60],
   fontWeights: {
     body: 300,
     normal: 400,
