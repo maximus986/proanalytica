@@ -9,6 +9,9 @@ import navLinks from '../../../static-data/nav-links';
 import { LanguagePicker } from '../../languagePicker';
 import { Link } from '../../link';
 import { MobileMenuLogo } from './MobileMenuLogo';
+import { useLocation } from '@reach/router';
+import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
+import { IoLocationOutline } from 'react-icons/io5';
 
 export const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,6 +22,8 @@ export const MobileMenu = () => {
     theme: { colors },
   } = useThemeUI();
   const { t } = useTranslation();
+  const location = useLocation();
+  const path = `/${location.pathname.split('/')[2]}`;
   return (
     <header>
       <NavContainer sx={{ bg: 'white', display: ['flex', 'flex', 'none'] }}>
@@ -33,23 +38,82 @@ export const MobileMenu = () => {
           </MainNavBarHeader>
           <MainNav>
             {navLinks.map((link, index) => {
+              const Icon = link.icon;
+              const isActive = path === link.path;
               return (
                 <NavItem key={index} onClick={handleNavToggle}>
                   <NavLink
                     to={link.path}
-                    activeClassName="active"
-                    sx={{ fontSize: 5 }}
+                    sx={{
+                      fontSize: 4,
+                      bg: isActive ? colors.primary : colors.primaryBackground,
+                      color: isActive
+                        ? colors.primaryBackground
+                        : colors.primary,
+                    }}
                     {...{ colors }}
                   >
+                    <LinkIconContainer
+                      sx={{
+                        mr: 1,
+                      }}
+                    >
+                      <Icon
+                        fill={
+                          isActive ? colors.primaryBackground : colors.primary
+                        }
+                      />
+                    </LinkIconContainer>
                     {`${t(`${link.text}`)}`}
                   </NavLink>
                 </NavItem>
               );
             })}
           </MainNav>
-          <LanguageSwitchContainer>
-            <LanguagePicker />
-          </LanguageSwitchContainer>
+          {/* Refactor this. Use config file */}
+          <div sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <div
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                flex: 1,
+                pl: '15px',
+                justifyContent: 'space-evenly',
+              }}
+            >
+              <div sx={{ display: 'flex', alignItems: 'center' }}>
+                <InfoIconContainer sx={{ mr: 1 }}>
+                  <IoLocationOutline sx={{ fontSize: '22px' }} />
+                </InfoIconContainer>
+                <p>{t('address')}</p>
+              </div>
+              <div sx={{ display: 'flex', alignItems: 'center' }}>
+                <InfoIconContainer sx={{ mr: 1 }}>
+                  <AiOutlinePhone sx={{ fontSize: '22px' }} />
+                </InfoIconContainer>
+                <a
+                  href="tel:+381113130542"
+                  sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
+                >
+                  +381 11 313 42
+                </a>
+              </div>
+              <div sx={{ display: 'flex', alignItems: 'center' }}>
+                <InfoIconContainer sx={{ mr: 1 }}>
+                  <AiOutlineMail sx={{ fontSize: '22px' }} />
+                </InfoIconContainer>
+                <a
+                  href="mailto:prodaja&#64;proanalytica.com"
+                  sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
+                >
+                  prodaja@proanalytica.com
+                </a>
+              </div>
+            </div>
+            <LanguageSwitchContainer>
+              <LanguagePicker />
+            </LanguageSwitchContainer>
+          </div>
         </Nav>
         <NavToggler
           onClick={handleNavToggle}
@@ -106,8 +170,7 @@ const MainNav = styled.ul`
   justify-items: center;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  margin: 0;
+  flex: 2;
 `;
 
 const NavItem = styled.li`
@@ -117,15 +180,10 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled(Link)`
-  color: ${(props) => props.colors.primary};
-  display: block;
-  transition: 0.3s linear;
-  padding: 10px 9px;
-  &:hover,
-  &.active {
-    background-color: ${(props) => props.colors.primary};
-    color: ${(props) => props.colors.primaryBackground};
-  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 15px;
 `;
 
 const NavToggler = styled.button`
@@ -138,6 +196,22 @@ const NavToggler = styled.button`
 
 const LanguageSwitchContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-self: flex-end;
   padding: 0 15px;
+`;
+
+const LinkIconContainer = styled.div`
+  width: 30px;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+`;
+
+const InfoIconContainer = styled.div`
+  width: 30px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

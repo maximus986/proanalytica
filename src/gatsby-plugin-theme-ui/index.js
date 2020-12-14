@@ -144,12 +144,10 @@ export default {
       fontSize: 5, // 24
       mb: 1, // 8
     },
-    paragraph: {
-      mt: 0, // 0
-      mb: 7, // 20
-    },
+    paragraph: { m: 0 },
     link: {
       textDecoration: 'none',
+      color: 'inherit',
     },
   },
   styles: {

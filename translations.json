@@ -6,7 +6,8 @@
       "products": "Proizvodi i usluge",
       "events": "Događaji",
       "links": "Korisni linkovi",
-      "contact": "Kontakt"
+      "contact": "Kontakt",
+      "address": "Bulevar umetnosti 27, 11000 Beograd"
     }
   },
   "cir": {
@@ -16,7 +17,8 @@
       "products": "Производи и услуге",
       "events": "Догађаји",
       "links": "Корисни линкови",
-      "contact": "Контакт"
+      "contact": "Контакт",
+      "address": "Булевар уметности 27, 11000 Београд"
     }
   },
   "en": {
@@ -26,7 +28,8 @@
       "products": "Products and Services",
       "events": "Events",
       "links": "Links",
-      "contact": "Contact"
+      "contact": "Contact",
+      "address": "Bulevar umetnosti 27, 11000 Belgrade"
     }
   }
 }
