@@ -12,11 +12,11 @@ export const LanguagePicker = () => {
   const isSerbian = lang === 'sr' || lang === 'cir';
 
   return (
-    <div>
+    <Container>
       <LangLink
         aria-label={`Change language to SR`}
         to={`/${sr}${originalPath}`}
-        sx={{ mr: 1, opacity: isSerbian ? 1 : 0.5 }}
+        sx={{ mr: 3, opacity: isSerbian ? 1 : 0.5 }}
       >
         <img src={RSFlag} alt="Serbian flag" />
       </LangLink>
@@ -27,13 +27,17 @@ export const LanguagePicker = () => {
       >
         <img src={ENFlag} alt="Serbian flag" />
       </LangLink>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  height: 20px;
+`;
 
 const LangLink = styled(GatsbyLink)`
   display: inline-block;
   width: 32px;
-  height: 21px;
+  height: 20px;
   overflow: hidden;
 `;

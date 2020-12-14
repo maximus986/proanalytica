@@ -32,99 +32,93 @@ export const MobileMenu = () => {
       : (html.style.overflow = 'visible');
   }, [isMenuOpen]);
   return (
-    <header>
-      <NavContainer
-        sx={{ bg: 'white', display: ['flex', 'flex', 'none'], p: 2 }}
-      >
-        <MobileMenuLogo />
-        <Nav isMenuOpen={isMenuOpen} sx={{ bg: 'white' }}>
-          <MainNavBarHeader sx={{ p: 2 }}>
-            <MobileMenuLogo />
-            <CloseNav
-              onClick={handleNavToggle}
-              sx={{ fontSize: 6, color: 'primary' }}
-            />
-          </MainNavBarHeader>
-          <MainNav sx={{ mt: 1 }}>
-            {navLinks.map((link, index) => {
-              const Icon = link.icon;
-              const isActive = path === link.path;
-              return (
-                <NavItem key={index} onClick={handleNavToggle}>
-                  <NavLink
-                    to={link.path}
+    <NavContainer sx={{ bg: 'white', display: ['flex', 'flex', 'none'], p: 4 }}>
+      <MobileMenuLogo />
+      <Nav isMenuOpen={isMenuOpen} sx={{ bg: 'white' }}>
+        <MainNavBarHeader sx={{ p: 4 }}>
+          <MobileMenuLogo />
+          <CloseNav
+            onClick={handleNavToggle}
+            sx={{ fontSize: 6, color: 'primary' }}
+          />
+        </MainNavBarHeader>
+        <MainNav sx={{ mt: 3 }}>
+          {navLinks.map((link, index) => {
+            const Icon = link.icon;
+            const isActive = path === link.path;
+            return (
+              <NavItem key={index} onClick={handleNavToggle}>
+                <NavLink
+                  to={link.path}
+                  sx={{
+                    fontSize: 4,
+                    px: 4,
+                    py: 3,
+                    bg: isActive ? colors.primary : colors.primaryBackground,
+                    color: isActive ? colors.primaryBackground : colors.primary,
+                  }}
+                  {...{ colors }}
+                >
+                  <LinkIconContainer
                     sx={{
-                      fontSize: 4,
-                      px: 2,
-                      py: 1,
-                      bg: isActive ? colors.primary : colors.primaryBackground,
-                      color: isActive
-                        ? colors.primaryBackground
-                        : colors.primary,
+                      mr: 3,
                     }}
-                    {...{ colors }}
                   >
-                    <LinkIconContainer
-                      sx={{
-                        mr: 1,
-                      }}
-                    >
-                      <Icon
-                        fill={
-                          isActive ? colors.primaryBackground : colors.primary
-                        }
-                      />
-                    </LinkIconContainer>
-                    {`${t(`${link.text}`)}`}
-                  </NavLink>
-                </NavItem>
-              );
-            })}
-          </MainNav>
-          <SecondaryContentContainer>
-            <InfoContainer sx={{ pl: 2 }}>
-              <InfoIconContainer sx={{ mb: 2 }}>
-                <Icon sx={{ mr: 1 }}>
-                  <IoLocationOutline sx={{ fontSize: 5 }} />
-                </Icon>
-                <p>{t('address')}</p>
-              </InfoIconContainer>
-              <InfoIconContainer sx={{ mb: 2 }}>
-                <Icon sx={{ mr: 1 }}>
-                  <AiOutlinePhone sx={{ fontSize: 5 }} />
-                </Icon>
-                <a
-                  href={`tel: ${config.tel.replace(/\s/g, '')}`}
-                  sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
-                >
-                  {config.tel}
-                </a>
-              </InfoIconContainer>
-              <InfoIconContainer sx={{ mb: 2 }}>
-                <Icon sx={{ mr: 1 }}>
-                  <AiOutlineMail sx={{ fontSize: 5 }} />
-                </Icon>
-                <a
-                  href={`mailto:${config.primaryEmail}`}
-                  sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
-                >
-                  {config.primaryEmail}
-                </a>
-              </InfoIconContainer>
-            </InfoContainer>
-            <LanguageSwitchContainer sx={{ px: 2 }}>
-              <LanguagePicker />
-            </LanguageSwitchContainer>
-          </SecondaryContentContainer>
-        </Nav>
-        <NavToggler
-          onClick={handleNavToggle}
-          sx={{ fontSize: 6, color: 'primary' }}
-        >
-          <FiAlignJustify />
-        </NavToggler>
-      </NavContainer>
-    </header>
+                    <Icon
+                      fill={
+                        isActive ? colors.primaryBackground : colors.primary
+                      }
+                    />
+                  </LinkIconContainer>
+                  {`${t(`${link.text}`)}`}
+                </NavLink>
+              </NavItem>
+            );
+          })}
+        </MainNav>
+        <SecondaryContentContainer>
+          <InfoContainer sx={{ pl: 4 }}>
+            <InfoIconContainer sx={{ mb: 4 }}>
+              <Icon sx={{ mr: 3 }}>
+                <IoLocationOutline sx={{ fontSize: 5 }} />
+              </Icon>
+              <p>{t('address')}</p>
+            </InfoIconContainer>
+            <InfoIconContainer sx={{ mb: 4 }}>
+              <Icon sx={{ mr: 3 }}>
+                <AiOutlinePhone sx={{ fontSize: 5 }} />
+              </Icon>
+              <a
+                href={`tel: ${config.tel.replace(/\s/g, '')}`}
+                sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
+              >
+                {config.tel}
+              </a>
+            </InfoIconContainer>
+            <InfoIconContainer sx={{ mb: 4 }}>
+              <Icon sx={{ mr: 3 }}>
+                <AiOutlineMail sx={{ fontSize: 5 }} />
+              </Icon>
+              <a
+                href={`mailto:${config.primaryEmail}`}
+                sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
+              >
+                {config.primaryEmail}
+              </a>
+            </InfoIconContainer>
+          </InfoContainer>
+          <LanguageSwitchContainer sx={{ px: 4 }}>
+            <LanguagePicker />
+          </LanguageSwitchContainer>
+        </SecondaryContentContainer>
+      </Nav>
+      <NavToggler
+        onClick={handleNavToggle}
+        sx={{ fontSize: 6, color: 'primary' }}
+      >
+        <FiAlignJustify />
+      </NavToggler>
+    </NavContainer>
   );
 };
 
@@ -141,7 +135,7 @@ const Nav = styled.nav`
   top: 0;
   left: -100%;
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
   padding: 2px 0;
   transition: 0.3s linear;
   transform: ${(props) => (props.isMenuOpen ? 'translateX(100%)' : null)};

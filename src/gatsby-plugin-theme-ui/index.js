@@ -28,7 +28,7 @@ export default {
       height: '55px',
       boxShadow: `0 15px 15px rgba(0, 103, 119, 0.2)`,
       position: 'relative',
-      transition: 'link',
+      transition: 'button',
       '&:hover': {
         transform: 'translateY(-5px)',
       },
@@ -39,15 +39,15 @@ export default {
       fontWeight: 'bold',
       width: '170px',
       height: '55px',
-      transition: 'link',
+      transition: 'button',
       '&:hover': {
         bg: 'tertiary',
       },
     },
-    link: {
+    button: {
       display: 'inline-block',
       color: 'muted',
-      transition: 'link',
+      transition: 'button',
       '&:hover': {
         color: 'primary',
       },
@@ -62,7 +62,7 @@ export default {
       borderStyle: 'solid',
       borderColor: 'primaryBackground',
       textTransform: 'uppercase',
-      transition: 'link',
+      transition: 'button',
       '&:hover': {
         borderColor: 'primary',
         bg: 'primary',
@@ -78,7 +78,7 @@ export default {
       borderStyle: 'solid',
       borderColor: 'muted',
       textTransform: 'capitalize',
-      transition: 'link',
+      transition: 'button',
       '&:hover': {
         borderColor: 'primary',
         bg: 'primary',
@@ -95,7 +95,7 @@ export default {
       borderStyle: 'solid',
       borderColor: 'muted',
       textTransform: 'capitalize',
-      transition: 'link',
+      transition: 'button',
       '&:hover': {
         borderColor: 'primary',
         bg: 'primary',
@@ -108,7 +108,7 @@ export default {
     heading: 'Ubuntu, sans-serif',
   },
   breakpoints: ['576px', '768px', '992px', '1280px'],
-  space: [0, 8, 16, 24, 32, 40, 48, 56, 64],
+  space: [0, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64],
   fontSizes: [12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 60],
   fontWeights: {
     body: 300,
@@ -185,7 +185,8 @@ export default {
     reset: 0,
   },
   transition: {
-    link: '0.5s ease',
+    button: '0.5s ease',
     imageLink: '0.4s ease',
+    link: '0.3s ease',
   },
 };

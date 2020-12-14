@@ -2,12 +2,13 @@
 import { jsx } from 'theme-ui';
 import React from 'react';
 import { MobileMenu } from './mobile-menu/MobileMenu';
+import { Menu } from './menu/Menu';
 
 export const Header = () => {
   return (
-    <>
+    <header>
       <MobileMenu />
-      <div sx={{ display: ['none', 'none', 'block'] }}>Desktop Menu</div>
-    </>
+      <Menu />
+    </header>
   );
 };
