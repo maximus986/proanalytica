@@ -33,6 +33,8 @@ export const LanguagePicker = () => {
 
 const Container = styled.div`
   height: 20px;
+  display: flex;
+  align-items: center;
 `;
 
 const LangLink = styled(GatsbyLink)`

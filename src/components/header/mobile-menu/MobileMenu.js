@@ -5,7 +5,7 @@ import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import styled from '@emotion/styled';
 import { FiAlignJustify, FiX } from 'react-icons/fi';
 import { useThemeUI } from 'theme-ui';
-import navLinks from '../../../static-data/nav-links';
+import { navLinks } from '../../../static-data/nav-links';
 import { LanguagePicker } from '../../languagePicker';
 import { Link } from '../../link';
 import { MobileMenuLogo } from './MobileMenuLogo';
@@ -25,6 +25,7 @@ export const MobileMenu = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const path = `/${location.pathname.split('/')[2]}`;
+
   useEffect(() => {
     const html = document.querySelector('html');
     isMenuOpen
@@ -32,17 +33,23 @@ export const MobileMenu = () => {
       : (html.style.overflow = 'visible');
   }, [isMenuOpen]);
   return (
-    <NavContainer sx={{ bg: 'white', display: ['flex', 'flex', 'none'], p: 4 }}>
+    <NavContainer
+      sx={{
+        bg: 'primaryBackground',
+        display: ['flex', 'flex', 'flex', 'none'],
+        p: 4,
+      }}
+    >
       <MobileMenuLogo />
-      <Nav isMenuOpen={isMenuOpen} sx={{ bg: 'white' }}>
-        <MainNavBarHeader sx={{ p: 4 }}>
+      <Nav isMenuOpen={isMenuOpen} sx={{ bg: 'primaryBackground', pb: 6 }}>
+        <MainNavBarHeader sx={{ p: 4 }} {...{ colors }}>
           <MobileMenuLogo />
           <CloseNav
             onClick={handleNavToggle}
             sx={{ fontSize: 6, color: 'primary' }}
           />
         </MainNavBarHeader>
-        <MainNav sx={{ mt: 3 }}>
+        <MainNav sx={{ m: 0 }}>
           {navLinks.map((link, index) => {
             const Icon = link.icon;
             const isActive = path === link.path;
@@ -95,7 +102,7 @@ export const MobileMenu = () => {
                 {config.tel}
               </a>
             </InfoIconContainer>
-            <InfoIconContainer sx={{ mb: 4 }}>
+            <InfoIconContainer sx={{ mb: 3 }}>
               <Icon sx={{ mr: 3 }}>
                 <AiOutlineMail sx={{ fontSize: 5 }} />
               </Icon>
@@ -125,7 +132,10 @@ export const MobileMenu = () => {
 const NavContainer = styled.div`
   align-items: center;
   justify-content: space-between;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1040;
   box-shadow: 0px 2px 8px 0px rgba(51, 51, 51, 0.38);
 `;
@@ -135,19 +145,19 @@ const Nav = styled.nav`
   top: 0;
   left: -100%;
   width: 100vw;
-  height: 95vh;
-  padding: 2px 0;
-  transition: 0.3s linear;
+  height: 100vh;
+  transition: ${(props) =>
+    props.isMenuOpen ? '0.5s ease-out' : '0.2s linear'};
   transform: ${(props) => (props.isMenuOpen ? 'translateX(100%)' : null)};
   display: flex;
   flex-direction: column;
-  padding-bottom: 10px;
 `;
 
 const MainNavBarHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid ${(props) => props.colors.primary};
 `;
 
 const CloseNav = styled(FiX)`
@@ -156,8 +166,6 @@ const CloseNav = styled(FiX)`
 `;
 
 const MainNav = styled.ul`
-  list-style: none;
-  padding: 0;
   display: flex;
   flex-direction: column;
   justify-items: flex-start;
@@ -186,8 +194,6 @@ const NavToggler = styled.button`
 `;
 
 const LanguageSwitchContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
   align-self: flex-end;
 `;
 

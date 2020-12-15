@@ -7,7 +7,7 @@ import {
   AiOutlineContacts,
 } from 'react-icons/ai';
 
-export default [
+export const navLinks = [
   {
     path: '/',
     text: 'home',

@@ -179,6 +179,7 @@ export default {
       a: {
         variant: 'text.link',
       },
+      ul: { listStyle: 'none', p: 0 },
     },
   },
   radii: {

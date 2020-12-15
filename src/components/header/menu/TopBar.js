@@ -1,11 +1,14 @@
 /** @jsx jsx */
+import React from 'react';
 import styled from '@emotion/styled';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { jsx, useThemeUI } from 'theme-ui';
 import { config } from '../../../config.js';
-import { LanguagePicker } from '../../languagePicker';
+import logo from '../../../images/logo.png';
+import { Link } from '../../link';
+import { Container } from '../../container.js';
 
 export const TopBar = () => {
   const {
@@ -18,51 +21,59 @@ export const TopBar = () => {
         display: ['none', 'none', 'block'],
       }}
     >
-      <TopBarContainer sx={{ px: [null, null, 4, 6], py: 2, bg: 'secondary' }}>
-        <InfoContainer>
-          <InfoIconContainer sx={{ mr: 24 }}>
-            <Icon sx={{ mr: 3 }}>
-              <IoLocationOutline sx={{ fontSize: 2 }} />
-            </Icon>
-            <p sx={{ fontSize: 0 }}>{t('address')}</p>
-          </InfoIconContainer>
-          <InfoIconContainer sx={{ mr: 24 }}>
-            <Icon sx={{ mr: 3 }}>
-              <AiOutlinePhone sx={{ fontSize: 2 }} />
-            </Icon>
-            <Link
-              href={`tel: ${config.tel.replace(/\s/g, '')}`}
-              sx={{
-                pb: 0,
-                fontSize: 0,
-                transition: 'link',
-              }}
-              {...{ colors }}
-            >
-              {config.tel}
-            </Link>
-          </InfoIconContainer>
-          <InfoIconContainer>
-            <Icon sx={{ mr: 3 }}>
-              <AiOutlineMail sx={{ fontSize: 2 }} />
-            </Icon>
-            <Link
-              href={`mailto:${config.primaryEmail}`}
-              sx={{
-                pb: 0,
-                fontSize: 0,
-                transition: 'link',
-              }}
-              {...{ colors }}
-            >
-              {config.primaryEmail}
-            </Link>
-          </InfoIconContainer>
-        </InfoContainer>
-        <LanguageSwitchContainer>
-          <LanguagePicker />
-        </LanguageSwitchContainer>
-      </TopBarContainer>
+      <Container>
+        <TopBarContainer sx={{ py: 4 }}>
+          <Link
+            to="/"
+            sx={{
+              lineHeight: 'reset',
+              width: [null, null, 220],
+            }}
+          >
+            <img src={logo} alt="Logo" sx={{ width: '100%' }} />
+          </Link>
+          <InfoContainer>
+            <InfoIconContainer sx={{ mr: 24 }}>
+              <Icon sx={{ mr: 3 }}>
+                <IoLocationOutline sx={{ fontSize: 2 }} />
+              </Icon>
+              <p sx={{ fontSize: 0 }}>{t('address')}</p>
+            </InfoIconContainer>
+            <InfoIconContainer sx={{ mr: 24 }}>
+              <Icon sx={{ mr: 3 }}>
+                <AiOutlinePhone sx={{ fontSize: 2 }} />
+              </Icon>
+              <InfoLink
+                href={`tel: ${config.tel.replace(/\s/g, '')}`}
+                sx={{
+                  pb: 0,
+                  fontSize: 0,
+                  transition: 'link',
+                }}
+                {...{ colors }}
+              >
+                {config.tel}
+              </InfoLink>
+            </InfoIconContainer>
+            <InfoIconContainer>
+              <Icon sx={{ mr: 3 }}>
+                <AiOutlineMail sx={{ fontSize: 2 }} />
+              </Icon>
+              <InfoLink
+                href={`mailto:${config.primaryEmail}`}
+                sx={{
+                  pb: 0,
+                  fontSize: 0,
+                  transition: 'link',
+                }}
+                {...{ colors }}
+              >
+                {config.primaryEmail}
+              </InfoLink>
+            </InfoIconContainer>
+          </InfoContainer>
+        </TopBarContainer>
+      </Container>
     </div>
   );
 };
@@ -70,11 +81,6 @@ export const TopBar = () => {
 const TopBarContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-`;
-
-const LanguageSwitchContainer = styled.div`
-  display: flex;
   justify-content: space-between;
 `;
 
@@ -95,7 +101,7 @@ const InfoContainer = styled.div`
   display: flex;
 `;
 
-const Link = styled.a`
+const InfoLink = styled.a`
   &:hover {
     color: ${(props) => props.colors.primary};
   }
