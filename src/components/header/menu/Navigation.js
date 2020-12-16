@@ -27,8 +27,8 @@ export const Navigation = ({ animateNavbar }) => {
           borderBottomWidth: animateNavbar ? 0 : 1,
           borderBottomStyle: 'solid',
           borderTopStyle: 'solid',
-          borderBottomColor: 'muted',
-          borderTopColor: 'muted',
+          borderBottomColor: 'primaryPassive',
+          borderTopColor: 'primaryPassive',
         }}
       >
         <Flex
@@ -59,7 +59,7 @@ export const Navigation = ({ animateNavbar }) => {
                       : colors.primary,
                     transition: 'link',
                     '&:hover': {
-                      bg: colors.primary,
+                      bg: animateNavbar ? colors.tertiary : colors.primary,
                       color: colors.primaryBackground,
                     },
                   }}

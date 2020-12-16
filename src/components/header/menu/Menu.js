@@ -9,6 +9,11 @@ export const Menu = () => {
     <div
       sx={{
         display: ['none', 'none', 'none', 'block'],
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
       }}
     >
       <TopBar />

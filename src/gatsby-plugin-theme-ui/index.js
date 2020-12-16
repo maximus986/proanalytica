@@ -7,6 +7,7 @@ export default {
     secondary: '#D1EBE3',
     tertiary: '#004452',
     textPrimary: '#0c0d24',
+    primaryPassive: '#f1f1e6',
     primaryBackground: '#fff',
     secondaryBackground: '##f9f7ff',
     muted: '#e9e9e9',
