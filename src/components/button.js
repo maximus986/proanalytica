@@ -23,4 +23,6 @@ export const Button = ({ variant = 'primary', to, children }) => {
   );
 };
 
-const Btn = styled(Link)``;
+const Btn = styled(Link)`
+  cursor: pointer;
+`;

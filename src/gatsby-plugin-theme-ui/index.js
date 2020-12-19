@@ -108,9 +108,9 @@ export default {
     body: 'Ubuntu, sans-serif',
     heading: 'Ubuntu, sans-serif',
   },
-  breakpoints: ['576px', '768px', '992px', '1280px'],
+  breakpoints: ['576px', '768px', '992px', '1280px', '1600px'],
   space: [0, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64],
-  fontSizes: [12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 60],
+  fontSizes: [12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 60, 90],
   fontWeights: {
     body: 300,
     normal: 400,
@@ -132,7 +132,9 @@ export default {
     },
     heading1: {
       variant: 'text.heading',
-      fontSize: [10, 11], // 36, 40
+      fontSize: [10, 13], // 36, 40
+      color: 'primaryBackground',
+      m: 0,
       mb: 3, // 8
     },
     heading2: {
@@ -159,6 +161,7 @@ export default {
       color: 'textPassive',
       bg: 'primaryBackground',
       lineHeight: 'body',
+      m: 0,
       h1: {
         variant: 'text.heading1',
       },

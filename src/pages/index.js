@@ -1,44 +1,51 @@
 /** @jsx jsx */
 import React from 'react';
-import { jsx } from 'theme-ui';
 import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
-import { graphql, useStaticQuery } from 'gatsby';
-import SEO from '../components/seo';
+import { graphql } from 'gatsby';
+import { jsx } from 'theme-ui';
 import { Container } from '../components/container';
 import { Hero } from '../components/Hero';
+import SEO from '../components/seo';
+import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 
-const languageMap = {
-  sr: 'HR',
-  en: 'EN',
-  cir: 'SR',
-};
-
-const IndexPage = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allWpPost {
-        nodes {
-          title
-          language {
-            code
+export const PAGE_QUERY = graphql`
+  {
+    allWpPage {
+      nodes {
+        language {
+          code
+        }
+        homePageSections {
+          content {
+            ...HeroSection
           }
         }
       }
     }
-  `);
-  const { t } = useTranslation();
+  }
+`;
+
+const IndexPage = ({ data }) => {
   const { lang } = usePageContext();
-  const filteredData = data.allWpPost.nodes.filter(
-    (item) => item.language.code === languageMap[lang],
-  )[0];
+  const { t } = useTranslation();
+  const [localizedPageData] = useLocalizedWpData(data.allWpPage.nodes);
+  const content = localizedPageData.homePageSections.content;
 
   return (
     <>
-      <Hero />
+      <SEO title="Home" />
+      {content.map((section, i) => {
+        const fieldGroupName = section.fieldGroupName;
+        switch (fieldGroupName) {
+          case 'page_Homepagesections_Content_Hero': {
+            return <Hero key={i} {...section} />;
+          }
+          default:
+            return <p>Something Went wrong...</p>;
+        }
+      })}
       <Container>
-        <SEO title="Home" />
         <h1>{t('home')}</h1>
-        <h1>{filteredData.title}</h1>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam
           repellat, dolore quod non sed accusantium expedita nobis beatae modi

@@ -1,62 +1,136 @@
-import React from 'react';
-import BackgroundSlider from 'gatsby-image-background-slider';
-import { graphql, useStaticQuery } from 'gatsby';
+/** @jsx jsx */
+import styled from '@emotion/styled';
+import { graphql } from 'gatsby';
+import BackgroundImage from 'gatsby-background-image';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import { Flex, jsx } from 'theme-ui';
+import { Button } from './button';
+import { Container } from './container';
 
-export const Hero = () => {
-  return (
-    <div style={{ height: '70vh', position: 'relative' }}>
-      <BackgroundSlider
-        query={useStaticQuery(graphql`
-          query {
-            backgrounds: allFile(
-              filter: { sourceInstanceName: { eq: "backgrounds" } }
-            ) {
-              nodes {
-                relativePath
+const settings = {
+  autoplay: true,
+  autoplaySpeed: 5000,
+  infinite: true,
+  speed: 5000,
+  fade: true,
+  cssEase: 'ease',
+  pauseOnHover: false,
+  arrows: false,
+};
+
+export const fragment = graphql`
+  fragment HeroSection on WpPage_Homepagesections_Content_Hero {
+    fieldGroupName
+    heroItems {
+      heroitem {
+        ... on WpHeroItem {
+          id
+          heroItem {
+            title
+            subtitle
+            backgroundImage {
+              localFile {
                 childImageSharp {
-                  fluid(maxWidth: 4000, quality: 100) {
+                  fluid(quality: 100) {
                     ...GatsbyImageSharpFluid
                   }
                 }
               }
             }
           }
-        `)}
-        initDelay={2} // delay before the first transition (if left at 0, the first image will be skipped initially)
-        transition={4} // transition duration between images
-        duration={8} // how long an image is shown
-        // specify images to include (and their order) according to `relativePath`
-        images={['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg']}
-        // pass down standard element props
-        style={{ height: '70vh' }}
-      >
-        {/* Captions in sync with background images*/}
-        <div>Woof</div>
-        <div>Meow</div>
-        <>
-          {/* Giraffes don't talk; [they aren't real](https://chivomengro.com/2017/10/23/the-truth-comes-out-giraffes-are-a-hoax/) */}
-        </>
-        <a href="https://en.wikipedia.org/wiki/Tasmanian_devil#Conservation_status">
-          I could use a hand
-        </a>
-        <div>I need to find better hobbies</div>
-      </BackgroundSlider>
-      <Dim />
-    </div>
+        }
+      }
+    }
+  }
+`;
+
+export const Hero = ({ heroItems, className }) => {
+  return (
+    <Slider {...settings}>
+      {heroItems.map(({ heroitem }, i) => {
+        return (
+          <div key={i}>
+            <StyledBackgroundImage
+              className={className}
+              fluid={
+                heroitem.heroItem.backgroundImage.localFile.childImageSharp
+                  .fluid
+              }
+              sx={{ height: ['100vh', null, '70vh'] }}
+            >
+              <div
+                sx={{
+                  height: '100%',
+                  maxWidth: [
+                    '100%',
+                    '540px',
+                    '720px',
+                    '960px',
+                    '1140px',
+                    '1400px',
+                  ],
+                  mx: [null, null, null, 'auto'],
+                }}
+              >
+                <Flex
+                  sx={{
+                    px: [4, null, null, 0],
+                    position: 'relative',
+                    zIndex: 100,
+                    flexDirection: 'column',
+                    alignContent: 'center',
+                    justifyContent: 'center',
+                    height: '100%',
+                    width: [null, null, null, '70%', '60%'],
+                  }}
+                >
+                  <h1>{heroitem.heroItem.title}</h1>
+                  <p sx={{ color: 'primaryBackground', fontSize: 5, mb: 5 }}>
+                    {heroitem.heroItem.subtitle}
+                  </p>
+                  <Button
+                    variant="outlineLarge"
+                    sx={{ alignSelf: 'flex-start' }}
+                  >
+                    Products
+                  </Button>
+                </Flex>
+              </div>
+            </StyledBackgroundImage>
+            <Dim />
+          </div>
+        );
+      })}
+    </Slider>
   );
 };
 
-const Dim = () => (
-  <div
-    style={{
-      background:
-        'linear-gradient( to top, rgba(0, 104, 119, 0.5), rgba(80, 138, 135, 0.5), rgba(138, 172, 156, 0.5), rgba(192, 205, 188, 0.5), rgba(241, 241, 230, 0.5))',
-      width: '100%',
-      height: '100%',
-      backgroundSize: 'cover',
-      position: 'absolute',
-      top: 0,
-      zIndex: -2,
-    }}
-  ></div>
-);
+const Dim = () => <Overlay />;
+
+const Overlay = styled.div`
+  background: linear-gradient(
+    to top,
+    rgba(0, 104, 119, 0.5),
+    rgba(80, 138, 135, 0.5),
+    rgba(138, 172, 156, 0.5),
+    rgba(192, 205, 188, 0.5),
+    rgba(241, 241, 230, 0.5)
+  );
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  z-index: -2;
+`;
+
+const StyledBackgroundImage = styled(BackgroundImage)`
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  opacity: 1 !important;
+  width: 100%;
+  position: static !important;
+`;
