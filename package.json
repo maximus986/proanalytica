@@ -28,7 +28,7 @@
     "gatsby-plugin-styled-components": "^3.6.0",
     "gatsby-plugin-theme-ui": "^0.3.4",
     "gatsby-source-filesystem": "^2.5.0",
-    "gatsby-source-wordpress-experimental": "5.0.2",
+    "gatsby-source-wordpress-experimental": "6.0.0",
     "gatsby-transformer-sharp": "^2.6.0",
     "i18next": "^19.8.4",
     "prop-types": "^15.7.2",

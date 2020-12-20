@@ -2,10 +2,10 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import { Grid, jsx } from 'theme-ui';
-import { Container } from './container';
-import { SectionContainer } from './SectionContainer';
+import { Container } from '../container';
+import { SectionContainer } from '../SectionContainer';
 import Img from 'gatsby-image';
-import { Button } from './button';
+import { Button } from '../button';
 
 export const fragment = graphql`
   fragment AboutUsSection on WpPage_Homepagesections_Content_AboutUs {
@@ -39,7 +39,7 @@ export const HomeAboutUs = ({
   title,
   image: {
     localFile: {
-      childImageSharp: { fluid: path },
+      childImageSharp: { fluid },
     },
   },
 }) => {
@@ -52,7 +52,7 @@ export const HomeAboutUs = ({
           sx={{ alignItems: 'center' }}
         >
           <figure>
-            <Img fluid={path} alt="" />
+            <Img fluid={fluid} alt="" />
           </figure>
           <article sx={{ px: [4, 0] }}>
             <p sx={{ color: 'primary', mb: 3, fontWeight: 'bold' }}>

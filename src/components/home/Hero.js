@@ -7,8 +7,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import { Flex, jsx } from 'theme-ui';
-import { Button } from './button';
-import { Container } from './container';
+import { Button } from '../button';
+import { Container } from '../container';
 
 const settings = {
   autoplay: true,
@@ -49,7 +49,7 @@ export const fragment = graphql`
 
 export const Hero = ({ heroItems, className }) => {
   return (
-    <Slider {...settings}>
+    <Slider {...settings} sx={{ mb: [6, null, 7, 8] }}>
       {heroItems.map(({ heroitem }, i) => {
         return (
           <React.Fragment key={i}>

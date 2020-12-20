@@ -3,11 +3,11 @@ import React from 'react';
 import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { graphql } from 'gatsby';
 import { jsx } from 'theme-ui';
-import { Container } from '../components/container';
-import { Hero } from '../components/Hero';
 import SEO from '../components/seo';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
-import { HomeAboutUs } from '../components/HomeAboutUs';
+import { Hero } from '../components/home/Hero';
+import { HomeAboutUs } from '../components/home/HomeAboutUs';
+import { ProductCategories } from '../components/home/ProductCategories';
 
 export const PAGE_QUERY = graphql`
   {
@@ -20,6 +20,7 @@ export const PAGE_QUERY = graphql`
           content {
             ...HeroSection
             ...AboutUsSection
+            ...ProductCategoriesSection
           }
         }
       }
@@ -28,7 +29,6 @@ export const PAGE_QUERY = graphql`
 `;
 
 const IndexPage = ({ data }) => {
-  const { lang } = usePageContext();
   const { t } = useTranslation();
   const [localizedPageData] = useLocalizedWpData(data.allWpPage.nodes);
   const content = localizedPageData.homePageSections.content;
@@ -44,6 +44,9 @@ const IndexPage = ({ data }) => {
           }
           case 'page_Homepagesections_Content_AboutUs': {
             return <HomeAboutUs key={i} {...section} />;
+          }
+          case 'page_Homepagesections_Content_ProductCategory': {
+            return <ProductCategories key={i} {...section} />;
           }
           default:
             return <p>Something Went wrong...</p>;

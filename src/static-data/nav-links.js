@@ -24,8 +24,8 @@ export const navLinks = [
     icon: AiOutlineMedicineBox,
   },
   {
-    path: '/dogadjaji',
-    text: 'events',
+    path: '/vesti',
+    text: 'news',
     icon: AiOutlineSchedule,
   },
   {
