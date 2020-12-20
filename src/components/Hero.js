@@ -11,7 +11,7 @@ import { Button } from './button';
 import { Container } from './container';
 
 const settings = {
-  autoplay: false,
+  autoplay: true,
   autoplaySpeed: 5000,
   infinite: true,
   speed: 5000,
@@ -52,7 +52,7 @@ export const Hero = ({ heroItems, className }) => {
     <Slider {...settings}>
       {heroItems.map(({ heroitem }, i) => {
         return (
-          <>
+          <React.Fragment key={i}>
             <Container>
               <StyledBackgroundImage
                 className={className}
@@ -60,7 +60,6 @@ export const Hero = ({ heroItems, className }) => {
                   heroitem.heroItem.backgroundImage.localFile.childImageSharp
                     .fluid
                 }
-                key={i}
                 sx={{
                   height: ['100vh', null, '90vh', null, '80vh'],
                   justifyContent: ['center'],
@@ -93,7 +92,7 @@ export const Hero = ({ heroItems, className }) => {
               </StyledBackgroundImage>
             </Container>
             <Dim />
-          </>
+          </React.Fragment>
         );
       })}
     </Slider>

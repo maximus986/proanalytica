@@ -159,6 +159,7 @@ const Nav = styled.nav`
   transform: ${(props) => (props.isMenuOpen ? 'translateX(100%)' : null)};
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 `;
 
 const MainNavBarHeader = styled.div`
