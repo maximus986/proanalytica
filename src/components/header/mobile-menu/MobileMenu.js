@@ -84,12 +84,12 @@ export const MobileMenu = () => {
           })}
         </MainNav>
         <SecondaryContentContainer>
-          <InfoContainer sx={{ pl: 4 }}>
+          <InfoContainer sx={{ pl: 4, mb: 1 }}>
             <InfoIconContainer sx={{ mb: 4 }}>
               <Icon sx={{ mr: 3 }}>
                 <IoLocationOutline sx={{ fontSize: 5 }} />
               </Icon>
-              <p>{t('address')}</p>
+              <p sx={{ fontSize: 1 }}>{t('address')}</p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: 4 }}>
               <Icon sx={{ mr: 3 }}>
@@ -97,7 +97,11 @@ export const MobileMenu = () => {
               </Icon>
               <a
                 href={`tel: ${config.tel.replace(/\s/g, '')}`}
-                sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
+                sx={{
+                  borderBottom: `1px solid ${colors.primary}`,
+                  pb: 0,
+                  fontSize: 1,
+                }}
               >
                 {config.tel}
               </a>
@@ -108,7 +112,11 @@ export const MobileMenu = () => {
               </Icon>
               <a
                 href={`mailto:${config.primaryEmail}`}
-                sx={{ borderBottom: `1px solid ${colors.primary}`, pb: 0 }}
+                sx={{
+                  borderBottom: `1px solid ${colors.primary}`,
+                  pb: 0,
+                  fontSize: 1,
+                }}
               >
                 {config.primaryEmail}
               </a>
@@ -170,7 +178,7 @@ const MainNav = styled.ul`
   flex-direction: column;
   justify-items: flex-start;
   align-items: center;
-  flex: 3;
+  flex: 1;
 `;
 
 const NavItem = styled.li`
@@ -220,12 +228,11 @@ const Icon = styled.div`
 const SecondaryContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 2;
+  flex: 1;
 `;
 
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;

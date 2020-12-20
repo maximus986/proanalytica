@@ -122,6 +122,7 @@ export default {
     reset: 0,
     body: 1.6,
     heading: 1.3,
+    normal: 1,
   },
   text: {
     heading: {
@@ -132,8 +133,9 @@ export default {
     },
     heading1: {
       variant: 'text.heading',
-      fontSize: [10, 13], // 36, 40
+      fontSize: [10, 12, null, null, null, 13], // 36, 40
       color: 'primaryBackground',
+      lineHeight: ['heading', 'normal', null, null, null, 'heading'],
       m: 0,
       mb: 3, // 8
     },

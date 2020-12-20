@@ -37,7 +37,7 @@ export const TopBar = () => {
               <Icon sx={{ mr: 3 }}>
                 <IoLocationOutline sx={{ fontSize: 2 }} />
               </Icon>
-              <p sx={{ fontSize: 0 }}>{t('address')}</p>
+              <p sx={{ fontSize: 1 }}>{t('address')}</p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mr: 24 }}>
               <Icon sx={{ mr: 3 }}>
@@ -47,7 +47,7 @@ export const TopBar = () => {
                 href={`tel: ${config.tel.replace(/\s/g, '')}`}
                 sx={{
                   pb: 0,
-                  fontSize: 0,
+                  fontSize: 1,
                   transition: 'link',
                 }}
                 {...{ colors }}
@@ -63,7 +63,7 @@ export const TopBar = () => {
                 href={`mailto:${config.primaryEmail}`}
                 sx={{
                   pb: 0,
-                  fontSize: 0,
+                  fontSize: 1,
                   transition: 'link',
                 }}
                 {...{ colors }}

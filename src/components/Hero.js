@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import React from 'react';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
@@ -10,7 +11,7 @@ import { Button } from './button';
 import { Container } from './container';
 
 const settings = {
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 5000,
   infinite: true,
   speed: 5000,
@@ -51,38 +52,30 @@ export const Hero = ({ heroItems, className }) => {
     <Slider {...settings}>
       {heroItems.map(({ heroitem }, i) => {
         return (
-          <div key={i}>
-            <StyledBackgroundImage
-              className={className}
-              fluid={
-                heroitem.heroItem.backgroundImage.localFile.childImageSharp
-                  .fluid
-              }
-              sx={{ height: ['100vh', null, '70vh'] }}
-            >
-              <div
+          <>
+            <Container>
+              <StyledBackgroundImage
+                className={className}
+                fluid={
+                  heroitem.heroItem.backgroundImage.localFile.childImageSharp
+                    .fluid
+                }
+                key={i}
                 sx={{
-                  height: '100%',
-                  maxWidth: [
-                    '100%',
-                    '540px',
-                    '720px',
-                    '960px',
-                    '1140px',
-                    '1400px',
-                  ],
-                  mx: [null, null, null, 'auto'],
+                  height: ['100vh', null, '90vh', null, '80vh'],
+                  justifyContent: ['center'],
+                  pt: [null, null, null, '135px'],
                 }}
               >
                 <Flex
                   sx={{
-                    px: [4, null, null, 0],
                     position: 'relative',
                     zIndex: 100,
                     flexDirection: 'column',
                     alignContent: 'center',
                     justifyContent: 'center',
                     height: '100%',
+                    px: [4, 0],
                     width: [null, null, null, '70%', '60%'],
                   }}
                 >
@@ -97,10 +90,10 @@ export const Hero = ({ heroItems, className }) => {
                     Products
                   </Button>
                 </Flex>
-              </div>
-            </StyledBackgroundImage>
+              </StyledBackgroundImage>
+            </Container>
             <Dim />
-          </div>
+          </>
         );
       })}
     </Slider>
@@ -133,4 +126,6 @@ const StyledBackgroundImage = styled(BackgroundImage)`
   opacity: 1 !important;
   width: 100%;
   position: static !important;
+  display: flex;
+  flex-direction: column;
 `;
