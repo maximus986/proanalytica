@@ -1,12 +1,11 @@
 /** @jsx jsx */
+import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
-import React from 'react';
-import { Grid, jsx } from 'theme-ui';
-import { Container } from '../container';
-import { SectionContainer } from '../SectionContainer';
 import Img from 'gatsby-image';
-import { Button } from '../button';
+import { Grid, jsx, useThemeUI } from 'theme-ui';
+import { hex2rgba } from '../../utils/utils';
 import { Link } from '../link';
+import { SectionContainer } from '../SectionContainer';
 
 export const fragment = graphql`
   fragment ProductCategoriesSection on WpPage_Homepagesections_Content_ProductCategory {
@@ -36,88 +35,125 @@ export const fragment = graphql`
 `;
 
 export const ProductCategories = ({ sectionTitle, category }) => {
+  const {
+    theme: { colors },
+  } = useThemeUI();
+  const boxShadowColor = hex2rgba(colors.primary, 0.6);
+  const boxShadowHoverColor = hex2rgba(colors.primary, 0.9);
   return (
-    <SectionContainer sectionTitle={sectionTitle}>
-      <Grid gap={[5]} columns={[1, 2, 4]} sx={{ px: [4, 7] }}>
-        {category.map(({ productCategoryItem }, id) => {
-          const {
-            productCategory: {
-              categoryName,
-              categorySlug,
-              categoryImage: {
-                localFile: {
-                  childImageSharp: { fluid },
+    <div sx={{ bg: 'primaryPassive', px: [4, null, 5, 7, 8] }}>
+      <SectionContainer sectionTitle={sectionTitle}>
+        <Grid gap={[6]} columns={[1, 2, null, null, 4]}>
+          {category.map(({ productCategoryItem }, id) => {
+            const {
+              productCategory: {
+                categoryName,
+                categorySlug,
+                categoryImage: {
+                  localFile: {
+                    childImageSharp: { fluid },
+                  },
                 },
               },
-            },
-          } = productCategoryItem;
-          return (
-            <Link
-              to={categorySlug}
-              sx={{
-                display: 'block',
-                position: 'relative',
-                textAlign: 'center',
-                transition: 'imageLink',
-                borderRadius: 'image',
-                overflow: 'hidden',
-                maxHeight: '210px',
-                '&:hover': {
-                  'figure::before': {
-                    boxShadow: 'inset 0px -100px 50px -40px rgba(0,104,119,1)', // Adjust the height of the shadow on breakpoints, depending of the height of the element
-                  },
-                  p: {
-                    bg: 'primary',
-                    color: 'primaryBackground',
-                    cursor: 'pointer',
-                  },
-                },
-              }}
-              key={id}
-            >
-              <figure
+            } = productCategoryItem;
+            return (
+              <ImageLink
+                to={categorySlug}
                 sx={{
-                  display: 'block',
-                  overflow: 'hidden',
-                  borderRadius: 'image',
-                  '&::before': {
-                    position: 'absolute',
-                    content: "''",
-                    width: '100%',
-                    height: '100%',
-                    left: '0',
-                    top: '0',
-                    right: '0',
-                    boxShadow:
-                      'inset 0px -100px 50px -40px rgba(0,104,119,0.4)',
-                    zIndex: 1,
-                    transition: 'imageLink',
-                  },
-                }}
-              >
-                <Img fluid={fluid} alt="" />
-              </figure>
-              <p
-                sx={{
-                  position: 'absolute',
-                  bg: 'primaryPassive',
-                  px: '15px',
-                  py: '7px',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  color: 'primary',
-                  minWidth: '190px',
                   transition: 'imageLink',
-                  fontSize: [1],
+                  borderRadius: 'image',
+                  '&:hover': {
+                    'figure > div::before': {
+                      boxShadow: [
+                        `inset 0px -80px 50px -40px ${boxShadowHoverColor}`,
+                        `inset 0px -105px 50px -40px ${boxShadowHoverColor}`,
+                        `inset 0px -130px 50px -40px ${boxShadowHoverColor}`,
+                        `inset 0px -140px 50px -40px ${boxShadowHoverColor}`,
+                        `inset 0px -95px 50px -40px ${boxShadowHoverColor}`,
+                        `inset 0px -110px 50px -40px ${boxShadowHoverColor}`,
+                      ],
+                    },
+                    p: {
+                      bg: 'primary',
+                      color: 'primaryBackground',
+                      cursor: 'pointer',
+                    },
+                  },
                 }}
+                key={id}
               >
-                {categoryName}
-              </p>
-            </Link>
-          );
-        })}
-      </Grid>
-    </SectionContainer>
+                <Figure
+                  sx={{
+                    borderRadius: 'image',
+                  }}
+                >
+                  <StyledImg
+                    fluid={fluid}
+                    alt=""
+                    sx={{
+                      '&::before': {
+                        boxShadow: [
+                          `inset 0px -80px 50px -40px ${boxShadowColor}`,
+                          `inset 0px -105px 50px -40px ${boxShadowColor}`,
+                          `inset 0px -130px 50px -40px ${boxShadowColor}`,
+                          `inset 0px -140px 50px -40px ${boxShadowColor}`,
+                          `inset 0px -95px 50px -40px ${boxShadowColor}`,
+                          `inset 0px -110px 50px -40px ${boxShadowColor}`,
+                        ],
+                        transition: 'imageLink',
+                      },
+                    }}
+                  />
+                </Figure>
+                <ProductCategoryName
+                  sx={{
+                    bg: 'primaryPassive',
+                    color: 'primary',
+                    transition: 'imageLink',
+                    fontSize: [1, null, null, null, null, 2],
+                  }}
+                >
+                  {categoryName}
+                </ProductCategoryName>
+              </ImageLink>
+            );
+          })}
+        </Grid>
+      </SectionContainer>
+    </div>
   );
 };
+
+const ImageLink = styled(Link)`
+  overflow: hidden;
+  display: block;
+  position: relative;
+  text-align: center;
+`;
+
+const Figure = styled.figure`
+  display: block;
+  overflow: hidden;
+`;
+
+const StyledImg = styled(Img)`
+  &::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+`;
+
+const ProductCategoryName = styled.p`
+  position: absolute;
+  padding: 7px 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 190px;
+`;
