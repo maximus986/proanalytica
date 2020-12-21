@@ -49,7 +49,7 @@ export const fragment = graphql`
 
 export const Hero = ({ heroItems, className }) => {
   return (
-    <Slider {...settings} sx={{ mb: [6, null, 7, 8] }}>
+    <Slider {...settings}>
       {heroItems.map(({ heroitem }, i) => {
         return (
           <React.Fragment key={i}>

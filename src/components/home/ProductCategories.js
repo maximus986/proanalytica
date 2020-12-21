@@ -41,86 +41,88 @@ export const ProductCategories = ({ sectionTitle, category }) => {
   const boxShadowColor = hex2rgba(colors.primary, 0.6);
   const boxShadowHoverColor = hex2rgba(colors.primary, 0.9);
   return (
-    <div sx={{ bg: 'primaryPassive', px: [4, null, 5, 7, 8] }}>
-      <SectionContainer sectionTitle={sectionTitle}>
-        <Grid gap={[6]} columns={[1, 2, null, null, 4]}>
-          {category.map(({ productCategoryItem }, id) => {
-            const {
-              productCategory: {
-                categoryName,
-                categorySlug,
-                categoryImage: {
-                  localFile: {
-                    childImageSharp: { fluid },
-                  },
+    <SectionContainer sectionTitle={sectionTitle} bg={colors.primaryPassive}>
+      <Grid
+        gap={[6]}
+        columns={[1, 2, null, null, 4]}
+        sx={{ px: [4, null, 5, 7, 8] }}
+      >
+        {category.map(({ productCategoryItem }, id) => {
+          const {
+            productCategory: {
+              categoryName,
+              categorySlug,
+              categoryImage: {
+                localFile: {
+                  childImageSharp: { fluid },
                 },
               },
-            } = productCategoryItem;
-            return (
-              <ImageLink
-                to={categorySlug}
-                sx={{
-                  transition: 'imageLink',
-                  borderRadius: 'image',
-                  '&:hover': {
-                    'figure > div::before': {
-                      boxShadow: [
-                        `inset 0px -80px 50px -40px ${boxShadowHoverColor}`,
-                        `inset 0px -105px 50px -40px ${boxShadowHoverColor}`,
-                        `inset 0px -130px 50px -40px ${boxShadowHoverColor}`,
-                        `inset 0px -140px 50px -40px ${boxShadowHoverColor}`,
-                        `inset 0px -95px 50px -40px ${boxShadowHoverColor}`,
-                        `inset 0px -110px 50px -40px ${boxShadowHoverColor}`,
-                      ],
-                    },
-                    p: {
-                      bg: 'primary',
-                      color: 'primaryBackground',
-                      cursor: 'pointer',
-                    },
+            },
+          } = productCategoryItem;
+          return (
+            <ImageLink
+              to={categorySlug}
+              sx={{
+                transition: 'imageLink',
+                borderRadius: 'image',
+                '&:hover': {
+                  'figure > div::before': {
+                    boxShadow: [
+                      `inset 0px -80px 50px -40px ${boxShadowHoverColor}`,
+                      `inset 0px -105px 50px -40px ${boxShadowHoverColor}`,
+                      `inset 0px -130px 50px -40px ${boxShadowHoverColor}`,
+                      `inset 0px -140px 50px -40px ${boxShadowHoverColor}`,
+                      `inset 0px -95px 50px -40px ${boxShadowHoverColor}`,
+                      `inset 0px -110px 50px -40px ${boxShadowHoverColor}`,
+                    ],
                   },
+                  p: {
+                    bg: 'primary',
+                    color: 'primaryBackground',
+                    cursor: 'pointer',
+                  },
+                },
+              }}
+              key={id}
+            >
+              <Figure
+                sx={{
+                  borderRadius: 'image',
                 }}
-                key={id}
               >
-                <Figure
+                <StyledImg
+                  fluid={fluid}
+                  alt=""
                   sx={{
-                    borderRadius: 'image',
+                    '&::before': {
+                      boxShadow: [
+                        `inset 0px -80px 50px -40px ${boxShadowColor}`,
+                        `inset 0px -105px 50px -40px ${boxShadowColor}`,
+                        `inset 0px -130px 50px -40px ${boxShadowColor}`,
+                        `inset 0px -140px 50px -40px ${boxShadowColor}`,
+                        `inset 0px -95px 50px -40px ${boxShadowColor}`,
+                        `inset 0px -110px 50px -40px ${boxShadowColor}`,
+                      ],
+                      transition: 'imageLink',
+                    },
                   }}
-                >
-                  <StyledImg
-                    fluid={fluid}
-                    alt=""
-                    sx={{
-                      '&::before': {
-                        boxShadow: [
-                          `inset 0px -80px 50px -40px ${boxShadowColor}`,
-                          `inset 0px -105px 50px -40px ${boxShadowColor}`,
-                          `inset 0px -130px 50px -40px ${boxShadowColor}`,
-                          `inset 0px -140px 50px -40px ${boxShadowColor}`,
-                          `inset 0px -95px 50px -40px ${boxShadowColor}`,
-                          `inset 0px -110px 50px -40px ${boxShadowColor}`,
-                        ],
-                        transition: 'imageLink',
-                      },
-                    }}
-                  />
-                </Figure>
-                <ProductCategoryName
-                  sx={{
-                    bg: 'primaryPassive',
-                    color: 'primary',
-                    transition: 'imageLink',
-                    fontSize: [1, null, null, null, null, 2],
-                  }}
-                >
-                  {categoryName}
-                </ProductCategoryName>
-              </ImageLink>
-            );
-          })}
-        </Grid>
-      </SectionContainer>
-    </div>
+                />
+              </Figure>
+              <ProductCategoryName
+                sx={{
+                  bg: 'primaryPassive',
+                  color: 'primary',
+                  transition: 'imageLink',
+                  fontSize: [1, null, null, null, null, 2],
+                }}
+              >
+                {categoryName}
+              </ProductCategoryName>
+            </ImageLink>
+          );
+        })}
+      </Grid>
+    </SectionContainer>
   );
 };
 
