@@ -9,6 +9,7 @@ import { Hero } from '../components/home/Hero';
 import { HomeAboutUs } from '../components/home/HomeAboutUs';
 import { ProductCategories } from '../components/home/ProductCategories';
 import { Testimonials } from '../components/home/Testimonials';
+import { Partners } from '../components/home/Partners';
 
 export const PAGE_QUERY = graphql`
   {
@@ -23,6 +24,7 @@ export const PAGE_QUERY = graphql`
             ...AboutUsSection
             ...ProductCategoriesSection
             ...TestimonialsSection
+            ...PartnersSection
           }
         }
       }
@@ -52,6 +54,9 @@ const IndexPage = ({ data }) => {
           }
           case 'page_Homepagesections_Content_Testimonials': {
             return <Testimonials key={i} {...section} />;
+          }
+          case 'page_Homepagesections_Content_Partners': {
+            return <Partners key={i} {...section} />;
           }
           default:
             return <p>Something Went wrong...</p>;

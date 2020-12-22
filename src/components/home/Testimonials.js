@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import { jsx, useThemeUI } from 'theme-ui';
 import { Container } from '../container';
 import { SectionContainer } from '../SectionContainer';
+import { testimonialSliderSettings } from './sliderConfig';
 
 export const fragment = graphql`
   fragment TestimonialsSection on WpPage_Homepagesections_Content_Testimonials {
@@ -27,24 +28,12 @@ export const fragment = graphql`
   }
 `;
 
-const settings = {
-  autoplay: true,
-  autoplaySpeed: 5000,
-  infinite: true,
-  speed: 3000,
-  fade: false,
-  cssEase: 'linear',
-  pauseOnHover: false,
-  arrows: false,
-  dots: true,
-};
-
 export const Testimonials = ({ sectionTitle, testimonials }) => {
   const { theme } = useThemeUI();
   return (
     <SectionContainer sectionTitle={sectionTitle}>
       <Container>
-        <StyledSlider {...settings} {...{ theme }}>
+        <StyledSlider {...testimonialSliderSettings} {...{ theme }}>
           {testimonials.map(({ testimonialItem }) => {
             const {
               id,

@@ -108,7 +108,7 @@ export default {
     body: 'Ubuntu, sans-serif',
     heading: 'Ubuntu, sans-serif',
   },
-  breakpoints: ['576px', '768px', '992px', '1280px', '1600px'],
+  breakpoints: ['576px', '768px', '992px', '1280px', '1600px', '2600px'], // 2600px is a fake breakpoint in order react slick slider responsive feature to work properly
   space: [0, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80],
   fontSizes: [12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 60, 90],
   fontWeights: {

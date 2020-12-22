@@ -41,7 +41,7 @@ export const ProductCategories = ({ sectionTitle, category }) => {
   const boxShadowColor = hex2rgba(colors.primary, 0.6);
   const boxShadowHoverColor = hex2rgba(colors.primary, 0.9);
   return (
-    <SectionContainer sectionTitle={sectionTitle} bg={colors.primaryPassive}>
+    <SectionContainer sectionTitle={sectionTitle} variant="colorful">
       <Grid
         gap={[6]}
         columns={[1, 2, null, null, 4]}

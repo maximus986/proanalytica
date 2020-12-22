@@ -9,17 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import { Flex, jsx } from 'theme-ui';
 import { Button } from '../button';
 import { Container } from '../container';
-
-const settings = {
-  autoplay: true,
-  autoplaySpeed: 5000,
-  infinite: true,
-  speed: 5000,
-  fade: true,
-  cssEase: 'ease',
-  pauseOnHover: false,
-  arrows: false,
-};
+import { heroSliderSettings } from './sliderConfig';
 
 export const fragment = graphql`
   fragment HeroSection on WpPage_Homepagesections_Content_Hero {
@@ -49,7 +39,7 @@ export const fragment = graphql`
 
 export const Hero = ({ heroItems, className }) => {
   return (
-    <Slider {...settings}>
+    <Slider {...heroSliderSettings}>
       {heroItems.map(({ heroitem }, i) => {
         return (
           <React.Fragment key={i}>
