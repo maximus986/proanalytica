@@ -49,7 +49,7 @@ export const Announcement = ({
           sx={{
             bg: 'tertiary',
             pt: [6, null, 9, null, null, 15],
-            pb: [6, null, 9, null, 21],
+            pb: [6, null, 9, null, 22],
             px: [4, 0],
             mb: [null, null, 10, null, 13],
           }}
@@ -72,7 +72,7 @@ export const Announcement = ({
               <figure
                 sx={{
                   position: [null, null, null, 'absolute'],
-                  width: ['100%', null, null, null, null, '75%'],
+                  width: ['100%', null, null, null, null, '85%'],
                 }}
               >
                 <Img fluid={fluid} alt="" />

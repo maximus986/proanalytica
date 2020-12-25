@@ -11,6 +11,7 @@ import { ProductCategories } from '../components/home/ProductCategories';
 import { Testimonials } from '../components/home/Testimonials';
 import { Partners } from '../components/home/Partners';
 import { Announcement } from '../components/home/Announcement';
+import { Charity } from '../components/home/Charity';
 
 export const PAGE_QUERY = graphql`
   {
@@ -27,6 +28,7 @@ export const PAGE_QUERY = graphql`
             ...TestimonialsSection
             ...PartnersSection
             ...AnnouncementSection
+            ...CharitySection
           }
         }
       }
@@ -62,6 +64,9 @@ const IndexPage = ({ data }) => {
           }
           case 'page_Homepagesections_Content_Announcement': {
             return <Announcement key={i} {...section} />;
+          }
+          case 'page_Homepagesections_Content_Charity': {
+            return <Charity key={i} {...section} />;
           }
           default:
             return <p>Something Went wrong...</p>;
