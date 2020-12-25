@@ -52,7 +52,7 @@ export const Charity = ({
               py: [9],
               px: [6],
               width: [null, null, null, '70%'],
-              ml: [4, null, null, 'auto'],
+              mr: [4, null, null, 'auto'],
             }}
           >
             <p sx={{ color: 'primary', mb: 3, fontWeight: 'bold' }}>

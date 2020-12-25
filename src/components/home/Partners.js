@@ -39,7 +39,7 @@ export const fragment = graphql`
 
 export const Partners = ({ sectionTitle, partners }) => {
   return (
-    <SectionContainer sectionTitle={sectionTitle} variant="colorful">
+    <SectionContainer sectionTitle={sectionTitle} bg="primaryPassive">
       <Container>
         <Slider {...partnerSliderSettings}>
           {partners.map(({ partner }) => {

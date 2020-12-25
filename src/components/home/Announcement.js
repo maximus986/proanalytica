@@ -39,22 +39,18 @@ export const Announcement = ({
     },
   },
 }) => {
-  const {
-    theme: { colors },
-  } = useThemeUI();
   return (
     <SectionContainer sectionTitle={sectionTitle}>
-      <Container>
-        <InnerContent
-          sx={{
-            bg: 'tertiary',
-            pt: [6, null, 9, null, null, 15],
-            pb: [6, null, 9, null, 22],
-            px: [4, 0],
-            mb: [null, null, 10, null, 13],
-          }}
-          {...{ colors }}
-        >
+      <InnerContent
+        sx={{
+          bg: 'tertiary',
+          pt: [6, null, 9, null, null, 15],
+          pb: [6, null, 9, null, 22],
+          px: [4, 0],
+          mb: [null, null, 10, null, 13],
+        }}
+      >
+        <Container>
           <Grid
             gap={[5, null, null, 8, 11]}
             columns={[null, null, null, 2, [2, '5fr 4fr']]}
@@ -79,30 +75,10 @@ export const Announcement = ({
               </figure>
             </div>
           </Grid>
-        </InnerContent>
-      </Container>
+        </Container>
+      </InnerContent>
     </SectionContainer>
   );
 };
 
-const InnerContent = styled.div`
-  position: relative;
-  &:before {
-    position: absolute;
-    content: '';
-    background: ${(props) => props.colors.tertiary};
-    width: 50000%;
-    height: 100%;
-    left: 50%;
-    top: 0px;
-  }
-  &:after {
-    position: absolute;
-    content: '';
-    background: ${(props) => props.colors.tertiary};
-    width: 80px;
-    height: 100%;
-    left: -80px;
-    top: 0px;
-  }
-`;
+const InnerContent = styled.div``;

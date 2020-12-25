@@ -49,7 +49,7 @@ export const MobileMenu = () => {
             sx={{ fontSize: 6, color: 'primary' }}
           />
         </MainNavBarHeader>
-        <MainNav sx={{ m: 0 }}>
+        <MainNav sx={{ m: 0, mb: 4 }}>
           {navLinks.map((link, index) => {
             const Icon = link.icon;
             const isActive = path === link.path;
@@ -179,7 +179,6 @@ const MainNav = styled.ul`
   flex-direction: column;
   justify-items: flex-start;
   align-items: center;
-  flex: 1;
 `;
 
 const NavItem = styled.li`
@@ -229,7 +228,6 @@ const Icon = styled.div`
 const SecondaryContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
 `;
 
 const InfoContainer = styled.div`
