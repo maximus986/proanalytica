@@ -7,7 +7,9 @@
       "news": "Vesti",
       "links": "Korisni linkovi",
       "contact": "Kontakt",
-      "address": "Bulevar umetnosti 27, 11000 Beograd"
+      "address": "Bulevar umetnosti 27, 11000 Beograd",
+      "rightsReserved": "Sva prava zadržana",
+      "managementSystems": "Sistemi upravljanja"
     }
   },
   "cir": {
@@ -18,7 +20,9 @@
       "news": "Вести",
       "links": "Корисни линкови",
       "contact": "Контакт",
-      "address": "Булевар уметности 27, 11000 Београд"
+      "address": "Булевар уметности 27, 11000 Београд",
+      "rightsReserved": "Сва права задржана",
+      "managementSystems": "Системи управљања"
     }
   },
   "en": {
@@ -29,7 +33,9 @@
       "news": "News",
       "links": "Links",
       "contact": "Contact",
-      "address": "Bulevar umetnosti 27, 11000 Belgrade"
+      "address": "Bulevar umetnosti 27, 11000 Belgrade",
+      "rightsReserved": "All rights reserved",
+      "managementSystems": "Management systems"
     }
   }
 }

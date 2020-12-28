@@ -46,13 +46,13 @@ export const Charity = ({
         <Container>
           <div
             sx={{
-              mx: [4, 0],
-              my: [6],
+              mx: [4, 0, null, 'auto'],
+              my: [6, null, null, 7, 8, 10, 13],
               bg: 'primaryBackground',
               py: [9],
               px: [6],
               width: [null, null, null, '70%'],
-              mr: [4, null, null, 'auto'],
+              // mr: [4, null, null, 'auto'],
             }}
           >
             <p sx={{ color: 'primary', mb: 3, fontWeight: 'bold' }}>
