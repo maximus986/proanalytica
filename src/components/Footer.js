@@ -7,7 +7,7 @@ import { IoLocationOutline } from 'react-icons/io5';
 import { Flex, Grid, jsx, useThemeUI } from 'theme-ui';
 import { config } from '../config';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
-import certificate from '../images/certificate.jpg';
+import certificate from '../images/certificate.png';
 import logo from '../images/logo.png';
 import { Container } from './container';
 import { Link } from './link';
