@@ -3,11 +3,11 @@ export default {
   useBodyStyles: true,
   colors: {
     textPassive: '#666',
-    primary: '#006877', // ! #006b69 This is real primary color. Should I generate new palette from it?
+    primary: '#006877',
     secondary: '#D1EBE3',
-    tertiary: '#004452', //#00504F
+    tertiary: '#004452',
     textPrimary: '#0c0d24',
-    primaryPassive: '#f1f1e6', // #EEFCFB
+    primaryPassive: '#f1f1e6',
     primaryBackground: '#fff',
     secondaryBackground: '#1d1e22',
     secondaryBackgroundActive: '#17181b',
