@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
 import { jsx } from 'theme-ui';
 import { Container } from '../container';
+import { Overlay } from '../Overlay';
 import { SectionContainer } from '../SectionContainer';
 
 export const fragment = graphql`
@@ -79,21 +80,4 @@ const StyledBackgroundImage = styled(BackgroundImage)`
   &::after {
     background-attachment: fixed;
   }
-`;
-
-const Overlay = styled.div`
-  background: linear-gradient(
-    to top,
-    rgba(0, 104, 119, 0.5),
-    rgba(80, 138, 135, 0.5),
-    rgba(138, 172, 156, 0.5),
-    rgba(192, 205, 188, 0.5),
-    rgba(241, 241, 230, 0.5)
-  );
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  z-index: -2;
 `;

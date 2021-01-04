@@ -38,7 +38,10 @@ export const PAGE_QUERY = graphql`
 
 const IndexPage = ({ data }) => {
   const { t } = useTranslation();
-  const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const localizedPageData = useLocalizedWpData(
+    // Just home page has homePageSections and all other pages have content as null. Filter those pages nodes out.
+    data.allWpPage.nodes.filter((c) => c.homePageSections.content),
+  )[0];
   const content = localizedPageData.homePageSections.content;
 
   return (
