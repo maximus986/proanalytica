@@ -8,6 +8,7 @@ import { Flex, Grid, jsx, useThemeUI } from 'theme-ui';
 import { config } from '../config';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 import certificate from '../images/certificate.png';
+import lachner from '../images/lachner.png';
 import logo from '../images/logo.png';
 import { Container } from './container';
 import { Link } from './link';
@@ -146,9 +147,14 @@ export const Footer = () => {
                 },
               )}
             </Flex>
-            <figure>
-              <img src={certificate} alt="" sx={{ width: '100px' }} />
-            </figure>
+            <Flex>
+              <figure sx={{ mr: 4 }}>
+                <img src={certificate} alt="" sx={{ width: '100px' }} />
+              </figure>
+              <figure>
+                <img src={lachner} alt="" sx={{ width: '100px' }} />
+              </figure>
+            </Flex>
           </div>
         </Grid>
       </Container>
