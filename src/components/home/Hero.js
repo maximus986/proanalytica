@@ -25,7 +25,7 @@ export const fragment = graphql`
             backgroundImage {
               localFile {
                 childImageSharp {
-                  fluid(quality: 100) {
+                  fluid(quality: 100, toFormat: WEBP) {
                     ...GatsbyImageSharpFluid
                   }
                 }

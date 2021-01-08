@@ -212,7 +212,7 @@ export const PAGE_QUERY = graphql`
           pageIntroImage {
             localFile {
               childImageSharp {
-                fluid(quality: 100) {
+                fluid(quality: 100, toFormat: WEBP) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -229,7 +229,7 @@ export const PAGE_QUERY = graphql`
                   categoryImage {
                     localFile {
                       childImageSharp {
-                        fluid(quality: 100, cropFocus: CENTER) {
+                        fluid(quality: 100, cropFocus: CENTER, toFormat: WEBP) {
                           ...GatsbyImageSharpFluid
                         }
                       }

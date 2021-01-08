@@ -21,7 +21,7 @@ export const fragment = graphql`
             categoryImage {
               localFile {
                 childImageSharp {
-                  fluid(quality: 100) {
+                  fluid(quality: 100, toFormat: WEBP) {
                     ...GatsbyImageSharpFluid
                   }
                 }
