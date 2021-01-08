@@ -16,7 +16,7 @@ export const PageIntro = ({ pageTitle, pageSubtitle, pageIntroImage }) => {
     >
       <StyledBackgroundImage
         fluid={pageIntroImage.localFile.childImageSharp.fluid}
-        sx={{ py: [14, null, 21] }}
+        sx={{ py: [12, null, 15] }}
       >
         <Container>
           <article sx={{ px: [4, 0] }}>
