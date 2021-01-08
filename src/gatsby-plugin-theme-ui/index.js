@@ -193,6 +193,13 @@ export default {
       color: 'textPassive',
       bg: 'primaryBackground',
       lineHeight: 'body',
+      '&::-webkit-scrollbar': {
+        width: '4px',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        bg: 'primary',
+      },
       m: 0,
       overflowX: 'hidden', // Prevent horizontal scroll created in announcement section
       h1: {
@@ -209,9 +216,6 @@ export default {
       },
       p: {
         variant: 'text.paragraph',
-      },
-      ul: {
-        variant: 'text.list',
       },
       li: {
         variant: 'text.listItem',
