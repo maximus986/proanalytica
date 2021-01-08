@@ -10,6 +10,7 @@ import Img from 'gatsby-image';
 import { Link } from '../components/link';
 import { Container } from '../components/container';
 import styled from '@emotion/styled';
+import { hex2rgba } from '../utils/utils';
 
 const Products = ({ data }) => {
   const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
@@ -26,6 +27,7 @@ const Products = ({ data }) => {
   const {
     theme: { colors },
   } = useThemeUI();
+  const boxShadowColor = hex2rgba(colors.primary, 0.6);
   return (
     <>
       <SEO title={t('products')} />
@@ -36,7 +38,7 @@ const Products = ({ data }) => {
         pageIntroImage={pageIntroImage}
       />
       <section sx={{ px: [4, null, 5, 7, 8], py: [8], bg: 'primaryPassive' }}>
-        <Grid gap={[6]} columns={[1, 2, null, 4]}>
+        <Grid gap={[6]} columns={[1, 2, null, null, 4]}>
           {productCategories.map(({ productCategoryItem }, index) => {
             const {
               id,
@@ -60,7 +62,14 @@ const Products = ({ data }) => {
                   <ProductImg
                     fluid={fluid}
                     alt=""
-                    sx={{ transition: 'button' }}
+                    sx={{
+                      transition: 'button',
+                      '&::before': {
+                        boxShadow: [
+                          `inset 0px -110px 50px -40px ${boxShadowColor}`,
+                        ],
+                      },
+                    }}
                   />
                 </Figure>
                 <Box
@@ -134,6 +143,16 @@ const Box = styled.div`
 const ProductImg = styled(Img)`
   width: 100%;
   height: 100%;
+  &::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
 `;
 
 const ProductLink = styled(Link)`
