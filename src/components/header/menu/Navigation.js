@@ -45,7 +45,7 @@ export const Navigation = ({ animateNavbar }) => {
                 <NavLink
                   to={link.path}
                   sx={{
-                    fontSize: 2,
+                    fontSize: [null, null, 1, 2],
                     px: 5,
                     bg: isActive
                       ? animateNavbar

@@ -27,27 +27,27 @@ export const TopBar = () => {
             to="/"
             sx={{
               lineHeight: 'reset',
-              width: [null, null, 220],
+              width: [null, null, '160px', '220px'],
             }}
           >
             <img src={logo} alt="Logo" sx={{ width: '100%' }} />
           </Link>
           <InfoContainer>
-            <InfoIconContainer sx={{ mr: 24 }}>
-              <Icon sx={{ mr: 3 }}>
-                <IoLocationOutline sx={{ fontSize: 2 }} />
+            <InfoIconContainer sx={{ mr: [null, null, 4, 5] }}>
+              <Icon sx={{ mr: [null, null, 2, 3] }}>
+                <IoLocationOutline sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
-              <p sx={{ fontSize: 1 }}>{t('address')}</p>
+              <p sx={{ fontSize: [null, null, 0, 1] }}>{t('address')}</p>
             </InfoIconContainer>
-            <InfoIconContainer sx={{ mr: 24 }}>
-              <Icon sx={{ mr: 3 }}>
-                <AiOutlinePhone sx={{ fontSize: 2 }} />
+            <InfoIconContainer sx={{ mr: [null, null, 4, 5] }}>
+              <Icon sx={{ mr: [null, null, 2, 3] }}>
+                <AiOutlinePhone sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
               <InfoLink
                 href={`tel: ${config.tel.replace(/\s/g, '')}`}
                 sx={{
                   pb: 0,
-                  fontSize: 1,
+                  fontSize: [null, null, 0, 1],
                   transition: 'link',
                 }}
                 {...{ colors }}
@@ -56,14 +56,14 @@ export const TopBar = () => {
               </InfoLink>
             </InfoIconContainer>
             <InfoIconContainer>
-              <Icon sx={{ mr: 3 }}>
-                <AiOutlineMail sx={{ fontSize: 2 }} />
+              <Icon sx={{ mr: [null, null, 2, 3] }}>
+                <AiOutlineMail sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
               <InfoLink
                 href={`mailto:${config.primaryEmail}`}
                 sx={{
                   pb: 0,
-                  fontSize: 1,
+                  fontSize: [null, null, 0, 1],
                   transition: 'link',
                 }}
                 {...{ colors }}

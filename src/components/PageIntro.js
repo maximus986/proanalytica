@@ -11,7 +11,7 @@ export const PageIntro = ({ pageTitle, pageSubtitle, pageIntroImage }) => {
     <div
       sx={{
         position: 'relative',
-        mt: [null, null, null, '135px'],
+        mt: [null, null, '124px', '135px'],
       }}
     >
       <StyledBackgroundImage

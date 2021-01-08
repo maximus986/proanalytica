@@ -36,7 +36,7 @@ export const MobileMenu = () => {
     <NavContainer
       sx={{
         bg: 'primaryBackground',
-        display: ['flex', 'flex', 'flex', 'none'],
+        display: ['flex', null, 'none'],
         p: 4,
       }}
     >
@@ -151,12 +151,13 @@ const NavContainer = styled.div`
 const Nav = styled.nav`
   position: absolute;
   top: 0;
-  left: -100%;
+  left: calc(-100% - 4px);
   width: 100vw;
   height: 100vh;
   transition: ${(props) =>
     props.isMenuOpen ? '0.5s ease-out' : '0.2s linear'};
-  transform: ${(props) => (props.isMenuOpen ? 'translateX(100%)' : null)};
+  transform: ${(props) =>
+    props.isMenuOpen ? 'translateX(calc(100% + 4px))' : null};
   display: flex;
   flex-direction: column;
   overflow: scroll;

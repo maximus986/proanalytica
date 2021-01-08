@@ -8,7 +8,7 @@ export const Menu = () => {
   return (
     <div
       sx={{
-        display: ['none', 'none', 'none', 'block'],
+        display: ['none', null, 'block'],
         position: 'absolute',
         top: 0,
         left: 0,

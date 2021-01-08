@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <main sx={{ marginTop: ['62px', null, null, 'auto'] }}>{children}</main>
+      <main sx={{ marginTop: ['62px', null, 'auto'] }}>{children}</main>
       <Footer />
     </>
   );
