@@ -2,7 +2,7 @@
 import React from 'react';
 import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { graphql } from 'gatsby';
-import { Grid, jsx } from 'theme-ui';
+import { Grid, jsx, useThemeUI } from 'theme-ui';
 import { PageIntro } from '../components/PageIntro';
 import SEO from '../components/seo';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
@@ -23,7 +23,9 @@ const Products = ({ data }) => {
   } = localizedPageData;
   const { t } = useTranslation();
   const { lang } = usePageContext();
-
+  const {
+    theme: { colors },
+  } = useThemeUI();
   return (
     <>
       <SEO title={t('products')} />
@@ -33,56 +35,65 @@ const Products = ({ data }) => {
         pageSubtitle={pageSubtitle}
         pageIntroImage={pageIntroImage}
       />
-      <section sx={{ px: [4, 0], py: [8], bg: 'primaryPassive' }}>
-        <Container>
-          <Grid gap={[6]} columns={[1, null, 2, 4]}>
-            {productCategories.map(({ productCategoryItem }, index) => {
-              const {
-                id,
-                productCategory: {
-                  categoryName,
-                  categorySlug,
-                  categoryImage: {
-                    localFile: {
-                      childImageSharp: { fluid },
-                    },
+      <section sx={{ px: [4, null, 5, 7, 8], py: [8], bg: 'primaryPassive' }}>
+        <Grid gap={[6]} columns={[1, 2, null, 4]}>
+          {productCategories.map(({ productCategoryItem }, index) => {
+            const {
+              id,
+              productCategory: {
+                categoryName,
+                categorySlug,
+                categoryImage: {
+                  localFile: {
+                    childImageSharp: { fluid },
                   },
                 },
-              } = productCategoryItem;
-              return (
-                <ProductLink key={id} to={categorySlug}>
-                  <figure
+              },
+            } = productCategoryItem;
+            return (
+              <ProductLink key={id} to={categorySlug} {...{ colors }}>
+                <Figure
+                  sx={{
+                    mb: 5,
+                  }}
+                >
+                  <ProductImg
+                    fluid={fluid}
+                    alt=""
+                    sx={{ transition: 'button' }}
+                  />
+                </Figure>
+                <Box
+                  sx={{
+                    bg: 'primaryBackground',
+                    p: 4,
+                    '&::before': {
+                      bg: 'secondary',
+                      transition: 'button',
+                    },
+                    '&::after': {
+                      transition: 'button',
+                    },
+                  }}
+                >
+                  <ProductName
                     sx={{
-                      mb: 5,
-                      height: '600px',
-                      overflow: 'hidden',
-                      position: 'relative',
+                      fontSize: 6,
                     }}
                   >
-                    <ProductImg fluid={fluid} alt="" sx={{ height: '100%' }} />
-                  </figure>
-                  <Box
+                    {categoryName}
+                  </ProductName>
+                  <ProductCount
                     sx={{
-                      bg: 'primaryBackground',
-                      p: 5,
+                      fontSize: 9,
+                      lineHeight: 'normal',
                     }}
-                  >
-                    <div sx={{ position: 'relative', zIndex: 10 }}>
-                      <h3 sx={{ fontSize: 6 }}>{categoryName}</h3>
-                      <p
-                        sx={{
-                          fontSize: 8,
-                          lineHeight: 'normal',
-                          textAlign: 'right',
-                        }}
-                      >{`0${index + 1}`}</p>
-                    </div>
-                  </Box>
-                </ProductLink>
-              );
-            })}
-          </Grid>
-        </Container>
+                  >{`0${index + 1}`}</ProductCount>
+                </Box>
+              </ProductLink>
+            );
+          })}
+        </Grid>
       </section>
     </>
   );
@@ -92,6 +103,8 @@ export default Products;
 
 const Box = styled.div`
   position: relative;
+  height: calc(100% - 624px);
+  min-height: 140px;
   &:before {
     position: absolute;
     content: '';
@@ -102,8 +115,6 @@ const Box = styled.div`
     opacity: 0;
     transform-origin: top;
     transform: scale(0.9) translateY(20px);
-    background: #006877;
-    transition: all 500ms ease;
   }
   &:after {
     position: absolute;
@@ -116,14 +127,13 @@ const Box = styled.div`
     left: 50%;
     transform: translateX(-100%);
     top: -5px;
-    transition: all 500ms ease;
     z-index: 10;
   }
 `;
 
 const ProductImg = styled(Img)`
   width: 100%;
-  transition: all 500ms ease;
+  height: 100%;
 `;
 
 const ProductLink = styled(Link)`
@@ -136,7 +146,7 @@ const ProductLink = styled(Link)`
         transition: 1s;
       }
       &::after {
-        border-bottom-color: #006877;
+        border-bottom-color: ${(props) => props.colors.secondary};
       }
     }
     ${ProductImg} {
@@ -144,6 +154,24 @@ const ProductLink = styled(Link)`
       transform: scale(1.05);
     }
   }
+`;
+
+const Figure = styled.figure`
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+`;
+
+const ProductName = styled.h3`
+  position: relative;
+  z-index: 10;
+  word-break: break-word;
+`;
+
+const ProductCount = styled.p`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 `;
 
 export const PAGE_QUERY = graphql`
