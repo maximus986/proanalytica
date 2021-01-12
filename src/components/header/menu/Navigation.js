@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsx jsx */
 import { Flex, jsx, useThemeUI } from 'theme-ui';
 import { Link } from '../../link';
-import { Container } from '../../container';
+import { Container } from '../../Container';
 import styled from '@emotion/styled';
 import { useLocation } from '@reach/router';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
 import { jsx } from 'theme-ui';
-import { Container } from '../container';
+import { Container } from '../Container';
 import { Overlay } from '../Overlay';
 import { SectionContainer } from '../SectionContainer';
 

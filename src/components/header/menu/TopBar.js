@@ -8,7 +8,7 @@ import { jsx, useThemeUI } from 'theme-ui';
 import { config } from '../../../config.js';
 import logo from '../../../images/logo.png';
 import { Link } from '../../link';
-import { Container } from '../../container.js';
+import { Container } from '../../Container.js';
 
 export const TopBar = () => {
   const {

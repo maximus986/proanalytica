@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import { jsx } from 'theme-ui';
-import { Container } from '../container';
+import { Container } from '../Container';
 import { SectionContainer } from '../SectionContainer';
 import { partnerSliderSettings } from './sliderConfig';
 

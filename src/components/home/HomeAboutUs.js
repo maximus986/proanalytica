@@ -2,7 +2,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import { Grid, jsx } from 'theme-ui';
-import { Container } from '../container';
+import { Container } from '../Container';
 import { SectionContainer } from '../SectionContainer';
 import Img from 'gatsby-image';
 import { Button } from '../button';

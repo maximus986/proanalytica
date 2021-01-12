@@ -8,7 +8,7 @@ import SEO from '../components/seo';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 import Img from 'gatsby-image';
 import { Link } from '../components/link';
-import { Container } from '../components/container';
+import { Container } from '../components/Container';
 import styled from '@emotion/styled';
 import { hex2rgba } from '../utils/utils';
 

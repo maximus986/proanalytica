@@ -10,7 +10,7 @@ import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 import certificate from '../images/certificate.png';
 import lachner from '../images/lachner.png';
 import logo from '../images/logo.png';
-import { Container } from './container';
+import { Container } from './Container';
 import { Link } from './link';
 
 export const Footer = () => {
