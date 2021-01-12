@@ -5,16 +5,43 @@ import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { jsx, useThemeUI } from 'theme-ui';
-import { config } from '../../../config.js';
 import logo from '../../../images/logo.png';
 import { Link } from '../../link';
 import { Container } from '../../Container.js';
+import { graphql, useStaticQuery } from 'gatsby';
+import { useLocalizedWpData } from '../../../hooks/useLocalizedWpData.js';
 
 export const TopBar = () => {
+  const data = useStaticQuery(graphql`
+    {
+      allWpPage(
+        filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
+      ) {
+        nodes {
+          language {
+            code
+          }
+          contactPage {
+            address
+            emails {
+              email
+            }
+            telephones {
+              phoneNumber
+            }
+          }
+        }
+      }
+    }
+  `);
   const {
     theme: { colors },
   } = useThemeUI();
   const { t } = useTranslation();
+  const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const {
+    contactPage: { address, emails, telephones },
+  } = localizedPageData;
   return (
     <div
       sx={{
@@ -37,14 +64,14 @@ export const TopBar = () => {
               <Icon sx={{ mr: [null, null, 2, 3] }}>
                 <IoLocationOutline sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
-              <p sx={{ fontSize: [null, null, 0, 1] }}>{t('address')}</p>
+              <p sx={{ fontSize: [null, null, 0, 1] }}>{address}</p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mr: [null, null, 4, 5] }}>
               <Icon sx={{ mr: [null, null, 2, 3] }}>
                 <AiOutlinePhone sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
               <InfoLink
-                href={`tel: ${config.tel.replace(/\s/g, '')}`}
+                href={`tel: ${telephones[0].phoneNumber.replace(/\s/g, '')}`}
                 sx={{
                   pb: 0,
                   fontSize: [null, null, 0, 1],
@@ -52,7 +79,7 @@ export const TopBar = () => {
                 }}
                 {...{ colors }}
               >
-                {config.tel}
+                {telephones[0].phoneNumber}
               </InfoLink>
             </InfoIconContainer>
             <InfoIconContainer>
@@ -60,7 +87,7 @@ export const TopBar = () => {
                 <AiOutlineMail sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
               <InfoLink
-                href={`mailto:${config.primaryEmail}`}
+                href={`mailto:${emails[0].email}`}
                 sx={{
                   pb: 0,
                   fontSize: [null, null, 0, 1],
@@ -68,7 +95,7 @@ export const TopBar = () => {
                 }}
                 {...{ colors }}
               >
-                {config.primaryEmail}
+                {emails[0].email}
               </InfoLink>
             </InfoIconContainer>
           </InfoContainer>

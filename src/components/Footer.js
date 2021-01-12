@@ -5,7 +5,6 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { Flex, Grid, jsx, useThemeUI } from 'theme-ui';
-import { config } from '../config';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 import certificate from '../images/certificate.png';
 import lachner from '../images/lachner.png';
@@ -31,9 +30,32 @@ export const Footer = () => {
           }
         }
       }
+      allWpPage(
+        filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
+      ) {
+        nodes {
+          language {
+            code
+          }
+          contactPage {
+            address
+            emails {
+              email
+            }
+            telephones {
+              phoneNumber
+            }
+          }
+        }
+      }
     }
   `);
+
   const localizedData = useLocalizedWpData(data.allWpCertificate.nodes);
+  const contactData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const {
+    contactPage: { address, emails, telephones },
+  } = contactData;
   const { t } = useTranslation();
   const {
     theme: { colors },
@@ -65,14 +87,14 @@ export const Footer = () => {
               <Icon sx={{ mr: 3 }}>
                 <IoLocationOutline sx={{ fontSize: 6 }} />
               </Icon>
-              <p sx={{ fontSize: 1 }}>{t('address')}</p>
+              <p sx={{ fontSize: 1 }}>{address}</p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: [4] }}>
               <Icon sx={{ mr: 3 }}>
                 <AiOutlinePhone sx={{ fontSize: 6 }} />
               </Icon>
               <InfoLink
-                href={`tel: ${config.tel.replace(/\s/g, '')}`}
+                href={`tel: ${telephones[0].phoneNumber.replace(/\s/g, '')}`}
                 sx={{
                   pb: 0,
                   transition: 'link',
@@ -86,7 +108,7 @@ export const Footer = () => {
                 }}
                 {...{ colors }}
               >
-                {config.tel}
+                {telephones[0].phoneNumber}
               </InfoLink>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: [4] }}>
@@ -94,7 +116,7 @@ export const Footer = () => {
                 <AiOutlineMail sx={{ fontSize: 6 }} />
               </Icon>
               <InfoLink
-                href={`mailto:${config.primaryEmail}`}
+                href={`mailto:${emails[0].email}`}
                 sx={{
                   pb: 0,
                   transition: 'link',
@@ -108,7 +130,7 @@ export const Footer = () => {
                 }}
                 {...{ colors }}
               >
-                {config.primaryEmail}
+                {emails[0].email}
               </InfoLink>
             </InfoIconContainer>
           </div>

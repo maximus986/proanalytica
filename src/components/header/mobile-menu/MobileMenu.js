@@ -12,10 +12,37 @@ import { MobileMenuLogo } from './MobileMenuLogo';
 import { useLocation } from '@reach/router';
 import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
-import { config } from '../../../config.js';
+import { useStaticQuery } from 'gatsby';
+import { useLocalizedWpData } from '../../../hooks/useLocalizedWpData';
 
 export const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const data = useStaticQuery(graphql`
+    {
+      allWpPage(
+        filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
+      ) {
+        nodes {
+          language {
+            code
+          }
+          contactPage {
+            address
+            emails {
+              email
+            }
+            telephones {
+              phoneNumber
+            }
+          }
+        }
+      }
+    }
+  `);
+  const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const {
+    contactPage: { address, emails, telephones },
+  } = localizedPageData;
   const handleNavToggle = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
   };
@@ -89,21 +116,21 @@ export const MobileMenu = () => {
               <Icon sx={{ mr: 3 }}>
                 <IoLocationOutline sx={{ fontSize: 5 }} />
               </Icon>
-              <p sx={{ fontSize: 1 }}>{t('address')}</p>
+              <p sx={{ fontSize: 1 }}>{address}</p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: 4 }}>
               <Icon sx={{ mr: 3 }}>
                 <AiOutlinePhone sx={{ fontSize: 5 }} />
               </Icon>
               <a
-                href={`tel: ${config.tel.replace(/\s/g, '')}`}
+                href={`tel: ${telephones[0].phoneNumber.replace(/\s/g, '')}`}
                 sx={{
                   borderBottom: `1px solid ${colors.primary}`,
                   pb: 0,
                   fontSize: 1,
                 }}
               >
-                {config.tel}
+                {telephones[0].phoneNumber}
               </a>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: 3 }}>
@@ -111,14 +138,14 @@ export const MobileMenu = () => {
                 <AiOutlineMail sx={{ fontSize: 5 }} />
               </Icon>
               <a
-                href={`mailto:${config.primaryEmail}`}
+                href={`mailto:${emails[0].email}`}
                 sx={{
                   borderBottom: `1px solid ${colors.primary}`,
                   pb: 0,
                   fontSize: 1,
                 }}
               >
-                {config.primaryEmail}
+                {emails[0].email}
               </a>
             </InfoIconContainer>
           </InfoContainer>

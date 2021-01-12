@@ -118,6 +118,9 @@ export const PAGE_QUERY = graphql`
       filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
     ) {
       nodes {
+        language {
+          code
+        }
         contactPage {
           address
           pageSubtitle
