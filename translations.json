@@ -9,7 +9,10 @@
       "contact": "Kontakt",
       "address": "Bulevar umetnosti 27, 11000 Beograd",
       "rightsReserved": "Sva prava zadržana",
-      "managementSystems": "Sistemi upravljanja"
+      "managementSystems": "Sistemi upravljanja",
+      "contactAddress": "Adresa",
+      "contactPhone": "Pozovite nas",
+      "contactEmail": "Pišite nam"
     }
   },
   "cir": {
@@ -22,7 +25,10 @@
       "contact": "Контакт",
       "address": "Булевар уметности 27, 11000 Београд",
       "rightsReserved": "Сва права задржана",
-      "managementSystems": "Системи управљања"
+      "managementSystems": "Системи управљања",
+      "contactAddress": "Адреса",
+      "contactPhone": "Позовите нас",
+      "contactEmail": "Пишите нам"
     }
   },
   "en": {
@@ -35,7 +41,10 @@
       "contact": "Contact",
       "address": "Bulevar umetnosti 27, 11000 Belgrade",
       "rightsReserved": "All rights reserved",
-      "managementSystems": "Management systems"
+      "managementSystems": "Management systems",
+      "contactAddress": "Location",
+      "contactPhone": "Call us on",
+      "contactEmail": "Email us"
     }
   }
 }

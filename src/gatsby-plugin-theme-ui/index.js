@@ -225,6 +225,11 @@ export default {
       },
       ul: { listStyle: 'none', p: 0 },
       figure: { m: 0 },
+      hr: {
+        height: '1px',
+        width: '100%',
+        maxWidth: '400px',
+      },
     },
   },
   radii: {
