@@ -31,7 +31,6 @@ const Products = ({ data }) => {
   return (
     <>
       <SEO title={t('products')} />
-      {/* Possible candidate for fragment instead of using props */}
       <PageIntro
         pageTitle={pageTitle}
         pageSubtitle={pageSubtitle}
