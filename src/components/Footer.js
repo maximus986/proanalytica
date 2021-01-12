@@ -38,6 +38,7 @@ export const Footer = () => {
   const {
     theme: { colors },
   } = useThemeUI();
+  const currentYear = new Date().getFullYear();
   return (
     <footer sx={{ bg: 'secondaryBackground' }}>
       <Separator {...{ colors }} />
@@ -161,7 +162,9 @@ export const Footer = () => {
       <div
         sx={{ textAlign: 'center', bg: 'secondaryBackgroundActive', px: [4] }}
       >
-        <p sx={{ fontSize: 0 }}>Copyright &copy; Proanalytica doo 2020</p>
+        <p sx={{ fontSize: 0 }}>
+          Copyright &copy; Proanalytica doo {currentYear}
+        </p>
         <p sx={{ fontSize: 0 }}>{t('rightsReserved')}</p>
       </div>
     </footer>
