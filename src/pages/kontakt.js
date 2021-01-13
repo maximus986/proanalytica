@@ -12,7 +12,9 @@ import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 
 const Contact = ({ data }) => {
   const { t } = useTranslation();
-  const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const localizedPageData = useLocalizedWpData(
+    data.allWpPage.nodes.filter(({ contactPage }) => contactPage.address),
+  )[0];
   const {
     contactPage: {
       address,
@@ -23,7 +25,6 @@ const Contact = ({ data }) => {
       pageIntroImage,
     },
   } = localizedPageData;
-
   return (
     <>
       <SEO title={t('contact')} />

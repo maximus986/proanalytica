@@ -13,7 +13,12 @@ import styled from '@emotion/styled';
 import { hex2rgba } from '../utils/utils';
 
 const Products = ({ data }) => {
-  const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const localizedPageData = useLocalizedWpData(
+    data.allWpPage.nodes.filter(
+      ({ productsAndCategoryPage }) =>
+        productsAndCategoryPage.productCategories,
+    ),
+  )[0];
   const {
     productsAndCategoryPage: {
       pageTitle,

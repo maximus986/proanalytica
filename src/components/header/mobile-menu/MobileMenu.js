@@ -12,7 +12,7 @@ import { MobileMenuLogo } from './MobileMenuLogo';
 import { useLocation } from '@reach/router';
 import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { useLocalizedWpData } from '../../../hooks/useLocalizedWpData';
 
 export const MobileMenu = () => {
