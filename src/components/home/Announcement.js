@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { graphql } from 'gatsby';
 import React from 'react';
-import { Grid, jsx, useThemeUI } from 'theme-ui';
+import { Grid, jsx } from 'theme-ui';
 import { Container } from '../Container';
 import { SectionContainer } from '../SectionContainer';
 import Img from 'gatsby-image';

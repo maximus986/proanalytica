@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { jsx } from 'theme-ui';
-import SEO from '../components/seo';
+import SEO from 'components/seo';
 
 const AboutUs = () => {
   const { t } = useTranslation();

@@ -4,7 +4,7 @@ import { jsx } from 'theme-ui';
 import { Footer } from './Footer';
 import { Header } from './header/Header';
 
-const Layout = ({ children }) => {
+export const Layout = ({ children }) => {
   return (
     <>
       <Header />

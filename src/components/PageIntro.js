@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import BackgroundImage from 'gatsby-background-image';
 import { jsx } from 'theme-ui';
 import { Overlay } from './Overlay';
-import { Container } from './Container';
+import { Container } from 'components';
 
 export const PageIntro = ({ pageTitle, pageSubtitle, pageIntroImage }) => {
   return (

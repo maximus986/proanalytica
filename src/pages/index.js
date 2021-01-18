@@ -3,15 +3,15 @@ import React from 'react';
 import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { graphql } from 'gatsby';
 import { jsx } from 'theme-ui';
-import SEO from '../components/seo';
+import SEO from 'components/seo';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
-import { Hero } from '../components/home/Hero';
-import { HomeAboutUs } from '../components/home/HomeAboutUs';
-import { ProductCategories } from '../components/home/ProductCategories';
-import { Testimonials } from '../components/home/Testimonials';
-import { Partners } from '../components/home/Partners';
-import { Announcement } from '../components/home/Announcement';
-import { Charity } from '../components/home/Charity';
+import { Hero } from 'components/home/Hero';
+import { HomeAboutUs } from 'components/home/HomeAboutUs';
+import { ProductCategories } from 'components/home/ProductCategories';
+import { Testimonials } from 'components/home/Testimonials';
+import { Partners } from 'components/home/Partners';
+import { Announcement } from 'components/home/Announcement';
+import { Charity } from 'components/home/Charity';
 
 export const PAGE_QUERY = graphql`
   {

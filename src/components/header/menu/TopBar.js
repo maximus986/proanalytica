@@ -7,9 +7,9 @@ import { IoLocationOutline } from 'react-icons/io5';
 import { jsx, useThemeUI } from 'theme-ui';
 import logo from '../../../images/logo.png';
 import { Link } from '../../link';
-import { Container } from '../../Container.js';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useLocalizedWpData } from '../../../hooks/useLocalizedWpData.js';
+import { Container } from '../../Container';
 
 export const TopBar = () => {
   const data = useStaticQuery(graphql`

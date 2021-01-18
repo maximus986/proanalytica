@@ -5,9 +5,8 @@ import { graphql } from 'gatsby';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { Divider, Flex, Grid, jsx } from 'theme-ui';
-import { Container } from '../components/Container';
-import { PageIntro } from '../components/PageIntro';
-import SEO from '../components/seo';
+import { Container, PageIntro } from 'components';
+import SEO from 'components/seo';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 
 const Contact = ({ data }) => {

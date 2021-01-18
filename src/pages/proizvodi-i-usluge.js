@@ -3,12 +3,10 @@ import React from 'react';
 import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { graphql } from 'gatsby';
 import { Grid, jsx, useThemeUI } from 'theme-ui';
-import { PageIntro } from '../components/PageIntro';
-import SEO from '../components/seo';
+import SEO from 'components/seo';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 import Img from 'gatsby-image';
-import { Link } from '../components/link';
-import { Container } from '../components/Container';
+import { Container, PageIntro, Link } from 'components';
 import styled from '@emotion/styled';
 import { hex2rgba } from '../utils/utils';
 
