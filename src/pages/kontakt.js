@@ -8,6 +8,7 @@ import { Divider, Flex, Grid, jsx } from 'theme-ui';
 import { Container, PageIntro } from 'components';
 import SEO from 'components/seo';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
+import { LocationMap } from 'components';
 
 const Contact = ({ data }) => {
   const { t } = useTranslation();
@@ -83,6 +84,9 @@ const Contact = ({ data }) => {
             </ContactItem>
           </Grid>
         </Container>
+      </section>
+      <section>
+        <LocationMap />
       </section>
     </>
   );
