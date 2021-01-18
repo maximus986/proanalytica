@@ -60,7 +60,7 @@ export const Partners = ({ sectionTitle, partners }) => {
             } = partner;
             return (
               <article key={partner.id}>
-                <a href={link} target="_blank">
+                <a href={link} target="_blank" rel="noreferrer">
                   <figure
                     sx={{
                       display: 'flex',

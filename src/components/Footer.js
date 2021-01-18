@@ -149,6 +149,7 @@ export const Footer = () => {
                       key={i}
                       href={certificateDocument.localFile.url}
                       target="_blank"
+                      rel="noreferrer"
                       sx={{
                         pb: 0,
                         transition: 'link',
