@@ -235,6 +235,7 @@ export default {
   radii: {
     reset: 0,
     image: 10,
+    locationPopup: 14,
   },
   transition: {
     button: '0.5s ease',

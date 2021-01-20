@@ -12,7 +12,8 @@
       "managementSystems": "Sistemi upravljanja",
       "contactAddress": "Adresa",
       "contactPhone": "Pozovite nas",
-      "contactEmail": "Pišite nam"
+      "contactEmail": "Pišite nam",
+      "locationType": "Sedište firme"
     }
   },
   "cir": {
@@ -28,7 +29,8 @@
       "managementSystems": "Системи управљања",
       "contactAddress": "Адреса",
       "contactPhone": "Позовите нас",
-      "contactEmail": "Пишите нам"
+      "contactEmail": "Пишите нам",
+      "locationType": "Седиште фирме"
     }
   },
   "en": {
@@ -44,7 +46,8 @@
       "managementSystems": "Management systems",
       "contactAddress": "Location",
       "contactPhone": "Call us on",
-      "contactEmail": "Email us"
+      "contactEmail": "Email us",
+      "locationType": "Company office"
     }
   }
 }

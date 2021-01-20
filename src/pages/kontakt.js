@@ -86,7 +86,7 @@ const Contact = ({ data }) => {
         </Container>
       </section>
       <section>
-        <LocationMap />
+        <LocationMap companyAddress={address} />
       </section>
     </>
   );
