@@ -1,47 +1,25 @@
 /** @jsx jsx */
-import React from 'react';
-import styled from '@emotion/styled';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
+import styled from '@emotion/styled';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { jsx, useThemeUI } from 'theme-ui';
-import logo from '../../../images/logo.png';
-import { Link } from '../../link';
-import { graphql, useStaticQuery } from 'gatsby';
+import { useContactQuery } from '../../../hooks/useContactQuery';
 import { useLocalizedWpData } from '../../../hooks/useLocalizedWpData.js';
+import logo from '../../../images/logo.png';
 import { Container } from '../../Container';
+import { Link } from '../../link';
 
 export const TopBar = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allWpPage(
-        filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
-      ) {
-        nodes {
-          language {
-            code
-          }
-          contactPage {
-            address
-            emails {
-              email
-            }
-            telephones {
-              phoneNumber
-            }
-          }
-        }
-      }
-    }
-  `);
+  const data = useContactQuery();
   const {
     theme: { colors },
   } = useThemeUI();
   const { t } = useTranslation();
-  const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const localizedData = useLocalizedWpData(data.allWpPage.nodes)[0];
   const {
     contactPage: { address, emails, telephones },
-  } = localizedPageData;
+  } = localizedData;
   return (
     <div
       sx={{

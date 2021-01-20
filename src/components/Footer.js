@@ -1,15 +1,16 @@
 /** @jsx jsx */
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import styled from '@emotion/styled';
+import { Container } from 'components';
 import { graphql, useStaticQuery } from 'gatsby';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { Flex, Grid, jsx, useThemeUI } from 'theme-ui';
+import { useContactQuery } from '../hooks/useContactQuery';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 import certificate from '../images/certificate.png';
 import lachner from '../images/lachner.png';
 import logo from '../images/logo.png';
-import { Container } from 'components';
 import { Link } from './link';
 
 export const Footer = () => {
@@ -30,32 +31,17 @@ export const Footer = () => {
           }
         }
       }
-      allWpPage(
-        filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
-      ) {
-        nodes {
-          language {
-            code
-          }
-          contactPage {
-            address
-            emails {
-              email
-            }
-            telephones {
-              phoneNumber
-            }
-          }
-        }
-      }
     }
   `);
 
   const localizedData = useLocalizedWpData(data.allWpCertificate.nodes);
-  const contactData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const contactData = useContactQuery();
+  const localizedContactData = useLocalizedWpData(
+    contactData.allWpPage.nodes,
+  )[0];
   const {
     contactPage: { address, emails, telephones },
-  } = contactData;
+  } = localizedContactData;
   const { t } = useTranslation();
   const {
     theme: { colors },

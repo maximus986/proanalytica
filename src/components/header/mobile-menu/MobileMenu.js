@@ -1,48 +1,26 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
-import { useEffect, useState } from 'react';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import styled from '@emotion/styled';
+import { useLocation } from '@reach/router';
+import { useEffect, useState } from 'react';
+import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { FiAlignJustify, FiX } from 'react-icons/fi';
-import { useThemeUI } from 'theme-ui';
+import { IoLocationOutline } from 'react-icons/io5';
+import { jsx, useThemeUI } from 'theme-ui';
+import { useContactQuery } from '../../../hooks/useContactQuery';
+import { useLocalizedWpData } from '../../../hooks/useLocalizedWpData';
 import { navLinks } from '../../../static-data/nav-links';
 import { LanguagePicker } from '../../languagePicker';
 import { Link } from '../../link';
 import { MobileMenuLogo } from './MobileMenuLogo';
-import { useLocation } from '@reach/router';
-import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
-import { IoLocationOutline } from 'react-icons/io5';
-import { useStaticQuery, graphql } from 'gatsby';
-import { useLocalizedWpData } from '../../../hooks/useLocalizedWpData';
 
 export const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const data = useStaticQuery(graphql`
-    {
-      allWpPage(
-        filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
-      ) {
-        nodes {
-          language {
-            code
-          }
-          contactPage {
-            address
-            emails {
-              email
-            }
-            telephones {
-              phoneNumber
-            }
-          }
-        }
-      }
-    }
-  `);
-  const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const data = useContactQuery();
+  const localizedData = useLocalizedWpData(data.allWpPage.nodes)[0];
   const {
     contactPage: { address, emails, telephones },
-  } = localizedPageData;
+  } = localizedData;
   const handleNavToggle = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
   };

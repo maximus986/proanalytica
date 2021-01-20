@@ -9,8 +9,11 @@ import { Container, PageIntro } from 'components';
 import SEO from 'components/seo';
 import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 import { LocationMap } from 'components';
+import { useContactQuery } from '../hooks/useContactQuery';
 
-const Contact = ({ data }) => {
+const Contact = () => {
+  const data = useContactQuery();
+  console.log(data);
   const { t } = useTranslation();
   const localizedPageData = useLocalizedWpData(
     data.allWpPage.nodes.filter(({ contactPage }) => contactPage.address),
@@ -115,40 +118,3 @@ const ContactItem = ({ IconComponent, message, children }) => {
     </Flex>
   );
 };
-
-export const PAGE_QUERY = graphql`
-  {
-    allWpPage(
-      filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
-    ) {
-      nodes {
-        language {
-          code
-        }
-        contactPage {
-          address
-          pageSubtitle
-          pageTitle
-          emails {
-            email
-          }
-          pageIntroImage {
-            localFile {
-              childImageSharp {
-                fluid(quality: 100, toFormat: WEBP) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          telephones {
-            phoneNumber
-          }
-        }
-        language {
-          code
-        }
-      }
-    }
-  }
-`;
