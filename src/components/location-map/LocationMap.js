@@ -28,7 +28,11 @@ export const LocationMap = ({ companyAddress }) => {
         center={[44.817835, 20.4113066]}
         scrollWheelZoom={false}
         zoom={15}
-        sx={{ height: '600px', width: '100%' }}
+        sx={{
+          height: '600px',
+          width: '100%',
+          '.leaflet-top, .leaflet-bottom': { zIndex: 'auto' },
+        }}
       >
         <TileLayer
           attribution={config.mapBoxStyleAttribution}
