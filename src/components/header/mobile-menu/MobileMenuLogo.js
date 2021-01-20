@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import logo from '../../../images/logo.png';
+import logo from 'images/logo.png';
 import { Link } from '../../link';
 
 export const MobileMenuLogo = () => {

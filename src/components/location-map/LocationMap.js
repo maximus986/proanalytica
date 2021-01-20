@@ -3,7 +3,7 @@ import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { jsx } from 'theme-ui';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
 // import L from 'leaflet';
-import { config } from '../../config';
+import { config } from 'config';
 import { LocationPopup } from './LocationPopup';
 
 // Custom icon implementation if customer wants

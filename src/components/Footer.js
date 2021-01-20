@@ -6,11 +6,10 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { Flex, Grid, jsx, useThemeUI } from 'theme-ui';
-import { useContactQuery } from '../hooks/useContactQuery';
-import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
-import certificate from '../images/certificate.png';
-import lachner from '../images/lachner.png';
-import logo from '../images/logo.png';
+import { useContactQuery, useLocalizedWpData } from 'hooks';
+import certificate from 'images/certificate.png';
+import lachner from 'images/lachner.png';
+import logo from 'images/logo.png';
 import { Link } from './link';
 
 export const Footer = () => {

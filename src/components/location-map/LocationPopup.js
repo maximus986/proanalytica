@@ -2,7 +2,7 @@
 import styled from '@emotion/styled';
 import { Popup } from 'react-leaflet';
 import { jsx, useThemeUI } from 'theme-ui';
-import Logo from '../../images/logo.png';
+import Logo from 'images/logo.png';
 
 export const LocationPopup = ({ locationType, locationAddress }) => {
   const { theme } = useThemeUI();

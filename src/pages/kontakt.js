@@ -7,9 +7,8 @@ import { IoLocationOutline } from 'react-icons/io5';
 import { Divider, Flex, Grid, jsx } from 'theme-ui';
 import { Container, PageIntro } from 'components';
 import SEO from 'components/seo';
-import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
 import { LocationMap } from 'components';
-import { useContactQuery } from '../hooks/useContactQuery';
+import { useContactQuery, useLocalizedWpData } from 'hooks';
 
 const Contact = () => {
   const data = useContactQuery();

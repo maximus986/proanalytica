@@ -4,11 +4,11 @@ import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { graphql } from 'gatsby';
 import { Grid, jsx, useThemeUI } from 'theme-ui';
 import SEO from 'components/seo';
-import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
+import { useLocalizedWpData } from 'hooks/useLocalizedWpData';
 import Img from 'gatsby-image';
 import { Container, PageIntro, Link } from 'components';
 import styled from '@emotion/styled';
-import { hex2rgba } from '../utils/utils';
+import { hex2rgba } from 'utils/utils';
 
 const Products = ({ data }) => {
   const localizedPageData = useLocalizedWpData(

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { usePageContext } from '@3nvi/gatsby-theme-intl';
-import { languageMap } from '../static-data/languageMap';
+import { languageMap } from 'static-data/languageMap';
 
 export const useLocalizedWpData = (data) => {
   const { lang } = usePageContext();

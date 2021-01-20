@@ -6,7 +6,7 @@ import { Container } from '../../Container';
 import styled from '@emotion/styled';
 import { useLocation } from '@reach/router';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
-import { navLinks } from '../../../static-data/nav-links';
+import { navLinks } from 'static-data/nav-links';
 import { LanguagePicker } from '../../languagePicker';
 
 export const Navigation = ({ animateNavbar }) => {

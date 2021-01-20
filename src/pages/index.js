@@ -4,7 +4,7 @@ import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { graphql } from 'gatsby';
 import { jsx } from 'theme-ui';
 import SEO from 'components/seo';
-import { useLocalizedWpData } from '../hooks/useLocalizedWpData';
+import { useLocalizedWpData } from 'hooks/useLocalizedWpData';
 import { Hero } from 'components/home/Hero';
 import { HomeAboutUs } from 'components/home/HomeAboutUs';
 import { ProductCategories } from 'components/home/ProductCategories';

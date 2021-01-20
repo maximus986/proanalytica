@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Grid, jsx, useThemeUI } from 'theme-ui';
-import { hex2rgba } from '../../utils/utils';
+import { hex2rgba } from 'utils/utils';
 import { Link } from '../link';
 import { SectionContainer } from '../SectionContainer';
 

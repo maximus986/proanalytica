@@ -4,9 +4,8 @@ import styled from '@emotion/styled';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { jsx, useThemeUI } from 'theme-ui';
-import { useContactQuery } from '../../../hooks/useContactQuery';
-import { useLocalizedWpData } from '../../../hooks/useLocalizedWpData.js';
-import logo from '../../../images/logo.png';
+import { useContactQuery, useLocalizedWpData } from 'hooks';
+import logo from 'images/logo.png';
 import { Container } from '../../Container';
 import { Link } from '../../link';
 

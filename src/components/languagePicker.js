@@ -2,8 +2,8 @@
 import { jsx } from 'theme-ui';
 import { usePageContext } from '@3nvi/gatsby-theme-intl';
 import { Link as GatsbyLink } from 'gatsby';
-import RSFlag from '../images/rs.png';
-import ENFlag from '../images/gb.png';
+import RSFlag from 'images/rs.png';
+import ENFlag from 'images/gb.png';
 import styled from '@emotion/styled';
 
 export const LanguagePicker = () => {
