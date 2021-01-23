@@ -12,19 +12,16 @@ import { useContactQuery, useLocalizedWpData } from 'hooks';
 
 const Contact = () => {
   const data = useContactQuery();
-  console.log(data);
   const { t } = useTranslation();
-  const localizedPageData = useLocalizedWpData(
-    data.allWpPage.nodes.filter(({ contactPage }) => contactPage.address),
-  )[0];
+  const localizedPageData = useLocalizedWpData(data)[0];
   const {
     contactPage: {
-      address,
-      emails,
-      telephones,
-      pageTitle,
-      pageSubtitle,
-      pageIntroImage,
+      contactData: {
+        contactInfoItem: { locations, emails, phoneNumbers },
+      },
+      pageIntros: {
+        pageIntroItem: { pageTitle, pageSubtitle, pageIntroImage },
+      },
     },
   } = localizedPageData;
   return (
@@ -42,13 +39,13 @@ const Contact = () => {
               IconComponent={IoLocationOutline}
               message={t('contactAddress')}
             >
-              {address}
+              {locations[0].officeAddress}
             </ContactItem>
             <ContactItem
               IconComponent={AiOutlinePhone}
               message={t('contactPhone')}
             >
-              {telephones.map(({ phoneNumber }) => (
+              {phoneNumbers.map(({ phoneNumber }) => (
                 <a
                   href={`tel: ${phoneNumber.replace(/\s/g, '')}`}
                   sx={{
@@ -88,7 +85,7 @@ const Contact = () => {
         </Container>
       </section>
       <section>
-        <LocationMap companyAddress={address} />
+        <LocationMap companyAddress={locations[0].officeAddress} />
       </section>
     </>
   );

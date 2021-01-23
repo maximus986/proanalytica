@@ -16,9 +16,13 @@ import { MobileMenuLogo } from './MobileMenuLogo';
 export const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const data = useContactQuery();
-  const localizedData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const localizedData = useLocalizedWpData(data)[0];
   const {
-    contactPage: { address, emails, telephones },
+    contactPage: {
+      contactData: {
+        contactInfoItem: { locations, emails, phoneNumbers },
+      },
+    },
   } = localizedData;
   const handleNavToggle = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
@@ -93,21 +97,21 @@ export const MobileMenu = () => {
               <Icon sx={{ mr: 3 }}>
                 <IoLocationOutline sx={{ fontSize: 5 }} />
               </Icon>
-              <p sx={{ fontSize: 1 }}>{address}</p>
+              <p sx={{ fontSize: 1 }}>{locations[0].officeAddress}</p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: 4 }}>
               <Icon sx={{ mr: 3 }}>
                 <AiOutlinePhone sx={{ fontSize: 5 }} />
               </Icon>
               <a
-                href={`tel: ${telephones[0].phoneNumber.replace(/\s/g, '')}`}
+                href={`tel: ${phoneNumbers[0].phoneNumber.replace(/\s/g, '')}`}
                 sx={{
                   borderBottom: `1px solid ${colors.primary}`,
                   pb: 0,
                   fontSize: 1,
                 }}
               >
-                {telephones[0].phoneNumber}
+                {phoneNumbers[0].phoneNumber}
               </a>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: 3 }}>

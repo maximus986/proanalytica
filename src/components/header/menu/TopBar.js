@@ -15,9 +15,13 @@ export const TopBar = () => {
     theme: { colors },
   } = useThemeUI();
   const { t } = useTranslation();
-  const localizedData = useLocalizedWpData(data.allWpPage.nodes)[0];
+  const localizedData = useLocalizedWpData(data)[0];
   const {
-    contactPage: { address, emails, telephones },
+    contactPage: {
+      contactData: {
+        contactInfoItem: { locations, emails, phoneNumbers },
+      },
+    },
   } = localizedData;
   return (
     <div
@@ -41,14 +45,16 @@ export const TopBar = () => {
               <Icon sx={{ mr: [null, null, 2, 3] }}>
                 <IoLocationOutline sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
-              <p sx={{ fontSize: [null, null, 0, 1] }}>{address}</p>
+              <p sx={{ fontSize: [null, null, 0, 1] }}>
+                {locations[0].officeAddress}
+              </p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mr: [null, null, 4, 5] }}>
               <Icon sx={{ mr: [null, null, 2, 3] }}>
                 <AiOutlinePhone sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
               <InfoLink
-                href={`tel: ${telephones[0].phoneNumber.replace(/\s/g, '')}`}
+                href={`tel: ${phoneNumbers[0].phoneNumber.replace(/\s/g, '')}`}
                 sx={{
                   pb: 0,
                   fontSize: [null, null, 0, 1],
@@ -56,7 +62,7 @@ export const TopBar = () => {
                 }}
                 {...{ colors }}
               >
-                {telephones[0].phoneNumber}
+                {phoneNumbers[0].phoneNumber}
               </InfoLink>
             </InfoIconContainer>
             <InfoIconContainer>

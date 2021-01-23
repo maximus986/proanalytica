@@ -4,39 +4,54 @@ import { useStaticQuery, graphql } from 'gatsby';
 export const useContactQuery = () => {
   const data = useStaticQuery(graphql`
     {
-      allWpPage(
-        filter: { contactPage: { fieldGroupName: { eq: "contactPage" } } }
-      ) {
+      allWpPage {
         nodes {
           language {
             code
           }
           contactPage {
-            address
-            pageSubtitle
-            pageTitle
-            emails {
-              email
-            }
-            pageIntroImage {
-              localFile {
-                childImageSharp {
-                  fluid(quality: 100, toFormat: WEBP) {
-                    ...GatsbyImageSharpFluid
+            contactData {
+              ... on WpContactInfo {
+                id
+                contactInfoItem {
+                  emails {
+                    email
+                  }
+                  locations {
+                    officeAddress
+                    warehouseAddress
+                  }
+                  phoneNumbers {
+                    phoneNumber
                   }
                 }
               }
             }
-            telephones {
-              phoneNumber
+            pageIntros {
+              ... on WpPageIntro {
+                id
+                pageIntroItem {
+                  pageSubtitle
+                  pageTitle
+                  pageIntroImage {
+                    localFile {
+                      childImageSharp {
+                        fluid(quality: 100, toFormat: WEBP) {
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-          }
-          language {
-            code
           }
         }
       }
     }
   `);
-  return data;
+  const contactData = data.allWpPage.nodes.filter(
+    ({ contactPage }) => contactPage.contactData,
+  );
+  return contactData;
 };

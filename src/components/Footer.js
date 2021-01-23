@@ -35,11 +35,13 @@ export const Footer = () => {
 
   const localizedData = useLocalizedWpData(data.allWpCertificate.nodes);
   const contactData = useContactQuery();
-  const localizedContactData = useLocalizedWpData(
-    contactData.allWpPage.nodes,
-  )[0];
+  const localizedContactData = useLocalizedWpData(contactData)[0];
   const {
-    contactPage: { address, emails, telephones },
+    contactPage: {
+      contactData: {
+        contactInfoItem: { locations, emails, phoneNumbers },
+      },
+    },
   } = localizedContactData;
   const { t } = useTranslation();
   const {
@@ -72,14 +74,14 @@ export const Footer = () => {
               <Icon sx={{ mr: 3 }}>
                 <IoLocationOutline sx={{ fontSize: 6 }} />
               </Icon>
-              <p sx={{ fontSize: 1 }}>{address}</p>
+              <p sx={{ fontSize: 1 }}>{locations[0].officeAddress}</p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: [4] }}>
               <Icon sx={{ mr: 3 }}>
                 <AiOutlinePhone sx={{ fontSize: 6 }} />
               </Icon>
               <InfoLink
-                href={`tel: ${telephones[0].phoneNumber.replace(/\s/g, '')}`}
+                href={`tel: ${phoneNumbers[0].phoneNumber.replace(/\s/g, '')}`}
                 sx={{
                   pb: 0,
                   transition: 'link',
@@ -93,7 +95,7 @@ export const Footer = () => {
                 }}
                 {...{ colors }}
               >
-                {telephones[0].phoneNumber}
+                {phoneNumbers[0].phoneNumber}
               </InfoLink>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: [4] }}>

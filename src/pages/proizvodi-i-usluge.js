@@ -6,7 +6,7 @@ import { Grid, jsx, useThemeUI } from 'theme-ui';
 import SEO from 'components/seo';
 import { useLocalizedWpData } from 'hooks/useLocalizedWpData';
 import Img from 'gatsby-image';
-import { Container, PageIntro, Link } from 'components';
+import { PageIntro, Link } from 'components';
 import styled from '@emotion/styled';
 import { hex2rgba } from 'utils/utils';
 
@@ -19,9 +19,9 @@ const Products = ({ data }) => {
   )[0];
   const {
     productsAndCategoryPage: {
-      pageTitle,
-      pageSubtitle,
-      pageIntroImage,
+      pageIntros: {
+        pageIntroItem: { pageTitle, pageSubtitle, pageIntroImage },
+      },
       productCategories,
     },
   } = localizedPageData;
@@ -197,31 +197,31 @@ const ProductCount = styled.p`
 
 export const PAGE_QUERY = graphql`
   {
-    allWpPage(
-      filter: {
-        productsAndCategoryPage: {
-          fieldGroupName: { eq: "productsAndCategoryPage" }
-        }
-      }
-    ) {
+    allWpPage {
       nodes {
         language {
           code
         }
         productsAndCategoryPage {
-          pageSubtitle
-          pageTitle
-          pageIntroImage {
-            localFile {
-              childImageSharp {
-                fluid(quality: 100, toFormat: WEBP) {
-                  ...GatsbyImageSharpFluid
+          fieldGroupName
+          pageIntros {
+            ... on WpPageIntro {
+              pageIntroItem {
+                pageSubtitle
+                pageTitle
+                pageIntroImage {
+                  localFile {
+                    childImageSharp {
+                      fluid(quality: 100, toFormat: WEBP) {
+                        ...GatsbyImageSharpFluid
+                      }
+                    }
+                  }
                 }
               }
             }
           }
           productCategories {
-            fieldGroupName
             productCategoryItem {
               ... on WpProductCategory {
                 id
@@ -231,7 +231,7 @@ export const PAGE_QUERY = graphql`
                   categoryImage {
                     localFile {
                       childImageSharp {
-                        fluid(quality: 100, cropFocus: CENTER, toFormat: WEBP) {
+                        fluid(quality: 100, toFormat: WEBP) {
                           ...GatsbyImageSharpFluid
                         }
                       }
