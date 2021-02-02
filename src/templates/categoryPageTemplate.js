@@ -1,27 +1,29 @@
 /** @jsx jsx */
+import { graphql } from 'gatsby';
 import React from 'react';
-import { useTranslation } from '@3nvi/gatsby-theme-intl';
+import { useLocalizedWpData } from 'hooks';
+import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { PageIntro, ProductCategoriesSection } from 'components';
 import SEO from 'components/seo';
-import { graphql } from 'gatsby';
-import { useLocalizedWpData } from 'hooks/useLocalizedWpData';
 import { jsx } from 'theme-ui';
 
-const Products = ({ data }) => {
+const CategoryPageTemplate = (props) => {
+  const { originalPath } = usePageContext();
   const localizedPageData = useLocalizedWpData(
-    data.allWpPage.nodes.filter(
-      ({ productsAndCategoryPage }) =>
-        productsAndCategoryPage.productCategories,
+    props.data.allWpPage.nodes.filter(
+      ({ categoryPage }) => categoryPage.productCategories,
     ),
-  )[0];
+  ).filter((page) => page.categoryPage.pageSlug === originalPath)[0];
   const {
-    productsAndCategoryPage: {
+    title,
+    categoryPage: {
       pageIntros: {
         pageIntroItem: { pageTitle, pageSubtitle, pageIntroImage },
       },
       productCategories,
     },
   } = localizedPageData;
+  console.log(localizedPageData);
   const { t } = useTranslation();
   return (
     <>
@@ -36,19 +38,24 @@ const Products = ({ data }) => {
   );
 };
 
-export default Products;
+export default CategoryPageTemplate;
 
 export const PAGE_QUERY = graphql`
-  {
-    allWpPage {
+  query CATEGORY_PAGES_QUERY {
+    allWpPage(
+      filter: { categoryPage: { fieldGroupName: { eq: "categoryPage" } } }
+    ) {
       nodes {
+        id
+        title
         language {
           code
         }
-        productsAndCategoryPage {
-          fieldGroupName
+        categoryPage {
+          pageSlug
           pageIntros {
             ... on WpPageIntro {
+              id
               pageIntroItem {
                 pageSubtitle
                 pageTitle
@@ -65,7 +72,7 @@ export const PAGE_QUERY = graphql`
             }
           }
           productCategories {
-            productCategoryItem {
+            productCategory {
               ... on WpProductCategory {
                 id
                 productCategory {

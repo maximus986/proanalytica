@@ -5,6 +5,7 @@ import { Grid, jsx } from 'theme-ui';
 import SEO from 'components/seo';
 import { useLocalizedWpData } from 'hooks';
 import { PageIntro, Container } from 'components';
+import { graphql } from 'gatsby';
 
 const Links = ({ data }) => {
   const { t } = useTranslation();
