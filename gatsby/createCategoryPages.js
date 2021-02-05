@@ -61,9 +61,15 @@ module.exports = async ({ actions, graphql }) => {
   // Create a function for getting pages
   const fetchPages = async () =>
     await graphql(CATEGORY_PAGES_QUERY).then(({ data }) => {
+      // Filter all pages that don't have category page field associated with them
       const categoryData = data.allWpPage.nodes.filter(
         ({ categoryPage }) => categoryPage.productCategories,
       );
+      // Category data is a array of all pages with category page field. In order to create category pages the data structure should
+      // be array of arrays grouped by page slug.
+      // Example: [{page1, pageSlug: /proizvodi-i-usluge/hemija, lang: EN}, {page1, pageSlug: /proizvodi-i-usluge/hemija, lang: SR}, {page2, pageSlug: /proizvodi-i-usluge/laboratorisjka-oprema, lang: EN}, {page2, pageSlug: /proizvodi-i-usluge/laboratorisjka-oprema, lang: SR}]
+      // Grouped: [[{page1, pageSlug: /proizvodi-i-usluge/hemija, lang: EN}, {page1, pageSlug: /proizvodi-i-usluge/hemija, lang: SR}], [{page2, pageSlug: /proizvodi-i-usluge/laboratorisjka-oprema, lang: EN}, {page2, pageSlug: /proizvodi-i-usluge/laboratorisjka-oprema, lang: SR}]
+      // First element is data for one page with multiple locales, second for another page, etc.
       return Object.values(_.groupBy(categoryData, 'categoryPage.pageSlug'));
     });
 
