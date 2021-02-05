@@ -27,7 +27,7 @@ const CategoryPageTemplate = (props) => {
   const { t } = useTranslation();
   return (
     <>
-      <SEO title={t('products')} />
+      <SEO title={pageTitle} />
       <PageIntro
         pageTitle={pageTitle}
         pageSubtitle={pageSubtitle}
