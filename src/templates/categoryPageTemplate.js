@@ -23,7 +23,6 @@ const CategoryPageTemplate = (props) => {
       productCategories,
     },
   } = localizedPageData;
-  console.log(localizedPageData);
   const { t } = useTranslation();
   return (
     <>
