@@ -26,7 +26,7 @@ const Links = ({ data }) => {
   } = localizedPageData;
   return (
     <>
-      <SEO title={t('links')} />
+      <SEO title={pageTitle} />
       <PageIntro
         pageTitle={pageTitle}
         pageSubtitle={pageSubtitle}
