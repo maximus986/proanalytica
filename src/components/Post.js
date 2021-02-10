@@ -21,25 +21,27 @@ export const Post = ({ post }) => {
   } = post;
   return (
     <PostLink to={newsSlug}>
-      <Figure sx={{ bg: 'primary' }}>
-        <PostImage fluid={fluid} alt="" />
+      <Figure
+        sx={{
+          bg: 'primary',
+          maxHeight: ['300px', null, '230px', '311px', '235px', '290px'],
+        }}
+      >
+        <PostImage fluid={fluid} alt="" sx={{ transition: 'imageLinkLong' }} />
       </Figure>
-      <div sx={{ padding: '0 16px 24px', mt: '32px' }}>
+      <div sx={{ mt: 6, px: 4, pb: 5 }}>
         <PostTitle>{title}</PostTitle>
-        <p sx={{ fontSize: '14px', mb: '16px' }}>{`${newsAuthor}, ${date}`}</p>
+        <p sx={{ fontSize: 1, mb: 4 }}>{`${newsAuthor}, ${date}`}</p>
         <div dangerouslySetInnerHTML={{ __html: excerpt }} />
       </div>
     </PostLink>
   );
 };
-const PostImage = styled(Img)`
-  transition: all 1000ms ease;
-`;
+const PostImage = styled(Img)``;
 
 const PostLink = styled(Link)`
   display: block;
   background: #fff;
-
   box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
   &:hover {
     ${PostImage} {

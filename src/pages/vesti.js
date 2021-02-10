@@ -5,6 +5,7 @@ import { useLocalizedWpData } from 'hooks';
 import SEO from 'components/seo';
 import { PageIntro, Container, Post } from 'components';
 import { Grid, jsx } from 'theme-ui';
+import { Fragment } from 'react';
 
 const News = ({ data }) => {
   const localizedPageData = useLocalizedWpData(data.allWpPage.nodes)[0];
@@ -28,14 +29,14 @@ const News = ({ data }) => {
         <Container>
           <Grid
             columns={[1, null, 2, null, 3]}
-            gap={['24px', null, '30px', null, '45px']}
+            gap={['24px', null, '30px', null, null, '70px']}
           >
             {localizedPostsData.map((post) => {
               console.log(post);
               return (
-                <div key={post.id}>
+                <Fragment key={post.id}>
                   <Post post={post} />
-                </div>
+                </Fragment>
               );
             })}
           </Grid>
@@ -60,7 +61,7 @@ export const PAGE_QUERY = graphql`
           node {
             localFile {
               childImageSharp {
-                fluid(toFormat: WEBP, quality: 100) {
+                fluid(toFormat: WEBP, quality: 100, cropFocus: CENTER) {
                   ...GatsbyImageSharpFluid
                 }
               }

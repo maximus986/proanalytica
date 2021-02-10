@@ -241,5 +241,6 @@ export default {
     button: '0.5s ease',
     imageLink: '0.4s ease',
     link: '0.3s ease',
+    imageLinkLong: '1s ease',
   },
 };
