@@ -46,6 +46,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
+      {/* TODO: Add page title */}
       <SEO title="Home" />
       {content.map((section, i) => {
         const fieldGroupName = section.fieldGroupName;
