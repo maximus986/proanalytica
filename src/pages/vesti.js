@@ -32,7 +32,6 @@ const News = ({ data }) => {
             gap={['24px', null, '30px', null, null, '70px']}
           >
             {localizedPostsData.map((post) => {
-              console.log(post);
               return (
                 <Fragment key={post.id}>
                   <Post post={post} />
