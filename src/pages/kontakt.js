@@ -26,7 +26,7 @@ const Contact = () => {
   } = localizedPageData;
   return (
     <>
-      <SEO title={t('contact')} />
+      <SEO title={pageTitle} />
       <PageIntro
         pageTitle={pageTitle}
         pageSubtitle={pageSubtitle}
