@@ -75,7 +75,7 @@ export const PAGE_QUERY = graphql`
         }
       }
     }
-    allWpPage(filter: { newsPage: { fieldGroupName: { eq: "newsPage" } } }) {
+    allWpPage(filter: { newsPage: { isNewsPage: { eq: true } } }) {
       nodes {
         language {
           code

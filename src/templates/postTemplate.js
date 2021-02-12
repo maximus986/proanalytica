@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
+/** @jsx jsx */
 import React from 'react';
 import { useLocalizedWpData } from 'hooks';
-/** @jsx jsx */
 import { usePageContext } from '@3nvi/gatsby-theme-intl';
 import SEO from 'components/seo';
 import { Container } from 'components';
@@ -16,7 +16,6 @@ const PostTemplate = ({ data }) => {
     (post) => post.news.newsSlug === originalPath,
   )[0];
   const { theme } = useThemeUI();
-  console.log(theme);
   const {
     title,
     content,

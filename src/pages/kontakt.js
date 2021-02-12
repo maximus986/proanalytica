@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
-import { graphql } from 'gatsby';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { Divider, Flex, Grid, jsx } from 'theme-ui';

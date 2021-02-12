@@ -1,11 +1,10 @@
 /** @jsx jsx */
-import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
+import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import { jsx } from 'theme-ui';
 import SEO from 'components/seo';
 
 const Events = () => {
   const { t } = useTranslation();
-  const { lang } = usePageContext();
 
   return (
     <div sx={{ bg: 'white', padding: 4 }}>

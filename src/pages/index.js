@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import React from 'react';
-import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
 import { graphql } from 'gatsby';
 import { jsx } from 'theme-ui';
 import SEO from 'components/seo';
@@ -37,7 +36,6 @@ export const PAGE_QUERY = graphql`
 `;
 
 const IndexPage = ({ data }) => {
-  const { t } = useTranslation();
   const localizedPageData = useLocalizedWpData(
     // Just home page has homePageSections and all other pages have content as null. Filter those pages nodes out.
     data.allWpPage.nodes.filter((c) => c.homePageSections.content),

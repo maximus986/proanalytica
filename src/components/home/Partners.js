@@ -50,7 +50,6 @@ export const Partners = ({ sectionTitle, partners }) => {
             const {
               partner: {
                 link,
-                name,
                 logo: {
                   localFile: {
                     childImageSharp: { fixed },

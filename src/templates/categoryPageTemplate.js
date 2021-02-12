@@ -2,7 +2,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import { useLocalizedWpData } from 'hooks';
-import { usePageContext, useTranslation } from '@3nvi/gatsby-theme-intl';
+import { usePageContext } from '@3nvi/gatsby-theme-intl';
 import { PageIntro, ProductCategoriesSection } from 'components';
 import SEO from 'components/seo';
 import { jsx } from 'theme-ui';
@@ -15,7 +15,6 @@ const CategoryPageTemplate = (props) => {
     ),
   ).filter((page) => page.categoryPage.pageSlug === originalPath)[0];
   const {
-    title,
     categoryPage: {
       pageIntros: {
         pageIntroItem: { pageTitle, pageSubtitle, pageIntroImage },
@@ -23,7 +22,6 @@ const CategoryPageTemplate = (props) => {
       productCategories,
     },
   } = localizedPageData;
-  const { t } = useTranslation();
   return (
     <>
       <SEO title={pageTitle} />

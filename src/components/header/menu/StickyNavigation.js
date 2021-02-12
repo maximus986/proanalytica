@@ -1,7 +1,7 @@
+/** @jsx jsx */
 import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
-/** @jsx jsx */
-import { Flex, jsx, useThemeUI } from 'theme-ui';
+import { jsx } from 'theme-ui';
 import { Navigation } from './Navigation';
 import { keyframes } from '@emotion/react';
 

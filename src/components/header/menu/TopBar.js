@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import { useTranslation } from '@3nvi/gatsby-theme-intl';
 import styled from '@emotion/styled';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
@@ -14,7 +13,6 @@ export const TopBar = () => {
   const {
     theme: { colors },
   } = useThemeUI();
-  const { t } = useTranslation();
   const localizedData = useLocalizedWpData(data)[0];
   const {
     contactPage: {
