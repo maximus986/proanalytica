@@ -30,7 +30,9 @@ export const Post = ({ post }) => {
         <PostImage fluid={fluid} alt="" sx={{ transition: 'imageLinkLong' }} />
       </Figure>
       <div sx={{ mt: 6, px: 4, pb: 5 }}>
-        <PostTitle>{title}</PostTitle>
+        <PostTitle sx={{ fontWeight: 'normal', fontSize: 6 }}>
+          {title}
+        </PostTitle>
         <p sx={{ fontSize: 1, mb: 4 }}>{`${newsAuthor}, ${date}`}</p>
         <div dangerouslySetInnerHTML={{ __html: excerpt }} />
       </div>

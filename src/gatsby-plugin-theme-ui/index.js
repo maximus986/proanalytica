@@ -214,6 +214,12 @@ export default {
       h4: {
         variant: 'text.heading4',
       },
+      h5: {
+        variant: 'text.heading4',
+      },
+      h6: {
+        variant: 'text.heading4',
+      },
       p: {
         variant: 'text.paragraph',
       },

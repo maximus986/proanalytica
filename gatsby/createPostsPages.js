@@ -8,6 +8,7 @@ module.exports = async ({ actions, graphql }) => {
         nodes {
           id
           title
+          content
           language {
             code
           }
@@ -15,7 +16,7 @@ module.exports = async ({ actions, graphql }) => {
             node {
               localFile {
                 childImageSharp {
-                  fluid(toFormat: WEBP, quality: 100) {
+                  fluid(toFormat: WEBP, quality: 100, maxHeight: 600) {
                     src
                   }
                 }
@@ -44,7 +45,6 @@ module.exports = async ({ actions, graphql }) => {
   // Map over all of the posts and call CreatePage
   await fetchPosts().then((posts) => {
     posts.forEach((post) => {
-      console.log(post);
       createPage({
         path: post[0].news.newsSlug,
         component: path.resolve(`./src/templates/postTemplate.js`),
