@@ -12,7 +12,6 @@ const Links = ({ data }) => {
       return usefulLinksPage.webinars;
     }),
   )[0];
-  console.log(localizedPageData);
   const {
     usefulLinksPage: {
       pageIntros: {
