@@ -1,6 +1,7 @@
 const path = require('path');
 const createCategoryPages = require(`./gatsby/createCategoryPages`);
 const createPostsPages = require(`./gatsby/createPostsPages`);
+const createProductsListPages = require(`./gatsby/createProductsListPage`);
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   actions.setWebpackConfig({
@@ -13,4 +14,5 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 exports.createPages = async ({ actions, graphql }) => {
   await createCategoryPages({ actions, graphql });
   await createPostsPages({ actions, graphql });
+  await createProductsListPages({ actions, graphql });
 };
