@@ -3,9 +3,10 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import { useLocalizedWpData } from 'hooks';
 import { usePageContext } from '@3nvi/gatsby-theme-intl';
-import { PageIntro } from 'components';
+import { PageIntro, Offering } from 'components';
 import SEO from 'components/seo';
 import { jsx } from 'theme-ui';
+import { Fragment } from 'react';
 
 const ProductsListPageTemplate = ({ data }) => {
   const { originalPath } = usePageContext();
@@ -22,6 +23,7 @@ const ProductsListPageTemplate = ({ data }) => {
       offerings,
     },
   } = localizedPageData;
+  console.log(offerings);
   return (
     <>
       <SEO title={pageTitle} />
@@ -30,6 +32,15 @@ const ProductsListPageTemplate = ({ data }) => {
         pageSubtitle={pageSubtitle}
         pageIntroImage={pageIntroImage}
       />
+      <section sx={{ py: [8] }}>
+        {offerings.map(({ offering: { id, offeringItem } }, index) => {
+          return (
+            <Fragment key={id}>
+              <Offering offeringIndex={index} offeringItem={offeringItem} />
+            </Fragment>
+          );
+        })}
+      </section>
     </>
   );
 };
@@ -79,8 +90,13 @@ export const PAGE_QUERY = graphql`
                   offeringItemImage {
                     localFile {
                       childImageSharp {
-                        fluid(quality: 100, toFormat: WEBP) {
-                          src
+                        fluid(
+                          quality: 100
+                          toFormat: WEBP
+                          maxHeight: 800
+                          cropFocus: CENTER
+                        ) {
+                          ...GatsbyImageSharpFluid
                         }
                       }
                     }

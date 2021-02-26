@@ -5,3 +5,5 @@ export { Link } from './link';
 export { LocationMap } from './location-map/LocationMap';
 export { ProductCategoriesSection } from './ProductCategoriesSection';
 export { Post } from './Post';
+export { Offering } from './Offering';
+export { WpContent } from './WpContent';

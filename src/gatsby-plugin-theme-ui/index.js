@@ -46,6 +46,18 @@ export default {
         bg: 'tertiary',
       },
     },
+    primarySmall: {
+      color: 'primaryBackground',
+      bg: 'primary',
+      width: '150px',
+      height: '43px',
+      boxShadow: `0 15px 15px rgba(0, 103, 119, 0.2)`,
+      position: 'relative',
+      transition: 'button',
+      '&:hover': {
+        transform: 'translateY(-5px)',
+      },
+    },
     button: {
       display: 'inline-block',
       color: 'muted',

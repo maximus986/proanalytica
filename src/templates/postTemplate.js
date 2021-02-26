@@ -4,7 +4,7 @@ import React from 'react';
 import { useLocalizedWpData } from 'hooks';
 import { usePageContext } from '@3nvi/gatsby-theme-intl';
 import SEO from 'components/seo';
-import { Container } from 'components';
+import { Container, WpContent } from 'components';
 import { parseContentWithLinks } from '../utils/utils';
 import Img from 'gatsby-image';
 import { jsx, useThemeUI } from 'theme-ui';
@@ -33,7 +33,7 @@ const PostTemplate = ({ data }) => {
     <>
       <SEO title={title} />
       <Container>
-        <PostContent
+        <div
           sx={{
             mt: [null, null, '124px', '135px'],
             py: [7, 9, null, 10, 12, 13],
@@ -59,69 +59,16 @@ const PostTemplate = ({ data }) => {
           <figure sx={{ mb: [6, null, 8, 9, 11] }}>
             <Img fluid={fluid} alt="" />
           </figure>
-          <div sx={{ px: [4, 0] }}>{parseContentWithLinks(content)}</div>
-        </PostContent>
+          <div sx={{ px: [4, 0] }}>
+            <WpContent>{parseContentWithLinks(content)}</WpContent>
+          </div>
+        </div>
       </Container>
     </>
   );
 };
 
 export default PostTemplate;
-
-const PostContent = styled.section`
-  h2 {
-    font-size: ${(props) => `${props.theme.fontSizes[9]}px`};
-    font-weight: ${(props) => props.theme.fontWeights.normal};
-    margin-bottom: ${(props) => `${props.theme.space[5]}px`};
-  }
-  h3 {
-    font-size: ${(props) => `${props.theme.fontSizes[8]}px`};
-    font-weight: ${(props) => props.theme.fontWeights.normal};
-    margin-bottom: ${(props) => `${props.theme.space[5]}px`};
-  }
-  h4 {
-    font-size: ${(props) => `${props.theme.fontSizes[5]}px`};
-    font-weight: ${(props) => props.theme.fontWeights.normal};
-    margin-bottom: ${(props) => `${props.theme.space[5]}px`};
-  }
-  h5 {
-    font-size: ${(props) => `${props.theme.fontSizes[3]}px`};
-    font-weight: ${(props) => props.theme.fontWeights.normal};
-    margin-bottom: ${(props) => `${props.theme.space[5]}px`};
-  }
-  h6 {
-    font-size: ${(props) => `${props.theme.fontSizes[2]}px`};
-    font-weight: ${(props) => props.theme.fontWeights.normal};
-    margin-bottom: ${(props) => `${props.theme.space[5]}px`};
-  }
-  ul {
-    list-style: disc;
-    padding: revert;
-  }
-  a {
-    text-decoration: underline;
-    font-weight: ${(props) => props.theme.fontWeights.bold};
-    transition: ${(props) => props.theme.transition.link};
-    &:hover {
-      color: ${(props) => props.theme.colors.primary};
-    }
-  }
-  p {
-    margin-bottom: ${(props) => `${props.theme.space[4]}px`};
-  }
-  blockquote {
-    border-left: 6px solid ${(props) => props.theme.colors.primary};
-    padding-top: ${(props) => `${props.theme.space[3]}px`};
-    padding-bottom: ${(props) => `${props.theme.space[3]}px`};
-    padding-left: ${(props) => `${props.theme.space[5]}px`};
-    padding-right: ${(props) => `${props.theme.space[5]}px`};
-    background: ${(props) => props.theme.colors.primaryPassive};
-    margin: 0;
-    p {
-      margin: 0;
-    }
-  }
-`;
 
 export const PAGE_QUERY = graphql`
   query POST_PAGE_QUERY {
