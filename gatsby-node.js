@@ -13,6 +13,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createRedirect } = actions;
+  // Used for redirects to the default language prefix. Required for @3nvi/gatsby-theme-intl plugin and form submissions to work when the site is deployed yo netlify and
   createRedirect({
     fromPath: '/',
     toPath: '/sr',
