@@ -65,7 +65,7 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-netlify`,
+    // `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
