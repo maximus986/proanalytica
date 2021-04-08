@@ -23,7 +23,6 @@ const ProductsListPageTemplate = ({ data }) => {
       offerings,
     },
   } = localizedPageData;
-  console.log(offerings);
   return (
     <>
       <SEO title={pageTitle} />

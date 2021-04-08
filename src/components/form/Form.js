@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { navigate } from 'gatsby-link';
 
 function encode(data) {
-  console.log(data);
   return Object.keys(data)
     .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&');
