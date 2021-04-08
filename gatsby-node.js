@@ -12,6 +12,12 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 };
 
 exports.createPages = async ({ actions, graphql }) => {
+  const { createRedirect } = actions;
+  createRedirect({
+    fromPath: '/',
+    toPath: '/sr',
+    statusCode: 200,
+  });
   await createCategoryPages({ actions, graphql });
   await createPostsPages({ actions, graphql });
   await createProductsListPages({ actions, graphql });
