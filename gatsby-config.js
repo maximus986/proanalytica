@@ -65,7 +65,8 @@ module.exports = {
         },
       },
     },
-    // `gatsby-plugin-netlify`,
+    // Used for redirects to the default language prefix. Required @3nvi/gatsby-theme-intl plugin to work when the site is deployed yo netlify
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
