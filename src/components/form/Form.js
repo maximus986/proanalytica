@@ -2,7 +2,6 @@
 import styled from '@emotion/styled';
 import { Grid, jsx, Spinner, useThemeUI } from 'theme-ui';
 import { Field } from './Field';
-import { Button } from 'components';
 import { useState } from 'react';
 import { navigate } from 'gatsby-link';
 
@@ -45,13 +44,17 @@ export const Form = () => {
         ...formValue,
       }),
     })
-      .then(() => alert('success'))
-      .catch((error) => alert(error));
+      .then(() => navigate(form.getAttribute('action')))
+      .catch((error) => alert(error)); // TODO: Handle errors
   };
   const loading = false;
 
+  const {
+    theme: { buttons },
+  } = useThemeUI();
+
   return (
-    <SignUpForm
+    <form
       name="contact"
       method="post"
       action="/thanks/"
@@ -117,7 +120,7 @@ export const Form = () => {
               value={formValue.city}
             />
           </FormGroup>
-          <FormGroup sx={{ mb: [6, null, null, 0] }}>
+          <FormGroup sx={{ mb: 6 }}>
             <Field
               name="address"
               placeholder="Adresa*"
@@ -126,7 +129,7 @@ export const Form = () => {
             />
           </FormGroup>
         </div>
-        <div>
+        <div sx={{ mb: 6 }}>
           <Textarea
             type="text"
             name="message"
@@ -139,6 +142,7 @@ export const Form = () => {
               borderColor: 'muted',
               fontSize: 2,
               padding: 4,
+              height: ['300px', null, null, '100%'],
               '&:focus': {
                 outline: 'none',
                 borderColor: 'primary',
@@ -151,15 +155,25 @@ export const Form = () => {
         sx={{
           display: 'flex',
           justifyContent: ['center', null, null, 'flex-start'],
-          mt: 6,
         }}
       >
-        <button
+        <SubmitButton
           type="submit"
           name="submit"
-          variant="primary"
           disabled={false}
-          sx={{ width: '100%' }}
+          sx={{
+            ...buttons.primary,
+            fontSize: 2,
+            fontFamily: 'body',
+            '&:disabled': {
+              bg: 'muted',
+              boxShadow: `0 15px 15px rgba(233, 233, 233, 0.2)`,
+              cursor: 'not-allowed',
+              '&:hover': {
+                transform: 'none',
+              },
+            },
+          }}
         >
           {loading ? (
             <Spinner
@@ -171,24 +185,23 @@ export const Form = () => {
           ) : (
             <span>Pošalji</span>
           )}
-        </button>
+        </SubmitButton>
       </div>
-    </SignUpForm>
+    </form>
   );
 };
 
-const SignUpForm = styled.form``;
-
-const Col = styled.div``;
-
 const FormGroup = styled.div``;
 
-const Label = styled.label``;
-
 const Textarea = styled.textarea`
-  height: 100%;
   border-width: 1px;
   border-style: solid;
   width: 100%;
   resize: none;
+`;
+
+const SubmitButton = styled.button`
+  text-transform: capitalize;
+  cursor: pointer;
+  border: none;
 `;
