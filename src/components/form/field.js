@@ -2,20 +2,20 @@
 import styled from '@emotion/styled';
 import { jsx } from 'theme-ui';
 
-export const Field = ({ name, value, onChange, placeholder }) => {
+export const Field = ({ name, placeholder, value, onChange }) => {
   return (
     <Input
       type="text"
       name={name}
-      id={name}
+      placeholder={placeholder}
       value={value}
       onChange={onChange}
-      placeholder={placeholder}
       sx={{
         color: 'textPrimary',
         fontFamily: 'body',
         borderColor: 'muted',
         fontSize: 2,
+        px: 4,
         '&:focus': {
           outline: 'none',
           borderColor: 'primary',
@@ -26,7 +26,6 @@ export const Field = ({ name, value, onChange, placeholder }) => {
 };
 
 const Input = styled.input`
-  padding: 0 15px;
   height: 55px;
   border-width: 1px;
   border-style: solid;

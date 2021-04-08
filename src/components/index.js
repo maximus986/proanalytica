@@ -7,3 +7,4 @@ export { ProductCategoriesSection } from './ProductCategoriesSection';
 export { Post } from './Post';
 export { Offering } from './Offering';
 export { WpContent } from './WpContent';
+export { Form } from './form/Form';

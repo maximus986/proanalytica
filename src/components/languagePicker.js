@@ -42,4 +42,5 @@ const LangLink = styled(GatsbyLink)`
   width: 32px;
   height: 20px;
   overflow: hidden;
+  cursor: pointer;
 `;

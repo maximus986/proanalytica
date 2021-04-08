@@ -1,285 +1,195 @@
 /** @jsx jsx */
 import styled from '@emotion/styled';
-import axios from 'axios';
+import { Grid, jsx, Spinner, useThemeUI } from 'theme-ui';
+import { Field } from './Field';
+import { Button } from 'components';
 import { useState } from 'react';
-import { jsx, Spinner } from 'theme-ui';
-import { useForm } from '../../hooks/useForm';
-import { Field } from './field';
-import { formConfig } from './form-config';
-import { DEFAULT_VALUE } from './form-default-value';
-import { validationStateSchema } from './valdation-schema';
+import { navigate } from 'gatsby-link';
+
+function encode(data) {
+  console.log(data);
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+}
+
+const defaultValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  company: '',
+  phone: '',
+  city: '',
+  address: '',
+  message: '',
+};
 
 export const Form = () => {
-  const [submitStatus, setSubmitStatus] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const stateSchema = DEFAULT_VALUE;
+  const [formValue, setFormValue] = useState(defaultValues);
 
-  const onSubmitForm = () => {
-    sendMessage();
+  const handleChange = (e) => {
+    e.persist();
+    setFormValue((formValue) => ({
+      ...formValue,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const sendMessage = () => {
-    const formData = new FormData();
-    formData.append(formConfig.GOOGLE_FORM_NAME_ID, state.name.value);
-    formData.append(formConfig.GOOGLE_FORM_ORG_ID, state.org.value);
-    formData.append(formConfig.GOOGLE_FORM_PHONE_ID, state.phone.value);
-    formData.append(formConfig.GOOGLE_FORM_EMAIL_ID, state.email.value);
-    formData.append(formConfig.GOOGLE_FORM_WEBSITE_ID, state.website.value);
-    formData.append(formConfig.GOOGLE_FORM_MESSAGE_ID, state.message.value);
-    setLoading(true);
-    axios
-      .post(formConfig.CORS_PROXY + formConfig.GOOGLE_FORM_ACTION_URL, formData)
-      .then(() => {
-        setState(prevState => ({
-          ...prevState,
-          ...DEFAULT_VALUE,
-        }));
-        setLoading(false);
-        setSubmitStatus(true);
-        setTimeout(() => {
-          setSubmitStatus(false);
-        }, 2000);
-      })
-      .catch(() => {
-        setError(true);
-        setTimeout(() => {
-          setError(false);
-        }, 2000);
-        setLoading(false);
-        setSubmitStatus(false);
-      });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        ...formValue,
+      }),
+    })
+      .then(() => alert('success'))
+      .catch((error) => alert(error));
   };
-
-  const { state, handleOnChange, handleOnSubmit, disable, setState } = useForm(
-    stateSchema,
-    validationStateSchema,
-    onSubmitForm
-  );
+  const loading = false;
 
   return (
-    <SignUpForm onSubmit={handleOnSubmit}>
-      <Col>
-        <FormGroup>
-          <Field
-            name="name"
-            id="name"
-            value={state.name.value}
-            label="Ime i Prezime*"
-            onChange={handleOnChange}
+    <SignUpForm
+      name="contact"
+      method="post"
+      action="/thanks/"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onSubmit={handleSubmit}
+    >
+      {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+      <input type="hidden" name="form-name" value="contact" />
+      <p hidden>
+        <label>
+          Don’t fill this out:{' '}
+          <input name="bot-field" onChange={handleChange} />
+        </label>
+      </p>
+      <Grid gap={[0, null, null, 6]} columns={[null, null, null, 2]}>
+        <div>
+          <FormGroup sx={{ mb: 6 }}>
+            <Field
+              name="firstName"
+              placeholder="Ime*"
+              onChange={handleChange}
+              value={formValue.firstName}
+            />
+          </FormGroup>
+          <FormGroup sx={{ mb: 6 }}>
+            <Field
+              name="lastName"
+              placeholder="Prezime*"
+              onChange={handleChange}
+              value={formValue.lastName}
+            />
+          </FormGroup>
+          <FormGroup sx={{ mb: 6 }}>
+            <Field
+              name="email"
+              placeholder="Email*"
+              onChange={handleChange}
+              value={formValue.email}
+            />
+          </FormGroup>
+          <FormGroup sx={{ mb: 6 }}>
+            <Field
+              name="company"
+              placeholder="Naziv vase firme*"
+              onChange={handleChange}
+              value={formValue.company}
+            />
+          </FormGroup>
+          <FormGroup sx={{ mb: 6 }}>
+            <Field
+              name="phone"
+              placeholder="Broj telefona*"
+              onChange={handleChange}
+              value={formValue.phone}
+            />
+          </FormGroup>
+          <FormGroup sx={{ mb: 6 }}>
+            <Field
+              name="city"
+              placeholder="Grad*"
+              onChange={handleChange}
+              value={formValue.city}
+            />
+          </FormGroup>
+          <FormGroup sx={{ mb: [6, null, null, 0] }}>
+            <Field
+              name="address"
+              placeholder="Adresa*"
+              onChange={handleChange}
+              value={formValue.address}
+            />
+          </FormGroup>
+        </div>
+        <div>
+          <Textarea
+            type="text"
+            name="message"
+            placeholder="Vasa poruka*"
+            onChange={handleChange}
+            value={formValue.message}
+            sx={{
+              color: 'textPrimary',
+              fontFamily: 'body',
+              borderColor: 'muted',
+              fontSize: 2,
+              padding: 4,
+              '&:focus': {
+                outline: 'none',
+                borderColor: 'primary',
+              },
+            }}
           />
-          {state.name.error && (
-            <p
-              sx={{
-                color: 'secondary',
-                fontFamily: 'body',
-                fontSize: '1.2rem',
-                mt: '0.5rem',
-                fontWeight: 'bold',
-              }}
-            >
-              {state.name.error}
-            </p>
-          )}
-        </FormGroup>
-        <FormGroup>
-          <Field
-            name="org"
-            id="org"
-            value={state.org.value}
-            label="Organizacija"
-            onChange={handleOnChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Field
-            name="phone"
-            id="phone"
-            value={state.phone.value}
-            label="Kontakt telefon*"
-            onChange={handleOnChange}
-          />
-          {state.phone.error && (
-            <p
-              sx={{
-                color: 'secondary',
-                fontFamily: 'body',
-                fontSize: '1.2rem',
-                mt: '0.5rem',
-                fontWeight: 'bold',
-              }}
-            >
-              {state.phone.error}
-            </p>
-          )}
-        </FormGroup>
-        <FormGroup>
-          <Field
-            name="email"
-            id="email"
-            value={state.email.value}
-            label="Email*"
-            onChange={handleOnChange}
-          />
-          {state.email.error && (
-            <p
-              sx={{
-                color: 'secondary',
-                fontFamily: 'body',
-                fontSize: '1.2rem',
-                mt: '0.5rem',
-                fontWeight: 'bold',
-              }}
-            >
-              {state.email.error}
-            </p>
-          )}
-        </FormGroup>
-        <FormGroup>
-          <Field
-            name="website"
-            id="website"
-            value={state.website.value}
-            label="Web stranica"
-            onChange={handleOnChange}
-          />
-        </FormGroup>
-      </Col>
-      <Col>
-        <FormGroup>
-          <Label
-            htmlFor="message"
-            sx={{ color: 'primary', fontFamily: 'body' }}
-          >
-            Zašto želite da postanete član KSAP?
-            <Textarea
-              type="text"
-              name="message"
-              id="message"
-              value={state.message.value}
-              onChange={handleOnChange}
-              sx={{ color: 'primary', fontFamily: 'body' }}
-            ></Textarea>
-          </Label>
-        </FormGroup>
-        <Button
+        </div>
+      </Grid>
+      <div
+        sx={{
+          display: 'flex',
+          justifyContent: ['center', null, null, 'flex-start'],
+          mt: 6,
+        }}
+      >
+        <button
           type="submit"
           name="submit"
-          disabled={disable}
-          sx={{
-            backgroundColor: 'primary',
-            color: 'background',
-            fontFamily: 'body',
-          }}
+          variant="primary"
+          disabled={false}
+          sx={{ width: '100%' }}
         >
           {loading ? (
             <Spinner
               title="Loading"
               size={24}
-              strokeWidth={4}
-              sx={{ color: 'heading' }}
+              strokeWidth={2}
+              sx={{ color: 'secondary' }}
             />
           ) : (
             <span>Pošalji</span>
           )}
-        </Button>
-        {submitStatus && (
-          <p
-            sx={{
-              color: 'primary',
-              fontFamily: 'body',
-              fontSize: '2rem',
-              mt: '1rem',
-              fontWeight: 'bold',
-            }}
-          >
-            Vasa prijava je uspesno poslata!
-          </p>
-        )}
-        {error && (
-          <p
-            sx={{
-              color: 'secondary',
-              fontFamily: 'body',
-              fontSize: '2rem',
-              mt: '1rem',
-              fontWeight: 'bold',
-            }}
-          >
-            Došlo je do greške, molimo Vas pokušajte ponovo.
-          </p>
-        )}
-      </Col>
+        </button>
+      </div>
     </SignUpForm>
   );
 };
 
-const SignUpForm = styled.form`
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 992px) {
-    text-align: left;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-`;
+const SignUpForm = styled.form``;
 
-const Col = styled.div`
-  /* flex-basis: 48%; */
-  &:last-of-type {
-    min-height: 490px;
-  }
-  @media (min-width: 992px) {
-    flex-basis: 48%;
-    &:last-of-type {
-      margin-left: 7rem;
-    }
-  }
-  @media (min-width: 1200px) {
-    /* flex-basis: 38%; */
-    &:last-of-type {
-      margin-left: 11rem;
-    }
-  }
-  @media (min-width: 1600px) {
-    /* flex-basis: 29%; */
-  }
-`;
+const Col = styled.div``;
 
-const FormGroup = styled.div`
-  margin-bottom: 1rem;
-  min-height: 106px;
-`;
+const FormGroup = styled.div``;
 
-const Label = styled.label`
-  font-size: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  font-weight: 700;
-`;
+const Label = styled.label``;
 
 const Textarea = styled.textarea`
-  margin-top: 1em;
-  padding: 1rem 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  height: 300px;
-  resize: none;
-`;
-
-const Button = styled.button`
-  border: none;
-  padding: 1rem 2rem;
-  margin: 2rem 0;
+  height: 100%;
+  border-width: 1px;
+  border-style: solid;
   width: 100%;
-  font-size: 2rem;
-  transition: 0.3s linear;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &:disabled {
-    opacity: 0.7;
-  }
-  cursor: pointer;
+  resize: none;
 `;
