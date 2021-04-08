@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import React from 'react';
 import { Grid, jsx } from 'theme-ui';
-import styled from '@emotion/styled';
 import Img from 'gatsby-image';
 import { parseContentWithLinks } from 'utils/utils';
 import { WpContent, Button } from 'components';
-import BackgroundImage from 'gatsby-background-image';
 
 export const Offering = ({ offeringItem, offeringIndex, className }) => {
   const {
@@ -21,24 +19,15 @@ export const Offering = ({ offeringItem, offeringIndex, className }) => {
       },
     },
   } = offeringItem;
-  console.log(offeringItem, offeringIndex);
   return (
     <Grid gap={0} columns={[null, null, null, null, 2]}>
-      {/* <figure
+      <figure
         sx={{
           order: [null, null, null, null, offeringIndex % 2 === 0 ? -1 : 1],
         }}
       >
-        <Img fluid={fluid} alt="" sx={{ height: '100%' }} /> */}
-      <StyledBackgroundImage
-        className={className}
-        fluid={fluid}
-        sx={{
-          order: [null, null, null, null, offeringIndex % 2 === 0 ? -1 : 1],
-          height: ['600px', null, '800px', null, 'auto'],
-        }}
-      />
-      {/* </figure> */}
+        <Img fluid={fluid} alt="" sx={{ height: '100%' }} />
+      </figure>
       <div sx={{ px: [4, null, 5, 7, 8], py: [7], bg: 'primaryPassive' }}>
         <div sx={{ width: [null, null, '80%'], mx: 'auto' }}>
           <h3 sx={{ fontWeight: 'normal' }}>{offeringItemName}</h3>
@@ -55,11 +44,3 @@ export const Offering = ({ offeringItem, offeringIndex, className }) => {
     </Grid>
   );
 };
-
-const StyledBackgroundImage = styled(BackgroundImage)`
-  width: 100%;
-  background-position: center;
-  background-size: cover;
-  opacity: 1 !important;
-  width: 100%;
-`;

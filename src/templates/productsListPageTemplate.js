@@ -32,7 +32,7 @@ const ProductsListPageTemplate = ({ data }) => {
         pageSubtitle={pageSubtitle}
         pageIntroImage={pageIntroImage}
       />
-      <section sx={{ py: [8] }}>
+      <section>
         {offerings.map(({ offering: { id, offeringItem } }, index) => {
           return (
             <Fragment key={id}>
@@ -90,12 +90,7 @@ export const PAGE_QUERY = graphql`
                   offeringItemImage {
                     localFile {
                       childImageSharp {
-                        fluid(
-                          quality: 100
-                          toFormat: WEBP
-                          maxHeight: 800
-                          cropFocus: CENTER
-                        ) {
+                        fluid(quality: 100, toFormat: WEBP) {
                           ...GatsbyImageSharpFluid
                         }
                       }
