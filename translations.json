@@ -13,7 +13,20 @@
       "contactAddress": "Adresa",
       "contactPhone": "Pozovite nas",
       "contactEmail": "Pišite nam",
-      "locationType": "Sedište firme"
+      "locationType": "Sedište firme",
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "email": "Imejl",
+      "company": "Naziv vaše firme",
+      "phone": "Broj telefona",
+      "city": "Grad",
+      "addressService": "Adresa",
+      "message": "Vaša poruka",
+      "serverError": "Došlo je do greške na serveru, molimo pokušajte ponovo.",
+      "requiredField": "Ovo polje je obavezno.",
+      "notValidEmail": "Uneti imejl nije validan.",
+      "notValidPhoneUmber": "Uneti telefonski broj nije validan.",
+      "submit": "Pošalji"
     }
   },
   "cir": {
@@ -30,7 +43,20 @@
       "contactAddress": "Адреса",
       "contactPhone": "Позовите нас",
       "contactEmail": "Пишите нам",
-      "locationType": "Седиште фирме"
+      "locationType": "Седиште фирме",
+      "firstName": "Име",
+      "lastName": "Презиме",
+      "email": "Имејл",
+      "company": "Назив ваше фирме",
+      "phone": "Број телефона",
+      "city": "Град",
+      "addressService": "Адреса",
+      "message": "Ваша порука",
+      "serverError": "Дошло је до грешке на серверу, молимо покушајте поново.",
+      "requiredField": "Ово поље је обавезно.",
+      "notValidEmail": "Унети имејл није валидан.",
+      "notValidPhoneUmber": "Унети телефонски број није валидан.",
+      "submit": "Пошаљи"
     }
   },
   "en": {
@@ -47,7 +73,20 @@
       "contactAddress": "Location",
       "contactPhone": "Call us on",
       "contactEmail": "Email us",
-      "locationType": "Company office"
+      "locationType": "Company office",
+      "firstName": "First name",
+      "lastName": "Last namе",
+      "email": "E-mail",
+      "company": "Company name",
+      "phone": "Phone number",
+      "city": "City",
+      "addressService": "Address",
+      "message": "Your message",
+      "serverError": "Something went wrong, please try again.",
+      "requiredField": "This field is required.",
+      "notValidEmail": "The entered email is not valid.",
+      "notValidPhoneUmber": "The entered phone number is not valid.",
+      "submit": "Send"
     }
   }
 }

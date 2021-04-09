@@ -2,9 +2,10 @@
 import styled from '@emotion/styled';
 import { Grid, jsx, Spinner, useThemeUI } from 'theme-ui';
 import { Field } from './Field';
-import { useState } from 'react';
 import { navigate } from 'gatsby-link';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from '@3nvi/gatsby-theme-intl';
+import { ErrorMessage } from './ErrorMessage';
 
 function encode(data) {
   return Object.keys(data)
@@ -30,16 +31,11 @@ export const Form = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
     reset,
-  } = useForm({ defaultValues, mode: 'onBlur' });
+  } = useForm({ defaultValues, mode: 'onBlur', reValidateMode: 'onChange' });
 
-  const submit = (data, e) => {
-    console.log(e);
-    e.preventDefault();
-    console.log(isSubmitting, isValid);
-    // reset(defaultValues);
-  };
+  const { t } = useTranslation();
 
   const onSubmit = (data, e) => {
     e.preventDefault();
@@ -56,13 +52,8 @@ export const Form = () => {
         navigate(form.getAttribute('action'));
         reset(defaultValues);
       })
-      .catch((error) => alert(error)); // TODO: Handle errors
+      .catch(() => alert(t('serverError')));
   };
-  const loading = false;
-
-  const {
-    theme: { buttons },
-  } = useThemeUI();
 
   return (
     <form
@@ -82,106 +73,98 @@ export const Form = () => {
       </p>
       <Grid gap={[0, null, null, 6]} columns={[null, null, null, 2]}>
         <div>
-          <FormGroup sx={{ mb: 6 }}>
+          <FormGroup>
             <Field
               name="firstName"
-              placeholder="Ime*"
+              placeholder={`${t('firstName')}*`}
               register={register}
               validation={{
-                required: 'Ovo polje je obavezno.',
+                required: t('requiredField'),
               }}
+              errors={errors.firstName}
             />
-            <ErrorMessage>
-              {errors.firstName && errors.firstName.message}
-            </ErrorMessage>
           </FormGroup>
-          <FormGroup sx={{ mb: 6 }}>
+          <FormGroup>
             <Field
               name="lastName"
-              placeholder="Prezime*"
+              placeholder={`${t('lastName')}*`}
               register={register}
               validation={{
-                required: 'Ovo polje je obavezno.',
+                required: t('requiredField'),
               }}
+              errors={errors.lastName}
             />
-            <ErrorMessage>
-              {errors.lastName && errors.lastName.message}
-            </ErrorMessage>
           </FormGroup>
-          <FormGroup sx={{ mb: 6 }}>
+          <FormGroup>
             <Field
               name="email"
-              placeholder="Email*"
+              placeholder={`${t('email')}*`}
               register={register}
               validation={{
-                required: 'Ovo polje je obavezno.',
+                required: t('requiredField'),
                 pattern: {
                   value: emailRegex,
-                  message: 'Uneti email nije validan.',
+                  message: t('notValidEmail'),
                 },
               }}
+              errors={errors.email}
             />
-            <ErrorMessage>{errors.email && errors.email.message}</ErrorMessage>
           </FormGroup>
-          <FormGroup sx={{ mb: 6 }}>
+          <FormGroup>
             <Field
               name="company"
-              placeholder="Naziv vase firme*"
+              placeholder={`${t('company')}*`}
               register={register}
               validation={{
-                required: 'Ovo polje je obavezno.',
+                required: t('requiredField'),
               }}
+              errors={errors.company}
             />
-            <ErrorMessage>
-              {errors.company && errors.company.message}
-            </ErrorMessage>
           </FormGroup>
-          <FormGroup sx={{ mb: 6 }}>
+          <FormGroup>
             <Field
               name="phone"
-              placeholder="Broj telefona*"
+              placeholder={`${t('phone')}*`}
               register={register}
               validation={{
-                required: 'Ovo polje je obavezno.',
+                required: t('requiredField'),
                 pattern: {
                   value: phoneNumberRegex,
-                  message: 'Uneti telefonski broj nije validan.',
+                  message: t('notValidPhoneUmber'),
                 },
               }}
+              errors={errors.phone}
             />
-            <ErrorMessage>{errors.phone && errors.phone.message}</ErrorMessage>
           </FormGroup>
-          <FormGroup sx={{ mb: 6 }}>
+          <FormGroup>
             <Field
               name="city"
-              placeholder="Grad*"
+              placeholder={`${t('city')}*`}
               register={register}
               validation={{
-                required: 'Ovo polje je obavezno.',
+                required: t('requiredField'),
               }}
+              errors={errors.city}
             />
-            <ErrorMessage>{errors.city && errors.city.message}</ErrorMessage>
           </FormGroup>
-          <FormGroup sx={{ mb: 6 }}>
+          <FormGroup>
             <Field
               name="address"
-              placeholder="Adresa*"
+              placeholder={`${t('addressService')}*`}
               register={register}
               validation={{
-                required: 'Ovo polje je obavezno.',
+                required: t('requiredField'),
               }}
+              errors={errors.address}
             />
-            <ErrorMessage>
-              {errors.address && errors.address.message}
-            </ErrorMessage>
           </FormGroup>
         </div>
-        <div sx={{ mb: 6 }}>
+        <FormGroup>
           <Textarea
             type="text"
             name="message"
-            placeholder="Vasa poruka*"
-            {...register('message', { required: 'Ovo polje je obavezno.' })}
+            placeholder={`${t('message')}*`}
+            {...register('message', { required: t('requiredField') })}
             sx={{
               color: 'textPrimary',
               fontFamily: 'body',
@@ -198,7 +181,7 @@ export const Form = () => {
           <ErrorMessage>
             {errors.message && errors.message.message}
           </ErrorMessage>
-        </div>
+        </FormGroup>
       </Grid>
       <div
         sx={{
@@ -206,41 +189,11 @@ export const Form = () => {
           justifyContent: ['center', null, null, 'flex-start'],
         }}
       >
-        <SubmitButton
-          type="submit"
-          name="submit"
-          // disabled={!isValid || isSubmitting}
-          sx={{
-            ...buttons.primary,
-            fontSize: 2,
-            fontFamily: 'body',
-            '&:disabled': {
-              bg: 'muted',
-              boxShadow: `0 15px 15px rgba(233, 233, 233, 0.2)`,
-              cursor: 'not-allowed',
-              '&:hover': {
-                transform: 'none',
-              },
-            },
-          }}
-        >
-          {isSubmitting ? (
-            <Spinner
-              title="Loading"
-              size={24}
-              strokeWidth={2}
-              sx={{ color: 'secondary' }}
-            />
-          ) : (
-            <span>Pošalji</span>
-          )}
-        </SubmitButton>
+        <SubmitButton isSubmitting={isSubmitting} />
       </div>
     </form>
   );
 };
-
-const FormGroup = styled.div``;
 
 const Textarea = styled.textarea`
   border-width: 1px;
@@ -249,12 +202,40 @@ const Textarea = styled.textarea`
   resize: none;
 `;
 
-const SubmitButton = styled.button`
+const StyledSubmitButton = styled.button`
   text-transform: capitalize;
   cursor: pointer;
   border: none;
 `;
 
-const ErrorMessage = ({ children }) => {
-  return <p sx={{ fontSize: 1, color: 'alert', mt: 1 }}>{children}</p>;
+const FormGroup = ({ children }) => <div sx={{ mb: 6 }}>{children}</div>;
+
+const SubmitButton = ({ isSubmitting }) => {
+  const {
+    theme: { buttons },
+  } = useThemeUI();
+  const { t } = useTranslation();
+  return (
+    <StyledSubmitButton
+      type="submit"
+      name="submit"
+      sx={{
+        ...buttons.primary,
+        fontSize: 2,
+        fontFamily: 'body',
+        width: ['100%', null, null, '220px'],
+      }}
+    >
+      {isSubmitting ? (
+        <Spinner
+          title="Loading"
+          size={24}
+          strokeWidth={2}
+          sx={{ color: 'secondary' }}
+        />
+      ) : (
+        <span>{t('submit')}</span>
+      )}
+    </StyledSubmitButton>
+  );
 };
