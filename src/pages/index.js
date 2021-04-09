@@ -11,6 +11,7 @@ import { Testimonials } from 'components/home/Testimonials';
 import { Partners } from 'components/home/Partners';
 import { Announcement } from 'components/home/Announcement';
 import { Charity } from 'components/home/Charity';
+import { useTranslation } from '@3nvi/gatsby-theme-intl';
 
 export const PAGE_QUERY = graphql`
   {
@@ -41,11 +42,10 @@ const IndexPage = ({ data }) => {
     data.allWpPage.nodes.filter((c) => c.homePageSections.content),
   )[0];
   const content = localizedPageData.homePageSections.content;
-
+  const { t } = useTranslation();
   return (
     <>
-      {/* TODO: Add page title */}
-      <SEO title="Home" />
+      <SEO title={t('home')} />
       {content.map((section, i) => {
         const fieldGroupName = section.fieldGroupName;
         switch (fieldGroupName) {

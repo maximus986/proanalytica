@@ -6,11 +6,20 @@ import { Header } from './header/Header';
 
 export const Layout = ({ children }) => {
   return (
-    <>
+    <div sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
-      <main sx={{ marginTop: ['62px', null, 'auto'] }}>{children}</main>
+      <main
+        sx={{
+          marginTop: ['62px', null, 'auto'],
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {children}
+      </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

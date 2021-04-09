@@ -26,7 +26,14 @@
       "requiredField": "Ovo polje je obavezno.",
       "notValidEmail": "Uneti imejl nije validan.",
       "notValidPhoneUmber": "Uneti telefonski broj nije validan.",
-      "submit": "Pošalji"
+      "submit": "Pošalji",
+      "requestReceivedTitle": "Poštovani, vaš zahtev je uspešno primljen.",
+      "requestReceivedMessage": "Naši serviseri će vas kontaktirati u najkraćem mogućem roku.",
+      "requestReceivedThanks": "Hvala što ste nas kontaktirali.",
+      "serviceSupport": "Servisno aplikativna podrška",
+      "notFoundTitle": "Nažalost, zahtevana stranica ne postoji.",
+      "notFoundMessage": "Možete se vratiti na početnu stranicu.",
+      "notFound": "Stranica ne postoji"
     }
   },
   "cir": {
@@ -56,7 +63,14 @@
       "requiredField": "Ово поље је обавезно.",
       "notValidEmail": "Унети имејл није валидан.",
       "notValidPhoneUmber": "Унети телефонски број није валидан.",
-      "submit": "Пошаљи"
+      "submit": "Пошаљи",
+      "requestReceivedTitle": "Поштовани, ваш захтев је успешно примљен.",
+      "requestReceivedMessage": "Наши сервисери ће вас контактирату у најкраћем могућем року.",
+      "requestReceivedThanks": "Хвала што сте нас контактирали.",
+      "serviceSupport": "Сервисно апликативна подршка",
+      "notFoundTitle": "Нажалост, захтевана страница не постоји.",
+      "notFoundMessage": "Можете се вратити на почетну страницу.",
+      "notFound": "Страница не постоји"
     }
   },
   "en": {
@@ -86,7 +100,14 @@
       "requiredField": "This field is required.",
       "notValidEmail": "The entered email is not valid.",
       "notValidPhoneUmber": "The entered phone number is not valid.",
-      "submit": "Send"
+      "submit": "Send",
+      "requestReceivedTitle": "Dear Sir/Madam, we have recieved your request.",
+      "requestReceivedMessage": "We will contact you as soon as possible.",
+      "requestReceivedThanks": "Thanks for your inquiry.",
+      "serviceSupport": "Service application support",
+      "notFoundTitle": "Unfortunately, the requested page does not exist.",
+      "notFoundMessage": "You can go back to the home page.",
+      "notFound": "Not found"
     }
   }
 }

@@ -35,7 +35,7 @@ export const Form = () => {
     reset,
   } = useForm({ defaultValues, mode: 'onBlur', reValidateMode: 'onChange' });
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const onSubmit = (data, e) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ export const Form = () => {
       }),
     })
       .then(() => {
-        navigate(form.getAttribute('action'));
+        navigate(`/${i18n.language}${form.getAttribute('action')}`);
         reset(defaultValues);
       })
       .catch(() => alert(t('serverError')));
@@ -59,7 +59,7 @@ export const Form = () => {
     <form
       name="contact"
       method="post"
-      action="/thanks/"
+      action="/servisno-aplikativna-podrska-primljen-zahtev/"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       onSubmit={handleSubmit(onSubmit)}

@@ -8,3 +8,4 @@ export { Post } from './Post';
 export { Offering } from './Offering';
 export { WpContent } from './WpContent';
 export { Form } from './form/Form';
+export { Info } from './Info';
