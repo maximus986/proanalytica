@@ -4,6 +4,7 @@ import { Grid, jsx, Spinner, useThemeUI } from 'theme-ui';
 import { Field } from './Field';
 import { useState } from 'react';
 import { navigate } from 'gatsby-link';
+import { useForm } from 'react-hook-form';
 
 function encode(data) {
   return Object.keys(data)
@@ -22,18 +23,25 @@ const defaultValues = {
   message: '',
 };
 
-export const Form = () => {
-  const [formValue, setFormValue] = useState(defaultValues);
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const phoneNumberRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
-  const handleChange = (e) => {
-    e.persist();
-    setFormValue((formValue) => ({
-      ...formValue,
-      [e.target.name]: e.target.value,
-    }));
+export const Form = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
+    reset,
+  } = useForm({ defaultValues, mode: 'onBlur' });
+
+  const submit = (data, e) => {
+    console.log(e);
+    e.preventDefault();
+    console.log(isSubmitting, isValid);
+    // reset(defaultValues);
   };
 
-  const handleSubmit = (e) => {
+  const onSubmit = (data, e) => {
     e.preventDefault();
     const form = e.target;
     fetch('/', {
@@ -41,10 +49,13 @@ export const Form = () => {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
-        ...formValue,
+        ...data,
       }),
     })
-      .then(() => navigate(form.getAttribute('action')))
+      .then(() => {
+        navigate(form.getAttribute('action'));
+        reset(defaultValues);
+      })
       .catch((error) => alert(error)); // TODO: Handle errors
   };
   const loading = false;
@@ -60,14 +71,13 @@ export const Form = () => {
       action="/thanks/"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
       <input type="hidden" name="form-name" value="contact" />
       <p hidden>
         <label>
-          Don’t fill this out:{' '}
-          <input name="bot-field" onChange={handleChange} />
+          Don’t fill this out: <input name="bot-field" />
         </label>
       </p>
       <Grid gap={[0, null, null, 6]} columns={[null, null, null, 2]}>
@@ -76,57 +86,94 @@ export const Form = () => {
             <Field
               name="firstName"
               placeholder="Ime*"
-              onChange={handleChange}
-              value={formValue.firstName}
+              register={register}
+              validation={{
+                required: 'Ovo polje je obavezno.',
+              }}
             />
+            <ErrorMessage>
+              {errors.firstName && errors.firstName.message}
+            </ErrorMessage>
           </FormGroup>
           <FormGroup sx={{ mb: 6 }}>
             <Field
               name="lastName"
               placeholder="Prezime*"
-              onChange={handleChange}
-              value={formValue.lastName}
+              register={register}
+              validation={{
+                required: 'Ovo polje je obavezno.',
+              }}
             />
+            <ErrorMessage>
+              {errors.lastName && errors.lastName.message}
+            </ErrorMessage>
           </FormGroup>
           <FormGroup sx={{ mb: 6 }}>
             <Field
               name="email"
               placeholder="Email*"
-              onChange={handleChange}
-              value={formValue.email}
+              register={register}
+              validation={{
+                required: 'Ovo polje je obavezno.',
+                pattern: {
+                  value: emailRegex,
+                  message: 'Uneti email nije validan.',
+                },
+              }}
             />
+            <ErrorMessage>{errors.email && errors.email.message}</ErrorMessage>
           </FormGroup>
           <FormGroup sx={{ mb: 6 }}>
             <Field
               name="company"
               placeholder="Naziv vase firme*"
-              onChange={handleChange}
-              value={formValue.company}
+              register={register}
+              validation={{
+                required: 'Ovo polje je obavezno.',
+              }}
             />
+            <ErrorMessage>
+              {errors.company && errors.company.message}
+            </ErrorMessage>
           </FormGroup>
           <FormGroup sx={{ mb: 6 }}>
             <Field
               name="phone"
               placeholder="Broj telefona*"
-              onChange={handleChange}
-              value={formValue.phone}
+              register={register}
+              validation={{
+                required: 'Ovo polje je obavezno.',
+                pattern: {
+                  value: phoneNumberRegex,
+                  message: 'Uneti telefonski broj nije validan.',
+                },
+              }}
             />
+            <ErrorMessage>{errors.phone && errors.phone.message}</ErrorMessage>
           </FormGroup>
           <FormGroup sx={{ mb: 6 }}>
             <Field
               name="city"
               placeholder="Grad*"
-              onChange={handleChange}
-              value={formValue.city}
+              register={register}
+              validation={{
+                required: 'Ovo polje je obavezno.',
+              }}
             />
+            <ErrorMessage>{errors.city && errors.city.message}</ErrorMessage>
           </FormGroup>
           <FormGroup sx={{ mb: 6 }}>
             <Field
               name="address"
               placeholder="Adresa*"
-              onChange={handleChange}
-              value={formValue.address}
+              register={register}
+              validation={{
+                required: 'Ovo polje je obavezno.',
+              }}
             />
+            <ErrorMessage>
+              {errors.address && errors.address.message}
+            </ErrorMessage>
           </FormGroup>
         </div>
         <div sx={{ mb: 6 }}>
@@ -134,8 +181,7 @@ export const Form = () => {
             type="text"
             name="message"
             placeholder="Vasa poruka*"
-            onChange={handleChange}
-            value={formValue.message}
+            {...register('message', { required: 'Ovo polje je obavezno.' })}
             sx={{
               color: 'textPrimary',
               fontFamily: 'body',
@@ -149,6 +195,9 @@ export const Form = () => {
               },
             }}
           />
+          <ErrorMessage>
+            {errors.message && errors.message.message}
+          </ErrorMessage>
         </div>
       </Grid>
       <div
@@ -160,7 +209,7 @@ export const Form = () => {
         <SubmitButton
           type="submit"
           name="submit"
-          disabled={false}
+          // disabled={!isValid || isSubmitting}
           sx={{
             ...buttons.primary,
             fontSize: 2,
@@ -175,7 +224,7 @@ export const Form = () => {
             },
           }}
         >
-          {loading ? (
+          {isSubmitting ? (
             <Spinner
               title="Loading"
               size={24}
@@ -205,3 +254,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
   border: none;
 `;
+
+const ErrorMessage = ({ children }) => {
+  return <p sx={{ fontSize: 1, color: 'alert', mt: 1 }}>{children}</p>;
+};

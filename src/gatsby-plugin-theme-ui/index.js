@@ -13,6 +13,7 @@ export default {
     secondaryBackgroundActive: '#17181b',
     muted: '#e9e9e9',
     primaryOpacity2: 'rgba(0, 103, 119, 0.2)',
+    alert: '#FF4963',
     modes: {
       dark: {
         text: '#fff',

@@ -2,14 +2,13 @@
 import styled from '@emotion/styled';
 import { jsx } from 'theme-ui';
 
-export const Field = ({ name, placeholder, value, onChange }) => {
+export const Field = ({ register, name, placeholder, validation }) => {
   return (
     <Input
       type="text"
       name={name}
       placeholder={placeholder}
-      value={value}
-      onChange={onChange}
+      {...register(name, validation)}
       sx={{
         color: 'textPrimary',
         fontFamily: 'body',
