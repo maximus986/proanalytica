@@ -44,7 +44,7 @@ export const TopBar = () => {
                 <IoLocationOutline sx={{ fontSize: [null, null, 0, 2] }} />
               </Icon>
               <p sx={{ fontSize: [null, null, 0, 1] }}>
-                {locations[0].officeAddress}
+                {locations[0].address}
               </p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mr: [null, null, 4, 5] }}>

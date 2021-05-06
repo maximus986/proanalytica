@@ -23,6 +23,7 @@ const Contact = () => {
       },
     },
   } = localizedPageData;
+
   return (
     <>
       <SEO title={pageTitle} />
@@ -38,13 +39,15 @@ const Contact = () => {
               IconComponent={IoLocationOutline}
               message={t('contactAddress')}
             >
-              {locations[0].officeAddress}
+              {locations.map((location) => {
+                return <p key={location.address}>{location.address}</p>;
+              })}
             </ContactItem>
             <ContactItem
               IconComponent={AiOutlinePhone}
               message={t('contactPhone')}
             >
-              {phoneNumbers.map(({ phoneNumber }) => (
+              {phoneNumbers.map(({ phoneNumber }, i) => (
                 <a
                   href={`tel: ${phoneNumber.replace(/\s/g, '')}`}
                   sx={{
@@ -54,7 +57,7 @@ const Contact = () => {
                       color: 'primary',
                     },
                   }}
-                  key={phoneNumber}
+                  key={`${phoneNumber}-${i}`}
                 >
                   {phoneNumber}
                 </a>
@@ -84,7 +87,7 @@ const Contact = () => {
         </Container>
       </section>
       <section>
-        <LocationMap companyAddress={locations[0].officeAddress} />
+        <LocationMap locations={locations} />
       </section>
     </>
   );

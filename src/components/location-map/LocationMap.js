@@ -2,32 +2,18 @@
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { jsx } from 'theme-ui';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
-// import L from 'leaflet';
 import { config } from 'config';
 import { LocationPopup } from './LocationPopup';
 
-// Custom icon implementation if customer wants
-
-// const icon = new L.Icon({
-//   iconUrl: require('../images/logo.png'),
-//   iconRetinaUrl: require('../images/logo.png'),
-//   iconAnchor: null,
-//   popupAnchor: null,
-//   shadowUrl: null,
-//   shadowSize: null,
-//   shadowAnchor: null,
-//   iconSize: new L.Point(60, 75),
-//   className: 'leaflet-div-icon',
-// });
-
-export const LocationMap = ({ companyAddress }) => {
+export const LocationMap = ({ locations }) => {
   const { t } = useTranslation();
   if (typeof window !== 'undefined') {
     return (
       <MapContainer
-        center={[44.817835, 20.4113066]}
+        center={[config.mapCenterLatitude, config.mapCenterLongitude]}
         scrollWheelZoom={false}
-        zoom={15}
+        // TODO: Add dynamic zoom depending on the screen size
+        zoom={12}
         sx={{
           height: '600px',
           width: '100%',
@@ -38,10 +24,18 @@ export const LocationMap = ({ companyAddress }) => {
           attribution={config.mapBoxStyleAttribution}
           url={config.mapBoxStyleUrl}
         />
-        <Marker position={[44.817835, 20.4113066]}>
+        <Marker position={[config.officeLatitude, config.officeLongitude]}>
           <LocationPopup
-            locationType={t('locationType')}
-            locationAddress={companyAddress}
+            locationType={t('office')}
+            locationAddress={locations[0].address} // The model is fucked up.
+          />
+        </Marker>
+        <Marker
+          position={[config.warehouseLatitude, config.warehouseLongitude]}
+        >
+          <LocationPopup
+            locationType={t('warehouse')}
+            locationAddress={locations[1].address} // The model is fucked up.
           />
         </Marker>
       </MapContainer>

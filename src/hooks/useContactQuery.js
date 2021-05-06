@@ -18,8 +18,7 @@ export const useContactQuery = () => {
                     email
                   }
                   locations {
-                    officeAddress
-                    warehouseAddress
+                    address
                   }
                   phoneNumbers {
                     phoneNumber

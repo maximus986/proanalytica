@@ -74,7 +74,7 @@ export const Footer = () => {
               <Icon sx={{ mr: 3 }}>
                 <IoLocationOutline sx={{ fontSize: 6 }} />
               </Icon>
-              <p sx={{ fontSize: 1 }}>{locations[0].officeAddress}</p>
+              <p sx={{ fontSize: 1 }}>{locations[0].address}</p>
             </InfoIconContainer>
             <InfoIconContainer sx={{ mb: [4] }}>
               <Icon sx={{ mr: 3 }}>

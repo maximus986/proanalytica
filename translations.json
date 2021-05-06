@@ -13,7 +13,7 @@
       "contactAddress": "Adresa",
       "contactPhone": "Pozovite nas",
       "contactEmail": "Pišite nam",
-      "locationType": "Sedište firme",
+      "office": "Sedište firme",
       "firstName": "Ime",
       "lastName": "Prezime",
       "email": "Imejl",
@@ -33,7 +33,8 @@
       "serviceSupport": "Servisno aplikativna podrška",
       "notFoundTitle": "Nažalost, zahtevana stranica ne postoji.",
       "notFoundMessage": "Možete se vratiti na početnu stranicu.",
-      "notFound": "Stranica ne postoji"
+      "notFound": "Stranica ne postoji",
+      "warehouse": "Proizvodnja i magacin"
     }
   },
   "cir": {
@@ -50,7 +51,7 @@
       "contactAddress": "Адреса",
       "contactPhone": "Позовите нас",
       "contactEmail": "Пишите нам",
-      "locationType": "Седиште фирме",
+      "office": "Седиште фирме",
       "firstName": "Име",
       "lastName": "Презиме",
       "email": "Имејл",
@@ -70,7 +71,8 @@
       "serviceSupport": "Сервисно апликативна подршка",
       "notFoundTitle": "Нажалост, захтевана страница не постоји.",
       "notFoundMessage": "Можете се вратити на почетну страницу.",
-      "notFound": "Страница не постоји"
+      "notFound": "Страница не постоји",
+      "warehouse": "Производња и магацин"
     }
   },
   "en": {
@@ -87,7 +89,7 @@
       "contactAddress": "Location",
       "contactPhone": "Call us on",
       "contactEmail": "Email us",
-      "locationType": "Company office",
+      "office": "Company office",
       "firstName": "First name",
       "lastName": "Last namе",
       "email": "E-mail",
@@ -107,7 +109,8 @@
       "serviceSupport": "Service application support",
       "notFoundTitle": "Unfortunately, the requested page does not exist.",
       "notFoundMessage": "You can go back to the home page.",
-      "notFound": "Not found"
+      "notFound": "Not found",
+      "warehouse": "Manifacturing and warehouse"
     }
   }
 }
