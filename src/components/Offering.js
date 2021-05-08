@@ -20,15 +20,35 @@ export const Offering = ({ offeringItem, offeringIndex, className }) => {
     },
   } = offeringItem;
   return (
-    <Grid gap={0} columns={[null, null, null, null, 2]}>
-      <figure
+    <Grid
+      gap={0}
+      columns={[null, null, null, '2fr 3fr']}
+      sx={{
+        borderWidth: [0, null, null, 2],
+        borderStyle: 'solid',
+        borderColor: 'primaryPassive',
+      }}
+    >
+      <div
         sx={{
-          order: [null, null, null, null, offeringIndex % 2 === 0 ? -1 : 1],
+          my: 'auto',
         }}
       >
-        <Img fluid={fluid} alt="" sx={{ height: '100%' }} />
-      </figure>
-      <div sx={{ px: [4, null, 5, 7, 8], py: [7], bg: 'primaryPassive' }}>
+        <figure
+          sx={{
+            order: [null, null, null, null],
+          }}
+        >
+          <Img fluid={fluid} alt="" />
+        </figure>
+      </div>
+      <div
+        sx={{
+          px: [4, null, 5, 7, 8],
+          py: [7],
+          bg: 'primaryPassive',
+        }}
+      >
         <div sx={{ width: [null, null, '80%'], mx: 'auto' }}>
           <h3 sx={{ fontWeight: 'normal' }}>{offeringItemName}</h3>
           <div sx={{ mb: 6 }}>

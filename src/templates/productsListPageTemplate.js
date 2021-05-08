@@ -34,9 +34,9 @@ const ProductsListPageTemplate = ({ data }) => {
       <section>
         {offerings.map(({ offering: { id, offeringItem } }, index) => {
           return (
-            <Fragment key={id}>
+            <div key={id} sx={{ my: [null, null, null, 5] }}>
               <Offering offeringIndex={index} offeringItem={offeringItem} />
-            </Fragment>
+            </div>
           );
         })}
       </section>
