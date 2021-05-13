@@ -36,7 +36,8 @@ export const Offering = ({ offeringItem, offeringIndex, className }) => {
       >
         <figure
           sx={{
-            order: [null, null, null, null],
+            maxWidth: [null, null, null, null, '400px', '600px'],
+            margin: 'auto',
           }}
         >
           <Img fluid={fluid} alt="" />
