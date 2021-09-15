@@ -63,6 +63,7 @@ export const ProductCategories = ({ sectionTitle, category }) => {
             <ImageLink
               to={categorySlug}
               sx={{
+                height: ['300px', '250px', '300px', null, '450px'],
                 transition: 'imageLink',
                 borderRadius: 'image',
                 '&:hover': {
@@ -88,12 +89,14 @@ export const ProductCategories = ({ sectionTitle, category }) => {
               <Figure
                 sx={{
                   borderRadius: 'image',
+                  height: '100%',
                 }}
               >
                 <StyledImg
                   fluid={fluid}
                   alt=""
                   sx={{
+                    height: '100%',
                     '&::before': {
                       boxShadow: [
                         `inset 0px -80px 50px -40px ${boxShadowColor}`,
