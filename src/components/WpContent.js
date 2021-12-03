@@ -61,4 +61,8 @@ const Content = styled.section`
       margin: 0;
     }
   }
+  .aligncenter {
+    display: block;
+    margin: 0 auto;
+  }
 `;
