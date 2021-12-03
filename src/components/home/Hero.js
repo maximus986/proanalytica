@@ -73,12 +73,6 @@ export const Hero = ({ heroItems, className }) => {
                   <p sx={{ color: 'primaryBackground', fontSize: 5, mb: 5 }}>
                     {heroitem.heroItem.subtitle}
                   </p>
-                  <Button
-                    variant="outlineLarge"
-                    sx={{ alignSelf: 'flex-start' }}
-                  >
-                    Products
-                  </Button>
                 </Flex>
               </StyledBackgroundImage>
             </Container>

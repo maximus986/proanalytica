@@ -47,7 +47,6 @@ export const Announcement = ({
           pt: [6, null, 9, null, null, 15],
           pb: [6, null, 9, null, 22],
           px: [4, 0],
-          mb: [null, null, 10, null, 13],
         }}
       >
         <Container>
