@@ -10,7 +10,7 @@ export const Layout = ({ children }) => {
       <Header />
       <main
         sx={{
-          marginTop: ['62px', null, 'auto'],
+          marginTop: ['62px', null, '-3px', 'auto'],
           flex: 1,
           display: 'flex',
           flexDirection: 'column',

@@ -7,7 +7,7 @@ import ENFlag from 'images/gb.png';
 import styled from '@emotion/styled';
 import { useTranslation } from '@3nvi/gatsby-theme-intl';
 
-export const LanguagePicker = () => {
+export const LanguagePicker = ({ isNavbarSticky }) => {
   const { lang, originalPath } = usePageContext();
   const { t } = useTranslation();
   const sr = lang === 'sr' ? 'cir' : 'sr';
@@ -27,7 +27,7 @@ export const LanguagePicker = () => {
         >
           <img src={RSFlag} alt="Serbian flag" />
         </LangLink>
-        <LangName>{`${t(sr)}`}</LangName>
+        <LangName isNavbarSticky={isNavbarSticky}>{`${t(sr)}`}</LangName>
       </LangContainer>
       <LangContainer
         sx={{
@@ -40,17 +40,17 @@ export const LanguagePicker = () => {
         >
           <img src={ENFlag} alt="Serbian flag" />
         </LangLink>
-        <LangName>{t('en')}</LangName>
+        <LangName isNavbarSticky={isNavbarSticky}>{t('en')}</LangName>
       </LangContainer>
     </Container>
   );
 };
 
-const LangName = ({ children }) => {
+const LangName = ({ children, isNavbarSticky }) => {
   return (
     <span
       sx={{
-        color: 'primary',
+        color: isNavbarSticky ? 'primaryBackground' : 'primary',
         m: 0,
         lineHeight: 1,
         mt: '3px',

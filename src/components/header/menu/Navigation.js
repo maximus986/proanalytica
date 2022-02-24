@@ -71,7 +71,7 @@ export const Navigation = ({ animateNavbar }) => {
             );
           })}
         </Flex>
-        <LanguagePicker />
+        <LanguagePicker isNavbarSticky={animateNavbar} />
       </Flex>
     </Container>
   );

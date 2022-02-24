@@ -33,7 +33,7 @@ export const TopBar = () => {
             to="/"
             sx={{
               lineHeight: 'reset',
-              width: [null, null, '160px', '220px'],
+              width: [null, null, '150px', '220px'],
             }}
           >
             <img src={logo} alt="Logo" sx={{ width: '100%' }} />
