@@ -130,7 +130,7 @@ const ProductLink = styled(Link)`
 `;
 
 const Figure = styled.figure`
-  height: 600px;
+  height: 400px;
   overflow: hidden;
   position: relative;
 `;
