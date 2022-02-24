@@ -7,10 +7,10 @@ import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoLocationOutline } from 'react-icons/io5';
 import { Flex, Grid, jsx, useThemeUI } from 'theme-ui';
 import { useContactQuery, useLocalizedWpData } from 'hooks';
-import certificate from 'images/certificate.png';
 import lachner from 'images/lachner.png';
 import logo from 'images/logo.png';
 import { Link } from './link';
+import { Overlay } from '../components/Overlay';
 
 export const Footer = () => {
   const data = useStaticQuery(graphql`
@@ -49,7 +49,8 @@ export const Footer = () => {
   } = useThemeUI();
   const currentYear = new Date().getFullYear();
   return (
-    <footer sx={{ bg: 'secondaryBackground' }}>
+    <footer sx={{ position: 'relative' }}>
+      <Overlay />
       <Separator {...{ colors }} />
       <Container>
         <Grid
@@ -57,15 +58,27 @@ export const Footer = () => {
           columns={[null, null, null, 3]}
           sx={{ px: [4, 0], py: [7] }}
         >
-          <Link
-            to="/"
+          <div
             sx={{
-              lineHeight: 'reset',
-              width: [220, null, null, 240],
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: ['flex-start', 'center'],
+              width: 'fit-content',
             }}
           >
-            <img src={logo} alt="Logo" sx={{ width: '100%' }} />
-          </Link>
+            <Link
+              to="/"
+              sx={{
+                lineHeight: 'reset',
+                width: [220, null, null, 240],
+              }}
+            >
+              <img src={logo} alt="Logo" sx={{ width: '100%' }} />
+            </Link>
+            <figure sx={{ alignSelf: 'center' }}>
+              <img src={lachner} alt="" sx={{ mt: 4 }} />
+            </figure>
+          </div>
           <div>
             <h3 sx={{ color: 'primary', mb: [5], fontSize: [6] }}>
               {t('contact')}
@@ -158,20 +171,10 @@ export const Footer = () => {
                 },
               )}
             </Flex>
-            <Flex>
-              <figure sx={{ mr: 4 }}>
-                <img src={certificate} alt="" sx={{ width: '100px' }} />
-              </figure>
-              <figure>
-                <img src={lachner} alt="" sx={{ width: '100px' }} />
-              </figure>
-            </Flex>
           </div>
         </Grid>
       </Container>
-      <div
-        sx={{ textAlign: 'center', bg: 'secondaryBackgroundActive', px: [4] }}
-      >
+      <div sx={{ textAlign: 'center', bg: 'tertiary', px: [4] }}>
         <p sx={{ fontSize: 0 }}>
           Copyright &copy; Proanalytica doo {currentYear}
         </p>
