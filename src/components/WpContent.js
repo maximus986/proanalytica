@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react';
 import styled from '@emotion/styled';
 import { useThemeUI, jsx } from 'theme-ui';
 
@@ -64,5 +63,9 @@ const Content = styled.section`
   .aligncenter {
     display: block;
     margin: 0 auto;
+  }
+
+  .aboutUsLogo > span {
+    padding-bottom: 68.1% !important; // Fucking wordpress generate some padding as inline style to the span above image!
   }
 `;
