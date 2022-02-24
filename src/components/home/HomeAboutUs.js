@@ -49,12 +49,12 @@ export const HomeAboutUs = ({
         <Grid
           gap={[6, null, null, 8, 11]}
           columns={[null, null, null, 2]}
-          sx={{ alignItems: 'center' }}
+          sx={{ alignItems: 'center', px: [4, 0] }}
         >
           <figure>
             <Img fluid={fluid} alt="" />
           </figure>
-          <article sx={{ px: [4, 0] }}>
+          <article>
             <p sx={{ color: 'primary', mb: 3, fontWeight: 'bold' }}>
               {introText}
             </p>
