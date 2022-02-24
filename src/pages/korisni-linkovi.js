@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, jsx } from 'theme-ui';
 import SEO from 'components/seo';
 import { useLocalizedWpData } from 'hooks';
@@ -33,19 +33,12 @@ const Links = ({ data }) => {
           <Grid columns={[null, null, null, 2]} gap={8}>
             {webinars.map(({ webinar }, id) => {
               return (
-                <iframe
-                  src={webinar.webinarItem.webinarVideoLink}
-                  title={webinar.webinarItem.webinarTitle}
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  frameBorder="0"
-                  webkitallowfullscreen="true"
-                  mozallowfullscreen="true"
-                  allowFullScreen
-                  width="100%"
-                  height="400"
-                  loading="lazy"
-                  key={id}
-                />
+                <React.Fragment key={id}>
+                  <Video
+                    src={webinar.webinarItem.webinarVideoLink}
+                    title={webinar.webinarItem.webinarTitle}
+                  />
+                </React.Fragment>
               );
             })}
           </Grid>
@@ -53,6 +46,39 @@ const Links = ({ data }) => {
       </section>
     </>
   );
+};
+
+const Video = ({ src, title }) => {
+  const [loaded, setLoaded] = useState(false);
+  console.log({ loaded });
+  return (
+    <div>
+      {!loaded ? <Placeholder /> : null}
+      <iframe
+        src={src}
+        title={title}
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        frameBorder="0"
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+        allowFullScreen
+        width={loaded ? '100%' : '0'}
+        height={loaded ? '400px' : '0'}
+        loading="lazy"
+        sx={{
+          transition: 'opacity 0.1s linear',
+          opacity: loaded ? 1 : '0',
+        }}
+        onLoad={() => {
+          setLoaded(true);
+        }}
+      />
+    </div>
+  );
+};
+
+const Placeholder = () => {
+  return <div sx={{ width: '100%', height: '400px', bg: '#f2f2f2' }} />;
 };
 
 export default Links;
