@@ -34,7 +34,10 @@
       "notFoundTitle": "Nažalost, zahtevana stranica ne postoji.",
       "notFoundMessage": "Možete se vratiti na početnu stranicu.",
       "notFound": "Stranica ne postoji",
-      "warehouse": "Proizvodnja i magacin"
+      "warehouse": "Proizvodnja i magacin",
+      "sr": "Lat",
+      "cir": "Ћир",
+      "en": "Eng"
     }
   },
   "cir": {
@@ -72,7 +75,10 @@
       "notFoundTitle": "Нажалост, захтевана страница не постоји.",
       "notFoundMessage": "Можете се вратити на почетну страницу.",
       "notFound": "Страница не постоји",
-      "warehouse": "Производња и магацин"
+      "warehouse": "Производња и магацин",
+      "sr": "Lat",
+      "cir": "Ћир",
+      "en": "Eng"
     }
   },
   "en": {
@@ -110,7 +116,10 @@
       "notFoundTitle": "Unfortunately, the requested page does not exist.",
       "notFoundMessage": "You can go back to the home page.",
       "notFound": "Not found",
-      "warehouse": "Manifacturing and warehouse"
+      "warehouse": "Manifacturing and warehouse",
+      "sr": "Lat",
+      "cir": "Cir",
+      "en": "Eng"
     }
   }
 }
