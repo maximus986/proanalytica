@@ -59,7 +59,7 @@ module.exports = {
       resolve: `@3nvi/gatsby-theme-intl`,
       options: {
         supportedLanguages: ['en', 'sr', 'cir'],
-        defaultLanguage: 'sr',
+        defaultLanguage: 'cir',
         i18nextConfig: {
           resources: translations,
         },
