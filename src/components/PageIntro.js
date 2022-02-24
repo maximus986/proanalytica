@@ -11,16 +11,18 @@ export const PageIntro = ({ pageTitle, pageSubtitle, pageIntroImage }) => {
     <div
       sx={{
         position: 'relative',
-        mt: [null, null, '124px', '135px'],
+        // mt: [null, null, '124px', '135px'],
       }}
     >
       <StyledBackgroundImage
-        fluid={pageIntroImage.localFile.childImageSharp.fluid}
-        sx={{ py: [12, null, 15] }}
+        // fluid={pageIntroImage.localFile.childImageSharp.fluid}
+        sx={{ pt: [12, null, 21, 22], pb: [12, null, 8] }}
       >
         <Container>
           <article sx={{ px: [4, 0] }}>
-            <h1 sx={{ fontSize: [10, 12], color: 'primary', mb: [4] }}>
+            <h1
+              sx={{ fontSize: [10, null, 11, 12], color: 'primary', mb: [4] }}
+            >
               {pageTitle}
             </h1>
             <p sx={{ fontSize: [6], color: 'primary' }}>{pageSubtitle}</p>
@@ -32,7 +34,7 @@ export const PageIntro = ({ pageTitle, pageSubtitle, pageIntroImage }) => {
   );
 };
 
-const StyledBackgroundImage = styled(BackgroundImage)`
+const StyledBackgroundImage = styled.div`
   width: 100%;
   background-position: center;
   background-size: cover;
