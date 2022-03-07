@@ -50,7 +50,6 @@ const Links = ({ data }) => {
 
 const Video = ({ src, title }) => {
   const [loaded, setLoaded] = useState(false);
-  console.log({ loaded });
   return (
     <div>
       {!loaded ? <Placeholder /> : null}
