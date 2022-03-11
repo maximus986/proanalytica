@@ -37,11 +37,7 @@ export default Services;
 export const PAGE_QUERY = graphql`
   {
     allWpPage(
-      filter: {
-        serviceApplicationSupportPage: {
-          fieldGroupName: { eq: "serviceApplicationSupportPage" }
-        }
-      }
+      filter: { serviceApplicationSupportPage: { supportId: { eq: true } } }
     ) {
       nodes {
         language {
