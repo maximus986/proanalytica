@@ -10,6 +10,7 @@ module.exports = {
       'Proanalytica, laboratorijska oprema, analiticki instrumentt, hemikalije,potrosni materijal, laboratorijski digestori, laboratorijski namestaj',
     author: `@AleksandarM986`,
     supportedLanguages: ['en', 'sr', 'cir'],
+    siteUrl: `https://proanalytica.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -50,8 +51,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: `https://proanalytica.com/cir/`,
-        sitemap: `https://proanalytica.com/cir//sitemap.xml`,
+        host: `https://proanalytica.com`,
+        sitemap: `https://proanalytica.com/sitemap.xml`,
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
