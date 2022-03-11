@@ -24,7 +24,7 @@ export const ProductCategory = ({
       >
         <ProductImg
           fluid={categoryImage}
-          alt=""
+          alt={categoryName}
           sx={{
             transition: 'button',
             '&::before': {

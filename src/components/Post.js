@@ -27,7 +27,11 @@ export const Post = ({ post }) => {
           maxHeight: ['300px', null, '230px', '311px', '235px', '290px'],
         }}
       >
-        <PostImage fluid={fluid} alt="" sx={{ transition: 'imageLinkLong' }} />
+        <PostImage
+          fluid={fluid}
+          alt={title}
+          sx={{ transition: 'imageLinkLong' }}
+        />
       </Figure>
       <div sx={{ mt: 6, px: 4, pb: 5 }}>
         <PostTitle sx={{ fontWeight: 'normal', fontSize: 6 }}>

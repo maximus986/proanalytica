@@ -68,7 +68,7 @@ export const Partners = ({ sectionTitle, partners }) => {
                       height: '100px',
                     }}
                   >
-                    <Img fixed={fixed} alt="" />
+                    <Img fixed={fixed} alt={partner.partner.name} />
                   </figure>
                 </a>
               </article>

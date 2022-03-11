@@ -57,7 +57,7 @@ const PostTemplate = ({ data }) => {
             <p>{`${newsAuthor}, ${date}`}</p>
           </div>
           <figure sx={{ mb: [6, null, 8, 9, 11] }}>
-            <Img fluid={fluid} alt="" />
+            <Img fluid={fluid} alt={title} />
           </figure>
           <div sx={{ px: [4, 0] }}>
             <WpContent>{parseContentWithLinks(content)}</WpContent>

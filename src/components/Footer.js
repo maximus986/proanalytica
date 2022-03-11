@@ -76,7 +76,7 @@ export const Footer = () => {
               <img src={logo} alt="Logo" sx={{ width: '100%' }} />
             </Link>
             <figure sx={{ alignSelf: 'center' }}>
-              <img src={lachner} alt="" sx={{ mt: 4 }} />
+              <img src={lachner} alt="Lachner" sx={{ mt: 4 }} />
             </figure>
           </div>
           <div>

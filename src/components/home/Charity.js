@@ -41,7 +41,7 @@ export const Charity = ({
     <SectionContainer sectionTitle={sectionTitle}>
       <StyledBackgroundImage
         fluid={fluid}
-        alt=""
+        alt={title}
         sx={{ width: ['100%', null, null, '100%'] }}
       >
         <Container>

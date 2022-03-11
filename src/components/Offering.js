@@ -40,7 +40,7 @@ export const Offering = ({ offeringItem, offeringIndex, className }) => {
             margin: 'auto',
           }}
         >
-          <Img fluid={fluid} alt="" />
+          <Img fluid={fluid} alt={offeringItemName} />
         </figure>
       </div>
       <div

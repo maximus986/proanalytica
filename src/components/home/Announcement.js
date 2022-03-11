@@ -70,7 +70,7 @@ export const Announcement = ({
                   width: ['100%', null, null, null, null, '85%'],
                 }}
               >
-                <Img fluid={fluid} alt="" />
+                <Img fluid={fluid} alt={title} />
               </figure>
             </div>
           </Grid>

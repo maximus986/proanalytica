@@ -94,7 +94,7 @@ export const ProductCategories = ({ sectionTitle, category }) => {
               >
                 <StyledImg
                   fluid={fluid}
-                  alt=""
+                  alt={categoryName}
                   sx={{
                     height: '100%',
                     '&::before': {

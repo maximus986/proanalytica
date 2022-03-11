@@ -52,7 +52,7 @@ export const HomeAboutUs = ({
           sx={{ alignItems: 'center', px: [4, 0] }}
         >
           <figure>
-            <Img fluid={fluid} alt="" />
+            <Img fluid={fluid} alt={title} />
           </figure>
           <article>
             <p sx={{ color: 'primary', mb: 3, fontWeight: 'bold' }}>
