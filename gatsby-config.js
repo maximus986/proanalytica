@@ -4,7 +4,10 @@ const translations = require('./translations.json');
 module.exports = {
   siteMetadata: {
     title: `Proanalytica`,
-    description: `Proanalytica`,
+    description:
+      'Proanalytica je specijalizovani distributer laboratorijske opreme, analitičkih instrumenata, hemikalija i potrošnog materijala vodećih svetskih proizvođača, te proizvođač laboratorijskih digestora i nameštaja. Opredeljenost za vrhunski kvalitet ponude, uz brzu i jednostavnu uslugu, kvalitetnu servisnu i aplikativnu podršku, jemči našim korisnicima sigurnost analize, dugoročnu eksploataciju opreme i optimalan povrat ulaganja. Proanalytica je deo međunarodne Lach-Ner grupe proizvođača i distributera laboratorijske opreme.',
+    keywords:
+      'Proanalytica, laboratorijska oprema, analiticki instrumentt, hemikalije,potrosni materijal, laboratorijski digestori, laboratorijski namestaj',
     author: `@AleksandarM986`,
     supportedLanguages: ['en', 'sr', 'cir'],
   },
@@ -44,15 +47,15 @@ module.exports = {
       },
     },
     `gatsby-plugin-theme-ui`,
-    // {
-    //   resolve: 'gatsby-plugin-robots-txt',
-    //   options: {
-    //     host: `site-url`, // !add site url
-    //     sitemap: `site-url/sitemap.xml`, // !add site url
-    //     policy: [{ userAgent: '*', allow: '/' }],
-    //   },
-    // },
-    // `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: `https://proanalytica.com/cir/`,
+        sitemap: `https://proanalytica.com/cir//sitemap.xml`,
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-emotion`,
     {
