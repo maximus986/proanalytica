@@ -5,7 +5,7 @@ export const heroSliderSettings = {
   speed: 5000,
   fade: true,
   cssEase: 'ease',
-  pauseOnHover: false,
+  pauseOnHover: true,
   arrows: false,
 };
 
